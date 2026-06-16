@@ -16,7 +16,7 @@ CX platform integration stack with self-hosted [ACI.dev](https://github.com/aipo
 
 ## Current status — 2026-06-15
 
-**Built, hardened, and tested end-to-end; not yet wired into CX.**
+**Built, hardened, tested end-to-end, and wired into CX — chat agents verified end-to-end through the bridge (sentinel/aiassist/livekit point at it).**
 
 - **Catalog: 36 servers · 510 tools** — 20 from ACI's built-in catalog, 13 generated
   from the providers' OpenAPI specs (9 official + 4 community), 3 hand-written
@@ -109,7 +109,7 @@ cd aci-mcp-server
 docker compose -f ../aci-pilot/aci/backend/compose.yml -f compose.override.yml \
   up -d --build db aws propelauth_mock embeddings-mock server runner
 
-# 2. seed all 14 apps + get the agent API key (printed last — save it)
+# 2. seed all 36 apps + get the agent API key (printed last — save it)
 docker compose -f ../aci-pilot/aci/backend/compose.yml -f compose.override.yml \
   exec runner sh /workdir/cx-scripts/seed.sh
 
@@ -127,7 +127,7 @@ curl -X POST http://localhost:8000/v1/functions/GOOGLE_CALENDAR__CALENDARLIST_LI
 # 5. start the MCP server the CX platform will point at
 ACI_API_KEY=<key> ./scripts/run-mcp.sh cx-tenant 8100
 #    → SSE endpoint: http://localhost:8100/sse
-#    MCP_MODE=unified for ACI's 2 meta-tools (search+execute) instead of 188 flat tools
+#    MCP_MODE=unified for ACI's 2 meta-tools (search+execute) instead of 510 flat tools
 ```
 
 ## Replacement checklist — does this really cover both repos?
@@ -148,7 +148,7 @@ source (`aci/backend/aci/server/`):
 
 | agent-mcp capability | ACI equivalent |
 |---|---|
-| Tool definitions in code (TS server classes) | JSON-only definitions (`apps/*/functions.json`, 188 tools) |
+| Tool definitions in code (TS server classes) | JSON-only definitions (`apps/*/functions.json`, 510 tools) |
 | MCP endpoint per tenant (`mcp_id`) | `aci-mcp` SSE server with `--linked-account-owner-id` (`run-mcp.sh`) |
 | Tool execution with tenant creds | `POST /v1/functions/<NAME>/execute` — creds resolved server-side, token never leaves ACI |
 | Business-logic tools (massage/multi-call/compute) | **intentionally NOT replaced** — thin raw tools only; that's the experiment |
