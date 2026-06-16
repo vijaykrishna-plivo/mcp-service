@@ -1,0 +1,19 @@
+{
+  "name": "DROPBOX",
+  "display_name": "Dropbox",
+  "logo": "https://raw.githubusercontent.com/aipotheosis-labs/aipolabs-icons/refs/heads/main/apps/dropbox.svg",
+  "provider": "Dropbox",
+  "version": "1.0",
+  "description": "Cloud file storage and sharing service for listing, searching, and managing files and folders.",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": "Bearer"
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": ["File Storage"],
+  "visibility": "public",
+  "active": true
+}

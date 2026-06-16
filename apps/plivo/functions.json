@@ -1,0 +1,197 @@
+[
+  {
+    "name": "PLIVO__SEND_MESSAGE",
+    "description": "Send an SMS/MMS message from a Plivo number",
+    "tags": ["messaging", "sms", "create"],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/Message/",
+      "server_url": "https://api.plivo.com/v1/Account/{auth_id}"
+    },
+    "parameters": {
+      "type": "object",
+      "required": ["body"],
+      "visible": ["body"],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "description": "Request body",
+          "required": ["src", "dst", "text"],
+          "visible": ["src", "dst", "text", "type", "url"],
+          "additionalProperties": false,
+          "properties": {
+            "src": { "type": "string", "description": "Sender id / Plivo number (E.164)" },
+            "dst": { "type": "string", "description": "Destination number(s), '<' delimited for multiple" },
+            "text": { "type": "string", "description": "Message body text" },
+            "type": { "type": "string", "description": "Message type: sms or mms" },
+            "url": { "type": "string", "description": "Callback URL for delivery status" }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "PLIVO__LIST_MESSAGES",
+    "description": "List messages on the Plivo account",
+    "tags": ["messaging", "list"],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/Message/",
+      "server_url": "https://api.plivo.com/v1/Account/{auth_id}"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": ["query"],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "description": "Query parameters",
+          "required": [],
+          "visible": ["limit", "offset", "message_state"],
+          "additionalProperties": false,
+          "properties": {
+            "limit": { "type": "integer", "description": "Number of results (max 20)" },
+            "offset": { "type": "integer", "description": "Pagination offset" },
+            "message_state": { "type": "string", "description": "Filter by state (queued, sent, failed, delivered, ...)" }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "PLIVO__GET_MESSAGE",
+    "description": "Get details of a single message by its UUID",
+    "tags": ["messaging"],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/Message/{message_uuid}/",
+      "server_url": "https://api.plivo.com/v1/Account/{auth_id}"
+    },
+    "parameters": {
+      "type": "object",
+      "required": ["path"],
+      "visible": ["path"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "required": ["message_uuid"],
+          "visible": ["message_uuid"],
+          "additionalProperties": false,
+          "properties": {
+            "message_uuid": { "type": "string", "description": "UUID of the message" }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "PLIVO__MAKE_CALL",
+    "description": "Place an outbound call",
+    "tags": ["voice", "call", "create"],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/Call/",
+      "server_url": "https://api.plivo.com/v1/Account/{auth_id}"
+    },
+    "parameters": {
+      "type": "object",
+      "required": ["body"],
+      "visible": ["body"],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "description": "Request body",
+          "required": ["from", "to", "answer_url"],
+          "visible": ["from", "to", "answer_url", "answer_method"],
+          "additionalProperties": false,
+          "properties": {
+            "from": { "type": "string", "description": "Caller id (Plivo number, E.164)" },
+            "to": { "type": "string", "description": "Destination number(s), '<' delimited for multiple" },
+            "answer_url": { "type": "string", "description": "URL returning Plivo XML to control the call" },
+            "answer_method": { "type": "string", "description": "HTTP method for answer_url (GET/POST)" }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "PLIVO__LIST_CALLS",
+    "description": "List call detail records on the account",
+    "tags": ["voice", "list"],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/Call/",
+      "server_url": "https://api.plivo.com/v1/Account/{auth_id}"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": ["query"],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "description": "Query parameters",
+          "required": [],
+          "visible": ["limit", "offset", "call_direction"],
+          "additionalProperties": false,
+          "properties": {
+            "limit": { "type": "integer", "description": "Number of results (max 20)" },
+            "offset": { "type": "integer", "description": "Pagination offset" },
+            "call_direction": { "type": "string", "description": "Filter: inbound or outbound" }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "PLIVO__GET_CALL",
+    "description": "Get details of a single call by its UUID",
+    "tags": ["voice"],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/Call/{call_uuid}/",
+      "server_url": "https://api.plivo.com/v1/Account/{auth_id}"
+    },
+    "parameters": {
+      "type": "object",
+      "required": ["path"],
+      "visible": ["path"],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "required": ["call_uuid"],
+          "visible": ["call_uuid"],
+          "additionalProperties": false,
+          "properties": {
+            "call_uuid": { "type": "string", "description": "UUID of the call" }
+          }
+        }
+      }
+    }
+  }
+]

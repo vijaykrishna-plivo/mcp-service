@@ -1,0 +1,915 @@
+[
+  {
+    "name": "ZOHO_PEOPLE__LISTFORMRECORDS",
+    "description": "List Form Records",
+    "tags": [
+      "Forms"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/forms/{formName}/records",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "formName": {
+              "type": "string",
+              "description": "Linkname of the Zoho People form (e.g. employee, leave, P_EmployeeView)."
+            }
+          },
+          "required": [
+            "formName"
+          ],
+          "visible": [
+            "formName"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "searchParams": {
+              "type": "string",
+              "description": "JSON-encoded search criteria."
+            },
+            "sIndex": {
+              "type": "integer",
+              "default": 1
+            },
+            "rec_limit": {
+              "type": "integer",
+              "default": 100
+            }
+          },
+          "required": [],
+          "visible": [
+            "searchParams",
+            "sIndex",
+            "rec_limit"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__INSERTFORMRECORD",
+    "description": "Insert Form Record",
+    "tags": [
+      "Forms"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/forms/{formName}/records",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "formName": {
+              "type": "string",
+              "description": "Linkname of the Zoho People form (e.g. employee, leave, P_EmployeeView)."
+            }
+          },
+          "required": [
+            "formName"
+          ],
+          "visible": [
+            "formName"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "inputData": {
+              "type": "string",
+              "description": "JSON string of field name/value pairs to insert."
+            }
+          },
+          "required": [],
+          "visible": [
+            "inputData"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__UPDATEFORMRECORD",
+    "description": "Update Form Record",
+    "tags": [
+      "Forms"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/forms/{formName}/updateRecord",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "formName": {
+              "type": "string",
+              "description": "Linkname of the Zoho People form (e.g. employee, leave, P_EmployeeView)."
+            }
+          },
+          "required": [
+            "formName"
+          ],
+          "visible": [
+            "formName"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "recordId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "recordId"
+          ],
+          "visible": [
+            "recordId"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "inputData": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "inputData"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__LISTEMPLOYEES",
+    "description": "List Employee Records",
+    "tags": [
+      "Employee"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/forms/employee/getRecords",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "searchParams": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "searchParams"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__CREATEEMPLOYEE",
+    "description": "Create Employee Record",
+    "tags": [
+      "Employee"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/forms/employee/insertRecord",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "inputData": {
+              "type": "string",
+              "description": "JSON-encoded employee fields."
+            }
+          },
+          "required": [],
+          "visible": [
+            "inputData"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__UPDATEEMPLOYEE",
+    "description": "Update Employee Record",
+    "tags": [
+      "Employee"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/forms/employee/updateRecord",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "recordId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "recordId"
+          ],
+          "visible": [
+            "recordId"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "inputData": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "inputData"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__LISTHOLIDAYS",
+    "description": "List Holidays",
+    "tags": [
+      "Leave"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/leave/getHolidays",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "string"
+            },
+            "year": {
+              "type": "integer"
+            }
+          },
+          "required": [],
+          "visible": [
+            "userId",
+            "year"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__LISTLEAVETYPES",
+    "description": "List Leave Types",
+    "tags": [
+      "Leave"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/leave/getLeaveTypeDetails",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "userId": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "userId"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__APPLYFORLEAVE",
+    "description": "Apply For Leave",
+    "tags": [
+      "Leave"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/forms/leave/insertRecord",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "inputData": {
+              "type": "string",
+              "description": "JSON-encoded leave request (employeeId, leaveTypeId, from, to, reason)."
+            }
+          },
+          "required": [],
+          "visible": [
+            "inputData"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__LISTLEAVEREQUESTS",
+    "description": "List Leave Requests",
+    "tags": [
+      "Leave"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/forms/leave/getRecords",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "searchParams": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "searchParams"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__CHECKINOUT",
+    "description": "Check In Or Check Out",
+    "tags": [
+      "Attendance"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/attendance",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "checkIn": {
+              "type": "string"
+            },
+            "checkOut": {
+              "type": "string"
+            },
+            "empId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "checkIn",
+            "checkOut"
+          ],
+          "visible": [
+            "checkIn",
+            "checkOut",
+            "empId"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__GETUSERATTENDANCEREPORT",
+    "description": "Get User Attendance Report",
+    "tags": [
+      "Attendance"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/attendance/getUserReport",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "empId": {
+              "type": "string"
+            },
+            "sdate": {
+              "type": "string"
+            },
+            "edate": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "empId",
+            "sdate",
+            "edate"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__BULKIMPORTATTENDANCE",
+    "description": "Bulk Import Attendance",
+    "tags": [
+      "Attendance"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/attendance/bulkImport",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "file"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__LISTJOBS",
+    "description": "List Time Tracker Jobs",
+    "tags": [
+      "Time Tracker"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/timetracker/jobs",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__CREATEJOB",
+    "description": "Create Time Tracker Job",
+    "tags": [
+      "Time Tracker"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/timetracker/jobs",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "inputData": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "inputData"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__LISTTIMELOGS",
+    "description": "List Time Logs",
+    "tags": [
+      "Time Tracker"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/timetracker/timelogs",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "user": {
+              "type": "string"
+            },
+            "fromDate": {
+              "type": "string"
+            },
+            "toDate": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "user",
+            "fromDate",
+            "toDate"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__CREATETIMELOG",
+    "description": "Create Time Log",
+    "tags": [
+      "Time Tracker"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/timetracker/timelogs",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "jobId": {
+              "type": "string"
+            },
+            "workDate": {
+              "type": "string"
+            },
+            "hours": {
+              "type": "number"
+            },
+            "billingStatus": {
+              "type": "string",
+              "enum": [
+                "billable",
+                "nonBillable"
+              ]
+            },
+            "description": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "jobId",
+            "workDate",
+            "hours",
+            "billingStatus",
+            "description"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__LISTANNOUNCEMENTS",
+    "description": "List Announcements",
+    "tags": [
+      "Dashboard"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/dashboard/getAnnouncements",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__LISTBIRTHDAYS",
+    "description": "List Upcoming Birthdays",
+    "tags": [
+      "Dashboard"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/dashboard/getBirthdays",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "ZOHO_PEOPLE__TRIGGERWORKFLOW",
+    "description": "Trigger Workflow",
+    "tags": [
+      "Automation"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/automation/triggerWorkflow",
+      "server_url": "https://people.zoho.{region}/people/api"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "workflowId": {
+              "type": "string"
+            },
+            "inputData": {
+              "type": "string",
+              "description": "JSON-encoded workflow input."
+            }
+          },
+          "required": [
+            "workflowId"
+          ],
+          "visible": [
+            "workflowId",
+            "inputData"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  }
+]

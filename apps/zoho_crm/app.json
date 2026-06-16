@@ -1,0 +1,21 @@
+{
+  "name": "ZOHO_CRM",
+  "display_name": "Zoho CRM",
+  "logo": "https://cdn.simpleicons.org/zoho",
+  "provider": "Zoho",
+  "version": "1.0",
+  "description": "Thin raw-REST integration for the Zoho CRM API (v3) to read, create, update, and search records across modules such as Leads, Contacts, Deals, and Accounts.",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": "Zoho-oauthtoken"
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": [
+    "CRM & Support"
+  ],
+  "visibility": "public",
+  "active": true
+}

@@ -1,0 +1,17 @@
+# Secrets — NEVER commit real provider OAuth client secrets
+.env
+secrets/*.secrets.json
+
+# Keep example/template secrets
+!secrets/*.secrets.json.example
+
+# Dependencies
+**/node_modules/
+
+# OS / editor
+.DS_Store
+.claude/
+*.log
+
+# Generated reports (may contain sample secrets)
+*.html

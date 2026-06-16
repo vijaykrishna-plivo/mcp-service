@@ -1,0 +1,21 @@
+{
+  "name": "PYLON",
+  "display_name": "Pylon API.",
+  "logo": "https://www.google.com/s2/favicons?domain=usepylon.com&sz=128",
+  "provider": "Pylon",
+  "version": "1.0",
+  "description": "Documentation of Pylon API.",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": "Bearer"
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": [
+    "Customer Support"
+  ],
+  "visibility": "public",
+  "active": true
+}

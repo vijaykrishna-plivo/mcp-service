@@ -1,0 +1,2228 @@
+[
+  {
+    "name": "JIRA__CREATEISSUE",
+    "description": "Create issue",
+    "tags": [
+      "Issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/rest/api/3/issue",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "updateHistory": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown under **Projects** in Jira. When provided, the issue type and request type are added to the user's history for a project. These values are then used to provide defaults on the issue create screen."
+            }
+          },
+          "required": [],
+          "visible": [
+            "updateHistory"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "fields": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "List of issue screen fields to update, specifying the sub-field to update and its value for each field. This field provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are required, use `update`. Fields included in here cannot be included in `update`."
+            },
+            "historyMetadata": {
+              "type": "object",
+              "properties": {
+                "activityDescription": {
+                  "type": "string",
+                  "description": "The activity described in the history record."
+                },
+                "activityDescriptionKey": {
+                  "type": "string",
+                  "description": "The key of the activity described in the history record."
+                },
+                "actor": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "cause": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The description of the history record."
+                },
+                "descriptionKey": {
+                  "type": "string",
+                  "description": "The description key of the history record."
+                },
+                "emailDescription": {
+                  "type": "string",
+                  "description": "The description of the email address associated the history record."
+                },
+                "emailDescriptionKey": {
+                  "type": "string",
+                  "description": "The description key of the email address associated the history record."
+                },
+                "extraData": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "Additional arbitrary information about the history record."
+                },
+                "generator": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of the history record."
+                }
+              },
+              "required": [],
+              "visible": [
+                "activityDescription",
+                "activityDescriptionKey",
+                "description",
+                "descriptionKey",
+                "emailDescription",
+                "emailDescriptionKey",
+                "extraData",
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "properties": {
+              "type": "array",
+              "description": "Details of issue properties to be add or update.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "The key of the property. Required on create and update."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The value of the property. Required on create and update."
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "key",
+                  "value"
+                ],
+                "additionalProperties": false,
+                "description": "An entity property, for more information see [Entity properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/)."
+              }
+            },
+            "transition": {
+              "type": "object",
+              "properties": {
+                "expand": {
+                  "type": "string",
+                  "description": "Expand options that include additional transition details in the response."
+                },
+                "fields": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "Details of the fields associated with the issue transition screen. Use this information to populate `fields` and `update` in a transition request."
+                },
+                "hasScreen": {
+                  "type": "boolean",
+                  "description": "Whether there is a screen associated with the issue transition."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the issue transition. Required when specifying a transition to undertake."
+                },
+                "isAvailable": {
+                  "type": "boolean",
+                  "description": "Whether the transition is available to be performed."
+                },
+                "isConditional": {
+                  "type": "boolean",
+                  "description": "Whether the issue has to meet criteria before the issue transition is applied."
+                },
+                "isGlobal": {
+                  "type": "boolean",
+                  "description": "Whether the issue transition is global, that is, the transition is applied to issues regardless of their status."
+                },
+                "isInitial": {
+                  "type": "boolean",
+                  "description": "Whether this is the initial issue transition for the workflow."
+                },
+                "looped": {
+                  "type": "boolean"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the issue transition."
+                },
+                "to": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                }
+              },
+              "required": [],
+              "visible": [
+                "expand",
+                "fields",
+                "hasScreen",
+                "id",
+                "isAvailable",
+                "isConditional",
+                "isGlobal",
+                "isInitial",
+                "looped",
+                "name"
+              ],
+              "additionalProperties": false
+            },
+            "update": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "A Map containing the field field name and a list of operations to perform on the issue screen field. Note that fields included in here cannot be included in `fields`."
+            }
+          },
+          "required": [],
+          "visible": [
+            "fields",
+            "historyMetadata",
+            "properties",
+            "transition",
+            "update"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__GETISSUE",
+    "description": "Get issue",
+    "tags": [
+      "Issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/rest/api/3/issue/{issueIdOrKey}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "issueIdOrKey": {
+              "type": "string",
+              "description": "The ID or key of the issue."
+            }
+          },
+          "required": [
+            "issueIdOrKey"
+          ],
+          "visible": [
+            "issueIdOrKey"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "default": "*all"
+              },
+              "description": "A list of fields to return for the issue. This parameter accepts a comma-separated list. Use it to retrieve a subset of fields. Allowed values:\n\n *  `*all` Returns all fields.\n *  `*navigable` Returns navigable fields.\n *  Any issue field, prefixed with a minus to exclude.\n\nExamples:\n\n *  `summary,comment` Returns only the summary and comments fields.\n *  `-description` Returns all (default) fields except description.\n *  `*navigable,-comment` Returns all navigable fields except comment.\n\nThis parameter may be specified multiple times. For example, `fields=field1,field2& fields=field3`.\n\nNote: All fields are returned by default. This differs from [Search for issues using JQL (GET)](#api-rest-api-3-search-get) and [Search for issues using JQL (POST)](#api-rest-api-3-search-post) where the default is all navigable fields."
+            },
+            "fieldsByKeys": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether fields in `fields` are referenced by keys rather than IDs. This parameter is useful where fields have been added by a connect app and a field's key may differ from its ID."
+            },
+            "expand": {
+              "type": "string",
+              "description": "Use [expand](#expansion) to include additional information about the issues in the response. This parameter accepts a comma-separated list. Expand options include:\n\n *  `renderedFields` Returns field values rendered in HTML format.\n *  `names` Returns the display name of each field.\n *  `schema` Returns the schema describing a field type.\n *  `transitions` Returns all possible transitions for the issue.\n *  `editmeta` Returns information about how each field can be edited.\n *  `changelog` Returns a list of recent updates to an issue, sorted by date, starting from the most recent.\n *  `versionedRepresentations` Returns a JSON array for each version of a field's value, with the highest number representing the most recent version. Note: When included in the request, the `fields` parameter is ignored."
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "default": "null"
+              },
+              "description": "A list of issue properties to return for the issue. This parameter accepts a comma-separated list. Allowed values:\n\n *  `*all` Returns all issue properties.\n *  Any issue property key, prefixed with a minus to exclude.\n\nExamples:\n\n *  `*all` Returns all properties.\n *  `*all,-prop1` Returns all properties except `prop1`.\n *  `prop1,prop2` Returns `prop1` and `prop2` properties.\n\nThis parameter may be specified multiple times. For example, `properties=prop1,prop2& properties=prop3`."
+            },
+            "updateHistory": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether the project in which the issue is created is added to the user's **Recently viewed** project list, as shown under **Projects** in Jira. This also populates the [JQL issues search](#api-rest-api-3-search-get) `lastViewed` field."
+            },
+            "failFast": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to fail the request quickly in case of an error while loading fields for an issue. For `failFast=true`, if one field fails, the entire operation fails. For `failFast=false`, the operation will continue even if a field fails. It will return a valid response, but without values for the failed field(s)."
+            }
+          },
+          "required": [],
+          "visible": [
+            "fields",
+            "fieldsByKeys",
+            "expand",
+            "properties",
+            "updateHistory",
+            "failFast"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__EDITISSUE",
+    "description": "Edit issue",
+    "tags": [
+      "Issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/rest/api/3/issue/{issueIdOrKey}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "issueIdOrKey": {
+              "type": "string",
+              "description": "The ID or key of the issue."
+            }
+          },
+          "required": [
+            "issueIdOrKey"
+          ],
+          "visible": [
+            "issueIdOrKey"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "notifyUsers": {
+              "type": "boolean",
+              "default": true,
+              "description": "Whether a notification email about the issue update is sent to all watchers. To disable the notification, administer Jira or administer project permissions are required. If the user doesn't have the necessary permission the request is ignored."
+            },
+            "overrideScreenSecurity": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether screen security is overridden to enable hidden fields to be edited. Available to Connect and Forge app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg)."
+            },
+            "overrideEditableFlag": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether screen security is overridden to enable uneditable fields to be edited. Available to Connect and Forge app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg)."
+            },
+            "returnIssue": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether the response should contain the issue with fields edited in this request. The returned issue will have the same format as in the [Get issue API](#api-rest-api-3-issue-issueidorkey-get)."
+            },
+            "expand": {
+              "type": "string",
+              "default": "",
+              "description": "The Get issue API expand parameter to use in the response if the `returnIssue` parameter is `true`."
+            }
+          },
+          "required": [],
+          "visible": [
+            "notifyUsers",
+            "overrideScreenSecurity",
+            "overrideEditableFlag",
+            "returnIssue",
+            "expand"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "fields": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "List of issue screen fields to update, specifying the sub-field to update and its value for each field. This field provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are required, use `update`. Fields included in here cannot be included in `update`."
+            },
+            "historyMetadata": {
+              "type": "object",
+              "properties": {
+                "activityDescription": {
+                  "type": "string",
+                  "description": "The activity described in the history record."
+                },
+                "activityDescriptionKey": {
+                  "type": "string",
+                  "description": "The key of the activity described in the history record."
+                },
+                "actor": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "cause": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The description of the history record."
+                },
+                "descriptionKey": {
+                  "type": "string",
+                  "description": "The description key of the history record."
+                },
+                "emailDescription": {
+                  "type": "string",
+                  "description": "The description of the email address associated the history record."
+                },
+                "emailDescriptionKey": {
+                  "type": "string",
+                  "description": "The description key of the email address associated the history record."
+                },
+                "extraData": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "Additional arbitrary information about the history record."
+                },
+                "generator": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of the history record."
+                }
+              },
+              "required": [],
+              "visible": [
+                "activityDescription",
+                "activityDescriptionKey",
+                "description",
+                "descriptionKey",
+                "emailDescription",
+                "emailDescriptionKey",
+                "extraData",
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "properties": {
+              "type": "array",
+              "description": "Details of issue properties to be add or update.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "The key of the property. Required on create and update."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The value of the property. Required on create and update."
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "key",
+                  "value"
+                ],
+                "additionalProperties": false,
+                "description": "An entity property, for more information see [Entity properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/)."
+              }
+            },
+            "transition": {
+              "type": "object",
+              "properties": {
+                "expand": {
+                  "type": "string",
+                  "description": "Expand options that include additional transition details in the response."
+                },
+                "fields": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "Details of the fields associated with the issue transition screen. Use this information to populate `fields` and `update` in a transition request."
+                },
+                "hasScreen": {
+                  "type": "boolean",
+                  "description": "Whether there is a screen associated with the issue transition."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the issue transition. Required when specifying a transition to undertake."
+                },
+                "isAvailable": {
+                  "type": "boolean",
+                  "description": "Whether the transition is available to be performed."
+                },
+                "isConditional": {
+                  "type": "boolean",
+                  "description": "Whether the issue has to meet criteria before the issue transition is applied."
+                },
+                "isGlobal": {
+                  "type": "boolean",
+                  "description": "Whether the issue transition is global, that is, the transition is applied to issues regardless of their status."
+                },
+                "isInitial": {
+                  "type": "boolean",
+                  "description": "Whether this is the initial issue transition for the workflow."
+                },
+                "looped": {
+                  "type": "boolean"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the issue transition."
+                },
+                "to": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                }
+              },
+              "required": [],
+              "visible": [
+                "expand",
+                "fields",
+                "hasScreen",
+                "id",
+                "isAvailable",
+                "isConditional",
+                "isGlobal",
+                "isInitial",
+                "looped",
+                "name"
+              ],
+              "additionalProperties": false
+            },
+            "update": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "A Map containing the field field name and a list of operations to perform on the issue screen field. Note that fields included in here cannot be included in `fields`."
+            }
+          },
+          "required": [],
+          "visible": [
+            "fields",
+            "historyMetadata",
+            "properties",
+            "transition",
+            "update"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__DELETEISSUE",
+    "description": "Delete issue",
+    "tags": [
+      "Issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/rest/api/3/issue/{issueIdOrKey}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "issueIdOrKey": {
+              "type": "string",
+              "description": "The ID or key of the issue."
+            }
+          },
+          "required": [
+            "issueIdOrKey"
+          ],
+          "visible": [
+            "issueIdOrKey"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "deleteSubtasks": {
+              "type": "string",
+              "enum": [
+                "true",
+                "false"
+              ],
+              "default": "false",
+              "description": "Whether the issue's subtasks are deleted when the issue is deleted."
+            }
+          },
+          "required": [],
+          "visible": [
+            "deleteSubtasks"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__GETCOMMENTS",
+    "description": "Get comments",
+    "tags": [
+      "Issue comments"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/rest/api/3/issue/{issueIdOrKey}/comment",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "issueIdOrKey": {
+              "type": "string",
+              "description": "The ID or key of the issue."
+            }
+          },
+          "required": [
+            "issueIdOrKey"
+          ],
+          "visible": [
+            "issueIdOrKey"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "startAt": {
+              "type": "integer",
+              "default": 0,
+              "description": "The index of the first item to return in a page of results (page offset)."
+            },
+            "maxResults": {
+              "type": "integer",
+              "default": 100,
+              "description": "The maximum number of items to return per page."
+            },
+            "orderBy": {
+              "type": "string",
+              "enum": [
+                "created",
+                "-created",
+                "+created"
+              ],
+              "description": "[Order](#ordering) the results by a field. Accepts *created* to sort comments by their created date."
+            },
+            "expand": {
+              "type": "string",
+              "description": "Use [expand](#expansion) to include additional information about comments in the response. This parameter accepts `renderedBody`, which returns the comment body rendered in HTML."
+            }
+          },
+          "required": [],
+          "visible": [
+            "startAt",
+            "maxResults",
+            "orderBy",
+            "expand"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__ADDCOMMENT",
+    "description": "Add comment",
+    "tags": [
+      "Issue comments"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/rest/api/3/issue/{issueIdOrKey}/comment",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "issueIdOrKey": {
+              "type": "string",
+              "description": "The ID or key of the issue."
+            }
+          },
+          "required": [
+            "issueIdOrKey"
+          ],
+          "visible": [
+            "issueIdOrKey"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "string",
+              "description": "Use [expand](#expansion) to include additional information about comments in the response. This parameter accepts `renderedBody`, which returns the comment body rendered in HTML."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "author": {
+              "type": "object",
+              "properties": {
+                "accountId": {
+                  "type": "string",
+                  "description": "The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*."
+                },
+                "accountType": {
+                  "type": "string",
+                  "description": "The type of account represented by this user. This will be one of 'atlassian' (normal users), 'app' (application user) or 'customer' (Jira Service Desk customer user)"
+                },
+                "active": {
+                  "type": "boolean",
+                  "description": "Whether the user is active."
+                },
+                "avatarUrls": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "displayName": {
+                  "type": "string",
+                  "description": "The display name of the user. Depending on the user\u2019s privacy settings, this may return an alternative value."
+                },
+                "emailAddress": {
+                  "type": "string",
+                  "description": "The email address of the user. Depending on the user\u2019s privacy settings, this may be returned as null."
+                },
+                "key": {
+                  "type": "string",
+                  "description": "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details."
+                },
+                "self": {
+                  "type": "string",
+                  "description": "The URL of the user."
+                },
+                "timeZone": {
+                  "type": "string",
+                  "description": "The time zone specified in the user's profile. Depending on the user\u2019s privacy settings, this may be returned as null."
+                }
+              },
+              "required": [],
+              "visible": [
+                "accountId",
+                "accountType",
+                "active",
+                "displayName",
+                "emailAddress",
+                "key",
+                "name",
+                "self",
+                "timeZone"
+              ],
+              "additionalProperties": false
+            },
+            "body": {
+              "type": "string",
+              "description": "The comment text in [Atlassian Document Format](https://developer.atlassian.com/cloud/jira/platform/apis/document/structure/)."
+            },
+            "created": {
+              "type": "string",
+              "description": "The date and time at which the comment was created."
+            },
+            "id": {
+              "type": "string",
+              "description": "The ID of the comment."
+            },
+            "jsdAuthorCanSeeRequest": {
+              "type": "boolean",
+              "description": "Whether the comment was added from an email sent by a person who is not part of the issue. See [Allow external emails to be added as comments on issues](https://support.atlassian.com/jira-service-management-cloud/docs/allow-external-emails-to-be-added-as-comments-on-issues/)for information on setting up this feature."
+            },
+            "jsdPublic": {
+              "type": "boolean",
+              "description": "Whether the comment is visible in Jira Service Desk. Defaults to true when comments are created in the Jira Cloud Platform. This includes when the site doesn't use Jira Service Desk or the project isn't a Jira Service Desk project and, therefore, there is no Jira Service Desk for the issue to be visible on. To create a comment with its visibility in Jira Service Desk set to false, use the Jira Service Desk REST API [Create request comment](https://developer.atlassian.com/cloud/jira/service-desk/rest/#api-rest-servicedeskapi-request-issueIdOrKey-comment-post) operation."
+            },
+            "properties": {
+              "type": "array",
+              "description": "A list of comment properties. Optional on create and update.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "The key of the property. Required on create and update."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The value of the property. Required on create and update."
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "key",
+                  "value"
+                ],
+                "additionalProperties": false,
+                "description": "An entity property, for more information see [Entity properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/)."
+              }
+            },
+            "renderedBody": {
+              "type": "string",
+              "description": "The rendered version of the comment."
+            },
+            "self": {
+              "type": "string",
+              "description": "The URL of the comment."
+            },
+            "updateAuthor": {
+              "type": "object",
+              "properties": {
+                "accountId": {
+                  "type": "string",
+                  "description": "The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*."
+                },
+                "accountType": {
+                  "type": "string",
+                  "description": "The type of account represented by this user. This will be one of 'atlassian' (normal users), 'app' (application user) or 'customer' (Jira Service Desk customer user)"
+                },
+                "active": {
+                  "type": "boolean",
+                  "description": "Whether the user is active."
+                },
+                "avatarUrls": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "displayName": {
+                  "type": "string",
+                  "description": "The display name of the user. Depending on the user\u2019s privacy settings, this may return an alternative value."
+                },
+                "emailAddress": {
+                  "type": "string",
+                  "description": "The email address of the user. Depending on the user\u2019s privacy settings, this may be returned as null."
+                },
+                "key": {
+                  "type": "string",
+                  "description": "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details."
+                },
+                "name": {
+                  "type": "string",
+                  "description": "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details."
+                },
+                "self": {
+                  "type": "string",
+                  "description": "The URL of the user."
+                },
+                "timeZone": {
+                  "type": "string",
+                  "description": "The time zone specified in the user's profile. Depending on the user\u2019s privacy settings, this may be returned as null."
+                }
+              },
+              "required": [],
+              "visible": [
+                "accountId",
+                "accountType",
+                "active",
+                "displayName",
+                "emailAddress",
+                "key",
+                "name",
+                "self",
+                "timeZone"
+              ],
+              "additionalProperties": false
+            },
+            "updated": {
+              "type": "string",
+              "description": "The date and time at which the comment was updated last."
+            },
+            "visibility": {
+              "type": "object",
+              "properties": {
+                "identifier": {
+                  "type": "string",
+                  "description": "The ID of the group or the name of the role that visibility of this item is restricted to."
+                },
+                "type": {
+                  "type": "string",
+                  "description": "Whether visibility of this item is restricted to a group or role.",
+                  "enum": [
+                    "group",
+                    "role"
+                  ]
+                },
+                "value": {
+                  "type": "string",
+                  "description": "The name of the group or role that visibility of this item is restricted to. Please note that the name of a group is mutable, to reliably identify a group use `identifier`."
+                }
+              },
+              "required": [],
+              "visible": [
+                "identifier",
+                "type",
+                "value"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "visible": [
+            "author",
+            "body",
+            "created",
+            "id",
+            "jsdAuthorCanSeeRequest",
+            "jsdPublic",
+            "properties",
+            "renderedBody",
+            "self",
+            "updateAuthor",
+            "updated",
+            "visibility"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__GETTRANSITIONS",
+    "description": "Get transitions",
+    "tags": [
+      "Issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/rest/api/3/issue/{issueIdOrKey}/transitions",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "issueIdOrKey": {
+              "type": "string",
+              "description": "The ID or key of the issue."
+            }
+          },
+          "required": [
+            "issueIdOrKey"
+          ],
+          "visible": [
+            "issueIdOrKey"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "string",
+              "description": "Use [expand](#expansion) to include additional information about transitions in the response. This parameter accepts `transitions.fields`, which returns information about the fields in the transition screen for each transition. Fields hidden from the screen are not returned. Use this information to populate the `fields` and `update` fields in [Transition issue](#api-rest-api-3-issue-issueIdOrKey-transitions-post)."
+            },
+            "transitionId": {
+              "type": "string",
+              "description": "The ID of the transition."
+            },
+            "skipRemoteOnlyCondition": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether transitions with the condition *Hide From User Condition* are included in the response. Available to Connect and Forge app users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg) and Forge apps acting on behalf of users with *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg)."
+            },
+            "includeUnavailableTransitions": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether details of transitions that fail a condition are included in the response"
+            },
+            "sortByOpsBarAndStatus": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether the transitions are sorted by ops-bar sequence value first then category order (Todo, In Progress, Done) or only by ops-bar sequence value."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand",
+            "transitionId",
+            "skipRemoteOnlyCondition",
+            "includeUnavailableTransitions",
+            "sortByOpsBarAndStatus"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__DOTRANSITION",
+    "description": "Transition issue",
+    "tags": [
+      "Issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/rest/api/3/issue/{issueIdOrKey}/transitions",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "issueIdOrKey": {
+              "type": "string",
+              "description": "The ID or key of the issue."
+            }
+          },
+          "required": [
+            "issueIdOrKey"
+          ],
+          "visible": [
+            "issueIdOrKey"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "fields": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "List of issue screen fields to update, specifying the sub-field to update and its value for each field. This field provides a straightforward option when setting a sub-field. When multiple sub-fields or other operations are required, use `update`. Fields included in here cannot be included in `update`."
+            },
+            "historyMetadata": {
+              "type": "object",
+              "properties": {
+                "activityDescription": {
+                  "type": "string",
+                  "description": "The activity described in the history record."
+                },
+                "activityDescriptionKey": {
+                  "type": "string",
+                  "description": "The key of the activity described in the history record."
+                },
+                "actor": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "cause": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The description of the history record."
+                },
+                "descriptionKey": {
+                  "type": "string",
+                  "description": "The description key of the history record."
+                },
+                "emailDescription": {
+                  "type": "string",
+                  "description": "The description of the email address associated the history record."
+                },
+                "emailDescriptionKey": {
+                  "type": "string",
+                  "description": "The description key of the email address associated the history record."
+                },
+                "extraData": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "Additional arbitrary information about the history record."
+                },
+                "generator": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of the history record."
+                }
+              },
+              "required": [],
+              "visible": [
+                "activityDescription",
+                "activityDescriptionKey",
+                "description",
+                "descriptionKey",
+                "emailDescription",
+                "emailDescriptionKey",
+                "extraData",
+                "type"
+              ],
+              "additionalProperties": false
+            },
+            "properties": {
+              "type": "array",
+              "description": "Details of issue properties to be add or update.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "description": "The key of the property. Required on create and update."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The value of the property. Required on create and update."
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "key",
+                  "value"
+                ],
+                "additionalProperties": false,
+                "description": "An entity property, for more information see [Entity properties](https://developer.atlassian.com/cloud/jira/platform/jira-entity-properties/)."
+              }
+            },
+            "transition": {
+              "type": "object",
+              "properties": {
+                "expand": {
+                  "type": "string",
+                  "description": "Expand options that include additional transition details in the response."
+                },
+                "fields": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "Details of the fields associated with the issue transition screen. Use this information to populate `fields` and `update` in a transition request."
+                },
+                "hasScreen": {
+                  "type": "boolean",
+                  "description": "Whether there is a screen associated with the issue transition."
+                },
+                "id": {
+                  "type": "string",
+                  "description": "The ID of the issue transition. Required when specifying a transition to undertake."
+                },
+                "isAvailable": {
+                  "type": "boolean",
+                  "description": "Whether the transition is available to be performed."
+                },
+                "isConditional": {
+                  "type": "boolean",
+                  "description": "Whether the issue has to meet criteria before the issue transition is applied."
+                },
+                "isGlobal": {
+                  "type": "boolean",
+                  "description": "Whether the issue transition is global, that is, the transition is applied to issues regardless of their status."
+                },
+                "isInitial": {
+                  "type": "boolean",
+                  "description": "Whether this is the initial issue transition for the workflow."
+                },
+                "looped": {
+                  "type": "boolean"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of the issue transition."
+                },
+                "to": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": false
+                }
+              },
+              "required": [],
+              "visible": [
+                "expand",
+                "fields",
+                "hasScreen",
+                "id",
+                "isAvailable",
+                "isConditional",
+                "isGlobal",
+                "isInitial",
+                "looped",
+                "name"
+              ],
+              "additionalProperties": false
+            },
+            "update": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "A Map containing the field field name and a list of operations to perform on the issue screen field. Note that fields included in here cannot be included in `fields`."
+            }
+          },
+          "required": [],
+          "visible": [
+            "fields",
+            "historyMetadata",
+            "properties",
+            "transition",
+            "update"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__ASSIGNISSUE",
+    "description": "Assign issue",
+    "tags": [
+      "Issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/rest/api/3/issue/{issueIdOrKey}/assignee",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "issueIdOrKey": {
+              "type": "string",
+              "description": "The ID or key of the issue to be assigned."
+            }
+          },
+          "required": [
+            "issueIdOrKey"
+          ],
+          "visible": [
+            "issueIdOrKey"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "accountId": {
+              "type": "string",
+              "description": "The account ID of the user, which uniquely identifies the user across all Atlassian products. For example, *5b10ac8d82e05b22cc7d4ef5*. Required in requests."
+            },
+            "accountType": {
+              "type": "string",
+              "description": "The user account type. Can take the following values:\n\n *  `atlassian` regular Atlassian user account\n *  `app` system account used for Connect applications and OAuth to represent external systems\n *  `customer` Jira Service Desk account representing an external service desk",
+              "enum": [
+                "atlassian",
+                "app",
+                "customer",
+                "unknown"
+              ]
+            },
+            "active": {
+              "type": "boolean",
+              "description": "Whether the user is active."
+            },
+            "appType": {
+              "type": "string",
+              "description": "The app type of the user account when accountType is 'app'. Can take the following values:\n\n *  `service` Service Account\n *  `agent` Rovo Agent Account\n *  `unknown` Unknown app type"
+            },
+            "applicationRoles": {
+              "type": "object",
+              "properties": {
+                "callback": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true,
+                    "description": "Details of an application role."
+                  }
+                },
+                "max-results": {
+                  "type": "integer"
+                },
+                "pagingCallback": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "size": {
+                  "type": "integer"
+                }
+              },
+              "required": [],
+              "visible": [
+                "callback",
+                "items",
+                "max-results",
+                "pagingCallback",
+                "size"
+              ],
+              "additionalProperties": false
+            },
+            "avatarUrls": {
+              "type": "object",
+              "properties": {
+                "16x16": {
+                  "type": "string",
+                  "description": "The URL of the item's 16x16 pixel avatar."
+                },
+                "24x24": {
+                  "type": "string",
+                  "description": "The URL of the item's 24x24 pixel avatar."
+                },
+                "32x32": {
+                  "type": "string",
+                  "description": "The URL of the item's 32x32 pixel avatar."
+                },
+                "48x48": {
+                  "type": "string",
+                  "description": "The URL of the item's 48x48 pixel avatar."
+                }
+              },
+              "required": [],
+              "visible": [
+                "16x16",
+                "24x24",
+                "32x32",
+                "48x48"
+              ],
+              "additionalProperties": false
+            },
+            "displayName": {
+              "type": "string",
+              "description": "The display name of the user. Depending on the user\u2019s privacy setting, this may return an alternative value."
+            },
+            "emailAddress": {
+              "type": "string",
+              "description": "The email address of the user. Depending on the user\u2019s privacy setting, this may be returned as null."
+            },
+            "expand": {
+              "type": "string",
+              "description": "Expand options that include additional user details in the response."
+            },
+            "groups": {
+              "type": "object",
+              "properties": {
+                "callback": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "items": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true,
+                    "description": "Details about a group."
+                  }
+                },
+                "max-results": {
+                  "type": "integer"
+                },
+                "pagingCallback": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "size": {
+                  "type": "integer"
+                }
+              },
+              "required": [],
+              "visible": [
+                "callback",
+                "items",
+                "max-results",
+                "pagingCallback",
+                "size"
+              ],
+              "additionalProperties": false
+            },
+            "guest": {
+              "type": "boolean",
+              "description": "Whether the user is a guest."
+            },
+            "key": {
+              "type": "string",
+              "description": "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details."
+            },
+            "locale": {
+              "type": "string",
+              "description": "The locale of the user. Depending on the user\u2019s privacy setting, this may be returned as null."
+            },
+            "name": {
+              "type": "string",
+              "description": "This property is no longer available and will be removed from the documentation soon. See the [deprecation notice](https://developer.atlassian.com/cloud/jira/platform/deprecation-notice-user-privacy-api-migration-guide/) for details."
+            },
+            "self": {
+              "type": "string",
+              "description": "The URL of the user."
+            },
+            "timeZone": {
+              "type": "string",
+              "description": "The time zone specified in the user's profile. If the user's time zone is not visible to the current user (due to user's profile setting), or if a time zone has not been set, the instance's default time zone will be returned."
+            }
+          },
+          "required": [],
+          "visible": [
+            "accountId",
+            "accountType",
+            "active",
+            "appType",
+            "applicationRoles",
+            "avatarUrls",
+            "displayName",
+            "emailAddress",
+            "expand",
+            "groups",
+            "guest",
+            "key",
+            "locale",
+            "name",
+            "self",
+            "timeZone"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__SEARCHANDRECONSILEISSUESUSINGJQL",
+    "description": "Search for issues using JQL enhanced search (GET)",
+    "tags": [
+      "Issue search"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/rest/api/3/search/jql",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "jql": {
+              "type": "string",
+              "description": "A [JQL](https://confluence.atlassian.com/x/egORLQ) expression. For performance reasons, this parameter requires a bounded query. A bounded query is a query with a search restriction.\n\n *  Example of an unbounded query: `order by key desc`.\n *  Example of a bounded query: `assignee = currentUser() order by key`.\n\nAdditionally, `orderBy` clause can contain a maximum of 7 fields."
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The token for a page to fetch that is not the first page. The first page has a `nextPageToken` of `null`. Use the `nextPageToken` to fetch the next page of issues.\n\nNote: The `nextPageToken` field is **not included** in the response for the last page, indicating there is no next page."
+            },
+            "maxResults": {
+              "type": "integer",
+              "default": 50,
+              "description": "The maximum number of items to return per page. To manage page size, API may return fewer items per page where a large number of fields or properties are requested. The greatest number of items returned per page is achieved when requesting `id` or `key` only. It returns max 5000 issues."
+            },
+            "fields": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "default": "id"
+              },
+              "description": "A list of fields to return for each issue, use it to retrieve a subset of fields. This parameter accepts a comma-separated list. Expand options include:\n\n *  `*all` Returns all fields.\n *  `*navigable` Returns navigable fields.\n *  `id` Returns only issue IDs.\n *  Any issue field, prefixed with a minus to exclude.\n\nThe default is `id`.\n\nExamples:\n\n *  `summary,comment` Returns only the summary and comments fields only.\n *  `-description` Returns all navigable (default) fields except description.\n *  `*all,-comment` Returns all fields except comments.\n\nMultiple `fields` parameters can be included in a request.\n\nNote: By default, this resource returns IDs only. This differs from [GET issue](#api-rest-api-3-issue-issueIdOrKey-get) where the default is all fields."
+            },
+            "expand": {
+              "type": "string",
+              "description": "Use [expand](#expansion) to include additional information about issues in the response. Note that, unlike the majority of instances where `expand` is specified, `expand` is defined as a comma-delimited string of values. The expand options are:\n\n *  `renderedFields` Returns field values rendered in HTML format.\n *  `names` Returns the display name of each field.\n *  `schema` Returns the schema describing a field type.\n *  `transitions` Returns all possible transitions for the issue.\n *  `operations` Returns all possible operations for the issue.\n *  `editmeta` Returns information about how each field can be edited.\n *  `changelog` Returns a list of recent updates to an issue, sorted by date, starting from the most recent.\n *  `versionedRepresentations` Instead of `fields`, returns `versionedRepresentations` a JSON array containing each version of a field's value, with the highest numbered item representing the most recent version.\n\nExamples: `\"names,changelog\"` Returns the display name of each field as well as a list of recent updates to an issue."
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A list of up to 5 issue properties to include in the results. This parameter accepts a comma-separated list."
+            },
+            "fieldsByKeys": {
+              "type": "boolean",
+              "default": false,
+              "description": "Reference fields by their key (rather than ID). The default is `false`."
+            },
+            "failFast": {
+              "type": "boolean",
+              "default": false,
+              "description": "Fail this request early if we can't retrieve all field data."
+            },
+            "reconcileIssues": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "description": "Strong consistency issue ids to be reconciled with search results. Accepts max 50 ids. This list of ids should be consistent with each paginated request across different pages."
+            }
+          },
+          "required": [],
+          "visible": [
+            "jql",
+            "nextPageToken",
+            "maxResults",
+            "fields",
+            "expand",
+            "properties",
+            "fieldsByKeys",
+            "failFast",
+            "reconcileIssues"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__SEARCHANDRECONSILEISSUESUSINGJQLPOST",
+    "description": "Search for issues using JQL enhanced search (POST)",
+    "tags": [
+      "Issue search"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/rest/api/3/search/jql",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "string",
+              "description": "Use [expand](#expansion) to include additional information about issues in the response. Note that, unlike the majority of instances where `expand` is specified, `expand` is defined as a comma-delimited string of values. The expand options are:\n\n *  `renderedFields` Returns field values rendered in HTML format.\n *  `names` Returns the display name of each field.\n *  `schema` Returns the schema describing a field type.\n *  `transitions` Returns all possible transitions for the issue.\n *  `operations` Returns all possible operations for the issue.\n *  `editmeta` Returns information about how each field can be edited.\n *  `changelog` Returns a list of recent updates to an issue, sorted by date, starting from the most recent.\n *  `versionedRepresentations` Instead of `fields`, returns `versionedRepresentations` a JSON array containing each version of a field's value, with the highest numbered item representing the most recent version.\n\nExamples: `\"names,changelog\"` Returns the display name of each field as well as a list of recent updates to an issue."
+            },
+            "fields": {
+              "type": "array",
+              "description": "A list of fields to return for each issue. Use it to retrieve a subset of fields. This parameter accepts a comma-separated list. Expand options include:\n\n *  `*all` Returns all fields.\n *  `*navigable` Returns navigable fields.\n *  `id` Returns only issue IDs.\n *  Any issue field, prefixed with a dash to exclude.\n\nThe default is `id`.\n\nExamples:\n\n *  `summary,comment` Returns the summary and comments fields only.\n *  `*all,-comment` Returns all fields except comments.\n\nMultiple `fields` parameters can be included in a request.\n\nNote: By default, this resource returns IDs only. This differs from [GET issue](#api-rest-api-3-issue-issueIdOrKey-get) where the default is all fields.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fieldsByKeys": {
+              "type": "boolean",
+              "description": "Reference fields by their key (rather than ID). The default is `false`."
+            },
+            "jql": {
+              "type": "string",
+              "description": "A [JQL](https://confluence.atlassian.com/x/egORLQ) expression. For performance reasons, this parameter requires a bounded query. A bounded query is a query with a search restriction.\n\n *  Example of an unbounded query: `order by key desc`.\n *  Example of a bounded query: `assignee = currentUser() order by key`.\n\nAdditionally, `orderBy` clause can contain a maximum of 7 fields."
+            },
+            "maxResults": {
+              "type": "integer",
+              "description": "The maximum number of items to return per page. To manage page size, API may return fewer items per page where a large number of fields are requested. The greatest number of items returned per page is achieved when requesting `id` or `key` only. It returns max 5000 issues.",
+              "default": 50
+            },
+            "nextPageToken": {
+              "type": "string",
+              "description": "The token for a page to fetch that is not the first page. The first page has a `nextPageToken` of `null`. Use the `nextPageToken` to fetch the next page of issues."
+            },
+            "properties": {
+              "type": "array",
+              "description": "A list of up to 5 issue properties to include in the results. This parameter accepts a comma-separated list.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "reconcileIssues": {
+              "type": "array",
+              "description": "Strong consistency issue ids to be reconciled with search results. Accepts max 50 ids. This list of ids should be consistent with each paginated request across different pages.",
+              "items": {
+                "type": "integer"
+              }
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand",
+            "fields",
+            "fieldsByKeys",
+            "jql",
+            "maxResults",
+            "nextPageToken",
+            "properties",
+            "reconcileIssues"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__GETISSUEALLTYPES",
+    "description": "Get all issue types for user",
+    "tags": [
+      "Issue types"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/rest/api/3/issuetype",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "JIRA__GETALLPROJECTS",
+    "description": "Get all projects",
+    "tags": [
+      "Projects"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/rest/api/3/project",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "string",
+              "description": "Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expanded options include:\n\n *  `description` Returns the project description.\n *  `issueTypes` Returns all issue types associated with the project.\n *  `lead` Returns information about the project lead.\n *  `projectKeys` Returns all project keys associated with the project."
+            },
+            "recent": {
+              "type": "integer",
+              "description": "Returns the user's most recently accessed projects. You may specify the number of results to return up to a maximum of 20. If access is anonymous, then the recently accessed projects are based on the current HTTP session."
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "default": ""
+              },
+              "description": "A list of project properties to return for the project. This parameter accepts a comma-separated list."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand",
+            "recent",
+            "properties"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__SEARCHPROJECTS",
+    "description": "Get projects paginated",
+    "tags": [
+      "Projects"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/rest/api/3/project/search",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "startAt": {
+              "type": "integer",
+              "default": 0,
+              "description": "The index of the first item to return in a page of results (page offset)."
+            },
+            "maxResults": {
+              "type": "integer",
+              "default": 50,
+              "description": "The maximum number of items to return per page. Must be less than or equal to 100. If a value greater than 100 is provided, the `maxResults` parameter will default to 100."
+            },
+            "orderBy": {
+              "type": "string",
+              "enum": [
+                "category",
+                "-category",
+                "+category",
+                "key",
+                "-key",
+                "+key",
+                "name",
+                "-name",
+                "+name",
+                "owner",
+                "-owner",
+                "+owner",
+                "issueCount",
+                "-issueCount",
+                "+issueCount",
+                "lastIssueUpdatedDate",
+                "-lastIssueUpdatedDate",
+                "+lastIssueUpdatedDate",
+                "archivedDate",
+                "+archivedDate",
+                "-archivedDate",
+                "deletedDate",
+                "+deletedDate",
+                "-deletedDate"
+              ],
+              "default": "key",
+              "description": "[Order](#ordering) the results by a field.\n\n *  `category` Sorts by project category. A complete list of category IDs is found using [Get all project categories](#api-rest-api-3-projectCategory-get).\n *  `issueCount` Sorts by the total number of issues in each project.\n *  `key` Sorts by project key.\n *  `lastIssueUpdatedTime` Sorts by the last issue update time.\n *  `name` Sorts by project name.\n *  `owner` Sorts by project lead.\n *  `archivedDate` EXPERIMENTAL. Sorts by project archived date.\n *  `deletedDate` EXPERIMENTAL. Sorts by project deleted date."
+            },
+            "id": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              },
+              "description": "The project IDs to filter the results by. To include multiple IDs, provide an ampersand-separated list. For example, `id=10000&id=10001`. Up to 50 project IDs can be provided."
+            },
+            "keys": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "default": ""
+              },
+              "description": "The project keys to filter the results by. To include multiple keys, provide an ampersand-separated list. For example, `keys=PA&keys=PB`. Up to 50 project keys can be provided."
+            },
+            "query": {
+              "type": "string",
+              "description": "Filter the results using a literal string. Projects with a matching `key` or `name` are returned (case insensitive)."
+            },
+            "typeKey": {
+              "type": "string",
+              "description": "Orders results by the [project type](https://confluence.atlassian.com/x/GwiiLQ#Jiraapplicationsoverview-Productfeaturesandprojecttypes). This parameter accepts a comma-separated list. Valid values are `business`, `service_desk`, and `software`."
+            },
+            "categoryId": {
+              "type": "integer",
+              "description": "The ID of the project's category. A complete list of category IDs is found using the [Get all project categories](#api-rest-api-3-projectCategory-get) operation."
+            },
+            "action": {
+              "type": "string",
+              "enum": [
+                "view",
+                "browse",
+                "edit",
+                "create"
+              ],
+              "default": "view",
+              "description": "Filter results by projects for which the user can:\n\n *  `view` the project, meaning that they have one of the following permissions:\n    \n     *  *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.\n     *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.\n     *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).\n *  `browse` the project, meaning that they have the *Browse projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.\n *  `edit` the project, meaning that they have one of the following permissions:\n    \n     *  *Administer projects* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project.\n     *  *Administer Jira* [global permission](https://confluence.atlassian.com/x/x4dKLg).\n *  `create` the project, meaning that they have the *Create issues* [project permission](https://confluence.atlassian.com/x/yodKLg) for the project in which the issue is created."
+            },
+            "expand": {
+              "type": "string",
+              "description": "Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Expanded options include:\n\n *  `description` Returns the project description.\n *  `projectKeys` Returns all project keys associated with a project.\n *  `lead` Returns information about the project lead.\n *  `issueTypes` Returns all issue types associated with the project.\n *  `url` Returns the URL associated with the project.\n *  `insight` EXPERIMENTAL. Returns the insight details of total issue count and last issue update time for the project."
+            },
+            "status": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "live",
+                  "archived",
+                  "deleted"
+                ],
+                "default": "live"
+              },
+              "description": "EXPERIMENTAL. Filter results by project status:\n\n *  `live` Search live projects.\n *  `archived` Search archived projects.\n *  `deleted` Search deleted projects, those in the recycle bin."
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "visible": [],
+                "additionalProperties": true
+              },
+              "description": "EXPERIMENTAL. A list of project properties to return for the project. This parameter accepts a comma-separated list."
+            },
+            "propertyQuery": {
+              "type": "string",
+              "description": "EXPERIMENTAL. A query string used to search properties. The query string cannot be specified using a JSON object. For example, to search for the value of `nested` from `{\"something\":{\"nested\":1,\"other\":2}}` use `[thepropertykey].something.nested=1`. Note that the propertyQuery key is enclosed in square brackets to enable searching where the propertyQuery key includes dot (.) or equals (=) characters. Note that `thepropertykey` is only returned when included in `properties`."
+            }
+          },
+          "required": [],
+          "visible": [
+            "startAt",
+            "maxResults",
+            "orderBy",
+            "id",
+            "keys",
+            "query",
+            "typeKey",
+            "categoryId",
+            "action",
+            "expand",
+            "status",
+            "properties",
+            "propertyQuery"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__GETPROJECT",
+    "description": "Get project",
+    "tags": [
+      "Projects"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/rest/api/3/project/{projectIdOrKey}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "projectIdOrKey": {
+              "type": "string",
+              "description": "The project ID or project key (case sensitive)."
+            }
+          },
+          "required": [
+            "projectIdOrKey"
+          ],
+          "visible": [
+            "projectIdOrKey"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "string",
+              "description": "Use [expand](#expansion) to include additional information in the response. This parameter accepts a comma-separated list. Note that the project description, issue types, and project lead are included in all responses by default. Expand options include:\n\n *  `description` The project description.\n *  `issueTypes` The issue types associated with the project.\n *  `lead` The project lead.\n *  `projectKeys` All project keys associated with the project.\n *  `issueTypeHierarchy` The project issue type hierarchy."
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "default": ""
+              },
+              "description": "A list of project properties to return for the project. This parameter accepts a comma-separated list."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand",
+            "properties"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__GETCURRENTUSER",
+    "description": "Get current user",
+    "tags": [
+      "Myself"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/rest/api/3/myself",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "string",
+              "description": "Use [expand](#expansion) to include additional information about user in the response. This parameter accepts a comma-separated list. Expand options include:\n\n *  `groups` Returns all groups, including nested groups, the user belongs to.\n *  `applicationRoles` Returns the application roles the user is assigned to."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "JIRA__FINDUSERS",
+    "description": "Find users",
+    "tags": [
+      "User search"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/rest/api/3/user/search",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "A query string that is matched against user attributes ( `displayName`, and `emailAddress`) to find relevant users. The string can match the prefix of the attribute's value. For example, *query=john* matches a user with a `displayName` of *John Smith* and a user with an `emailAddress` of *johnson@example.com*. Required, unless `accountId` or `property` is specified."
+            },
+            "username": {
+              "type": "string"
+            },
+            "accountId": {
+              "type": "string",
+              "description": "A query string that is matched exactly against a user `accountId`. Required, unless `query` or `property` is specified."
+            },
+            "startAt": {
+              "type": "integer",
+              "default": 0,
+              "description": "The index of the first item to return in a page of filtered results (page offset)."
+            },
+            "maxResults": {
+              "type": "integer",
+              "default": 50,
+              "description": "The maximum number of items to return per page."
+            },
+            "property": {
+              "type": "string",
+              "description": "A query string used to search properties. Property keys are specified by path, so property keys containing dot (.) or equals (=) characters cannot be used. The query string cannot be specified using a JSON object. Example: To search for the value of `nested` from `{\"something\":{\"nested\":1,\"other\":2}}` use `thepropertykey.something.nested=1`. Required, unless `accountId` or `query` is specified."
+            }
+          },
+          "required": [],
+          "visible": [
+            "query",
+            "username",
+            "accountId",
+            "startAt",
+            "maxResults",
+            "property"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  }
+]

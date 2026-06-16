@@ -1,0 +1,166 @@
+[
+  {
+    "name": "LINEAR__GRAPHQL_QUERY",
+    "description": "Execute an arbitrary Linear GraphQL query or mutation. The caller supplies the GraphQL query string and optional variables.",
+    "tags": [
+      "graphql",
+      "query"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/graphql",
+      "server_url": "https://api.linear.app"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "description": "GraphQL request body",
+          "required": [
+            "query"
+          ],
+          "visible": [
+            "query",
+            "variables"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "GraphQL query or mutation string"
+            },
+            "variables": {
+              "type": "object",
+              "description": "GraphQL variables",
+              "additionalProperties": true,
+              "properties": {},
+              "required": [],
+              "visible": []
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "LINEAR__LIST_ISSUES",
+    "description": "List issues via a Linear GraphQL query. Supply an `issues` query in the body; variables may be used for filtering and pagination.",
+    "tags": [
+      "graphql",
+      "issues",
+      "list"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/graphql",
+      "server_url": "https://api.linear.app"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "description": "GraphQL request body for listing issues",
+          "required": [
+            "query"
+          ],
+          "visible": [
+            "query",
+            "variables"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "GraphQL query string, typically wrapping the `issues` connection"
+            },
+            "variables": {
+              "type": "object",
+              "description": "GraphQL variables such as filter, first, or after",
+              "additionalProperties": true,
+              "properties": {},
+              "required": [],
+              "visible": []
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "LINEAR__CREATE_ISSUE",
+    "description": "Create an issue via a Linear GraphQL mutation. Supply an `issueCreate` mutation in the body with an `input` provided through variables.",
+    "tags": [
+      "graphql",
+      "issues",
+      "create"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/graphql",
+      "server_url": "https://api.linear.app"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "description": "GraphQL request body for creating an issue",
+          "required": [
+            "query"
+          ],
+          "visible": [
+            "query",
+            "variables"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "GraphQL mutation string, typically an `issueCreate` mutation"
+            },
+            "variables": {
+              "type": "object",
+              "description": "GraphQL variables such as the issue `input` object",
+              "additionalProperties": true,
+              "properties": {},
+              "required": [],
+              "visible": []
+            }
+          }
+        }
+      }
+    }
+  }
+]

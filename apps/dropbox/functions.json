@@ -1,0 +1,1529 @@
+[
+  {
+    "name": "DROPBOX__CREATE_FILE_REQUESTS_COUNT",
+    "description": "count",
+    "tags": [
+      "file_requests"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/file_requests/count",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILE_REQUESTS_CREATE",
+    "description": "create",
+    "tags": [
+      "file_requests"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/file_requests/create",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILE_REQUESTS_DELETE",
+    "description": "delete",
+    "tags": [
+      "file_requests"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/file_requests/delete",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILE_REQUESTS_DELETE_ALL_CLOSED",
+    "description": "delete_all_closed",
+    "tags": [
+      "file_requests"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/file_requests/delete_all_closed",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILE_REQUESTS_GET",
+    "description": "get",
+    "tags": [
+      "file_requests"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/file_requests/get",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILE_REQUESTS_LIST_V2",
+    "description": "list",
+    "tags": [
+      "file_requests"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/file_requests/list_v2",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_LIST_CONTINUE",
+    "description": "list/continue",
+    "tags": [
+      "file_requests"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/file_requests/list/continue",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILE_REQUESTS_UPDATE",
+    "description": "update",
+    "tags": [
+      "file_requests"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/file_requests/update",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_COPY_V2",
+    "description": "copy",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/copy_v2",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_COPY_BATCH_V2",
+    "description": "copy_batch",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/copy_batch_v2",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_COPY_BATCH_CHECK_V2",
+    "description": "copy_batch/check",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/copy_batch/check_v2",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_COPY_REFERENCE_GET",
+    "description": "copy_reference/get",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/copy_reference/get",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_COPY_REFERENCE_SAVE",
+    "description": "copy_reference/save",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/copy_reference/save",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_CREATE_FOLDER_V2",
+    "description": "create_folder",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/create_folder_v2",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_CREATE_FOLDER_BATCH",
+    "description": "create_folder_batch",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/create_folder_batch",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_CREATE_FOLDER_BATCH_CHECK",
+    "description": "create_folder_batch/check",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/create_folder_batch/check",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_DELETE_V2",
+    "description": "delete",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/delete_v2",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_DELETE_BATCH",
+    "description": "delete_batch",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/delete_batch",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_DELETE_BATCH_CHECK",
+    "description": "delete_batch/check",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/delete_batch/check",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_DOWNLOAD",
+    "description": "download",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/download",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "header"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Dropbox-API-Arg": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Dropbox-API-Arg"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_DOWNLOAD_ZIP",
+    "description": "download_zip",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/download_zip",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "header"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Dropbox-API-Arg": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Dropbox-API-Arg"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_EXPORT",
+    "description": "export",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/export",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "header"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Dropbox-API-Arg": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Dropbox-API-Arg"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_GET_FILE_LOCK_BATCH",
+    "description": "get_file_lock_batch",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/get_file_lock_batch",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_GET_METADATA",
+    "description": "get_metadata",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/get_metadata",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_GET_PREVIEW",
+    "description": "get_preview",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/get_preview",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "header"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Dropbox-API-Arg": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Dropbox-API-Arg"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_GET_TEMPORARY_LINK",
+    "description": "get_temporary_link",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/get_temporary_link",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_GET_TEMPORARY_UPLOAD_LINK",
+    "description": "get_temporary_upload_link",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/get_temporary_upload_link",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_GET_THUMBNAIL_V2",
+    "description": "get_thumbnail",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/get_thumbnail_v2",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "header"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Dropbox-API-Arg": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Dropbox-API-Arg"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_GET_THUMBNAIL_BATCH",
+    "description": "get_thumbnail_batch",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/get_thumbnail_batch",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "DROPBOX__CREATE_FILES_LIST_FOLDER",
+    "description": "list_folder",
+    "tags": [
+      "files"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/2/files/list_folder",
+      "server_url": "https://api.dropbox.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "header",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "header": {
+          "type": "object",
+          "properties": {
+            "Content-Type": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "Content-Type"
+          ],
+          "additionalProperties": false,
+          "description": "Header parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          },
+          "required": [],
+          "visible": [
+            "value"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  }
+]

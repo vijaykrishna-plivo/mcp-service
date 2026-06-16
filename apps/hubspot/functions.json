@@ -1,0 +1,1537 @@
+[
+  {
+    "name": "HUBSPOT__GET_OBJECTS_CONTACTS",
+    "description": "Read",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/crm/v3/objects/contacts/{contactId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "contactId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "contactId"
+          ],
+          "visible": [
+            "contactId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned in the response. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned along with their history of previous values. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of object types to retrieve associated IDs for. If any of the specified associations do not exist, they will be ignored."
+            },
+            "archived": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to return only results that have been archived."
+            },
+            "idProperty": {
+              "type": "string",
+              "description": "The name of a property whose values are unique for this object type"
+            }
+          },
+          "required": [],
+          "visible": [
+            "properties",
+            "propertiesWithHistory",
+            "associations",
+            "archived",
+            "idProperty"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__DELETE_OBJECTS_CONTACTS",
+    "description": "Archive",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/crm/v3/objects/contacts/{contactId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "contactId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "contactId"
+          ],
+          "visible": [
+            "contactId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__UPDATE_OBJECTS_CONTACTS",
+    "description": "Update",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PATCH",
+      "path": "/crm/v3/objects/contacts/{contactId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "contactId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "contactId"
+          ],
+          "visible": [
+            "contactId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "idProperty": {
+              "type": "string",
+              "description": "The name of a property whose values are unique for this object type"
+            }
+          },
+          "required": [],
+          "visible": [
+            "idProperty"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "properties"
+          ],
+          "visible": [
+            "properties"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__GET_OBJECTS_CONTACTS_2",
+    "description": "List",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/crm/v3/objects/contacts",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "default": 10,
+              "description": "The maximum number of results to display per page."
+            },
+            "after": {
+              "type": "string",
+              "description": "The paging cursor token of the last successfully read resource will be returned as the `paging.next.after` JSON property of a paged response containing more results."
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned in the response. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned along with their history of previous values. If any of the specified properties are not present on the requested object(s), they will be ignored. Usage of this parameter will reduce the maximum number of objects that can be read by a single request."
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of object types to retrieve associated IDs for. If any of the specified associations do not exist, they will be ignored."
+            },
+            "archived": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to return only results that have been archived."
+            }
+          },
+          "required": [],
+          "visible": [
+            "limit",
+            "after",
+            "properties",
+            "propertiesWithHistory",
+            "associations",
+            "archived"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__CREATE_OBJECTS_CONTACTS",
+    "description": "Create",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/crm/v3/objects/contacts",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    }
+                  },
+                  "to": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "visible": [
+                      "id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "to",
+                  "types"
+                ],
+                "visible": [
+                  "types",
+                  "to"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "properties": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "associations",
+            "properties"
+          ],
+          "visible": [
+            "associations",
+            "properties"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__GET_OBJECTS_COMPANIES",
+    "description": "Retrieve companies",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/crm/v3/objects/companies",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "after": {
+              "type": "string",
+              "description": "The paging cursor token of the last successfully read resource will be returned as the `paging.next.after` JSON property of a paged response containing more results."
+            },
+            "archived": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to return only results that have been archived."
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of object types to retrieve associated IDs for. If any of the specified associations do not exist, they will be ignored."
+            },
+            "limit": {
+              "type": "integer",
+              "default": 10,
+              "description": "The maximum number of results to display per page."
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned in the response. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned along with their history of previous values. If any of the specified properties are not present on the requested object(s), they will be ignored. Usage of this parameter will reduce the maximum number of companies that can be read by a single request."
+            }
+          },
+          "required": [],
+          "visible": [
+            "after",
+            "archived",
+            "associations",
+            "limit",
+            "properties",
+            "propertiesWithHistory"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__CREATE_OBJECTS_COMPANIES",
+    "description": "Create a company",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/crm/v3/objects/companies",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "The ID of the target record to associate."
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "visible": [
+                      "id"
+                    ],
+                    "additionalProperties": false,
+                    "description": "Contains the Id of a Public Object"
+                  },
+                  "types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "Defines the type, direction, and details of the relationship between two CRM objects."
+                    }
+                  }
+                },
+                "required": [
+                  "to",
+                  "types"
+                ],
+                "visible": [
+                  "to",
+                  "types"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "properties": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "The company property values to set."
+            }
+          },
+          "required": [
+            "associations",
+            "properties"
+          ],
+          "visible": [
+            "associations",
+            "properties"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__GET_OBJECTS_COMPANIES_2",
+    "description": "Retrieve a company",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/crm/v3/objects/companies/{companyId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "companyId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "companyId"
+          ],
+          "visible": [
+            "companyId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "archived": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to return only results that have been archived."
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of object types to retrieve associated IDs for. If any of the specified associations do not exist, they will be ignored."
+            },
+            "idProperty": {
+              "type": "string",
+              "description": "The name of a property whose values are unique for this object type"
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned in the response. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned along with their history of previous values. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            }
+          },
+          "required": [],
+          "visible": [
+            "archived",
+            "associations",
+            "idProperty",
+            "properties",
+            "propertiesWithHistory"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__DELETE_OBJECTS_COMPANIES",
+    "description": "Archive a company",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/crm/v3/objects/companies/{companyId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "companyId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "companyId"
+          ],
+          "visible": [
+            "companyId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__UPDATE_OBJECTS_COMPANIES",
+    "description": "Update a company",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PATCH",
+      "path": "/crm/v3/objects/companies/{companyId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "companyId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "companyId"
+          ],
+          "visible": [
+            "companyId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "idProperty": {
+              "type": "string",
+              "description": "The name of a property whose values are unique for this object type"
+            }
+          },
+          "required": [],
+          "visible": [
+            "idProperty"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "The company property values to set."
+            }
+          },
+          "required": [
+            "properties"
+          ],
+          "visible": [
+            "properties"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__GET_OBJECTS_0_3",
+    "description": "List",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/crm/v3/objects/0-3",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "after": {
+              "type": "string",
+              "description": "The paging cursor token of the last successfully read resource will be returned as the `paging.next.after` JSON property of a paged response containing more results."
+            },
+            "archived": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to return only results that have been archived."
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of object types to retrieve associated IDs for. If any of the specified associations do not exist, they will be ignored."
+            },
+            "limit": {
+              "type": "integer",
+              "default": 10,
+              "description": "The maximum number of results to display per page."
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned in the response. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned along with their history of previous values. If any of the specified properties are not present on the requested object(s), they will be ignored. Usage of this parameter will reduce the maximum number of objects that can be read by a single request."
+            }
+          },
+          "required": [],
+          "visible": [
+            "after",
+            "archived",
+            "associations",
+            "limit",
+            "properties",
+            "propertiesWithHistory"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__CREATE_OBJECTS_0_3",
+    "description": "Create",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/crm/v3/objects/0-3",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "The unique ID of the object."
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "visible": [
+                      "id"
+                    ],
+                    "additionalProperties": false,
+                    "description": "Contains the Id of a Public Object"
+                  },
+                  "types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "Defines the type, direction, and details of the relationship between two CRM objects."
+                    }
+                  }
+                },
+                "required": [
+                  "to",
+                  "types"
+                ],
+                "visible": [
+                  "to",
+                  "types"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "properties": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "Key-value pairs for setting properties for the new object."
+            }
+          },
+          "required": [
+            "associations",
+            "properties"
+          ],
+          "visible": [
+            "associations",
+            "properties"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__GET_OBJECTS_0_3_2",
+    "description": "Read",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/crm/v3/objects/0-3/{dealId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "dealId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "dealId"
+          ],
+          "visible": [
+            "dealId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "archived": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to return only results that have been archived."
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of object types to retrieve associated IDs for. If any of the specified associations do not exist, they will be ignored."
+            },
+            "idProperty": {
+              "type": "string",
+              "description": "The name of a property whose values are unique for this object type"
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned in the response. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned along with their history of previous values. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            }
+          },
+          "required": [],
+          "visible": [
+            "archived",
+            "associations",
+            "idProperty",
+            "properties",
+            "propertiesWithHistory"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__DELETE_OBJECTS_0_3",
+    "description": "Archive",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/crm/v3/objects/0-3/{dealId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "dealId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "dealId"
+          ],
+          "visible": [
+            "dealId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__UPDATE_OBJECTS_0_3",
+    "description": "Update",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PATCH",
+      "path": "/crm/v3/objects/0-3/{dealId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "dealId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "dealId"
+          ],
+          "visible": [
+            "dealId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "idProperty": {
+              "type": "string",
+              "description": "The name of a property whose values are unique for this object type"
+            }
+          },
+          "required": [],
+          "visible": [
+            "idProperty"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "Key value pairs representing the properties of the object."
+            }
+          },
+          "required": [
+            "properties"
+          ],
+          "visible": [
+            "properties"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__GET_OBJECTS_TICKETS",
+    "description": "List",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/crm/v3/objects/tickets",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "after": {
+              "type": "string",
+              "description": "The paging cursor token of the last successfully read resource will be returned as the `paging.next.after` JSON property of a paged response containing more results."
+            },
+            "archived": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to return only results that have been archived."
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of object types to retrieve associated IDs for. If any of the specified associations do not exist, they will be ignored."
+            },
+            "limit": {
+              "type": "integer",
+              "default": 10,
+              "description": "The maximum number of results to display per page."
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned in the response. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned along with their history of previous values. If any of the specified properties are not present on the requested object(s), they will be ignored. Usage of this parameter will reduce the maximum number of objects that can be read by a single request."
+            }
+          },
+          "required": [],
+          "visible": [
+            "after",
+            "archived",
+            "associations",
+            "limit",
+            "properties",
+            "propertiesWithHistory"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__CREATE_OBJECTS_TICKETS",
+    "description": "Create",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/crm/v3/objects/tickets",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "to": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "The unique ID of the object."
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "visible": [
+                      "id"
+                    ],
+                    "additionalProperties": false,
+                    "description": "Contains the Id of a Public Object"
+                  },
+                  "types": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "Defines the type, direction, and details of the relationship between two CRM objects."
+                    }
+                  }
+                },
+                "required": [
+                  "to",
+                  "types"
+                ],
+                "visible": [
+                  "to",
+                  "types"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "properties": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "Key-value pairs for setting properties for the new object."
+            }
+          },
+          "required": [
+            "associations",
+            "properties"
+          ],
+          "visible": [
+            "associations",
+            "properties"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__GET_OBJECTS_TICKETS_2",
+    "description": "Read",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/crm/v3/objects/tickets/{ticketId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticketId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "ticketId"
+          ],
+          "visible": [
+            "ticketId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "archived": {
+              "type": "boolean",
+              "default": false,
+              "description": "Whether to return only results that have been archived."
+            },
+            "associations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of object types to retrieve associated IDs for. If any of the specified associations do not exist, they will be ignored."
+            },
+            "idProperty": {
+              "type": "string",
+              "description": "The name of a property whose values are unique for this object type"
+            },
+            "properties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned in the response. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            },
+            "propertiesWithHistory": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A comma separated list of the properties to be returned along with their history of previous values. If any of the specified properties are not present on the requested object(s), they will be ignored."
+            }
+          },
+          "required": [],
+          "visible": [
+            "archived",
+            "associations",
+            "idProperty",
+            "properties",
+            "propertiesWithHistory"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__DELETE_OBJECTS_TICKETS",
+    "description": "Archive",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/crm/v3/objects/tickets/{ticketId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticketId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "ticketId"
+          ],
+          "visible": [
+            "ticketId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "HUBSPOT__UPDATE_OBJECTS_TICKETS",
+    "description": "Update",
+    "tags": [
+      "Basic"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PATCH",
+      "path": "/crm/v3/objects/tickets/{ticketId}",
+      "server_url": "https://api.hubapi.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticketId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "ticketId"
+          ],
+          "visible": [
+            "ticketId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "idProperty": {
+              "type": "string",
+              "description": "The name of a property whose values are unique for this object type"
+            }
+          },
+          "required": [],
+          "visible": [
+            "idProperty"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "properties": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "Key value pairs representing the properties of the object."
+            }
+          },
+          "required": [
+            "properties"
+          ],
+          "visible": [
+            "properties"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  }
+]

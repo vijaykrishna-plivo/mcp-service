@@ -1,0 +1,19 @@
+{
+  "name": "SHOPIFY",
+  "display_name": "Shopify",
+  "logo": "https://raw.githubusercontent.com/aipotheosis-labs/aipolabs-icons/refs/heads/main/apps/shopify.svg",
+  "provider": "Shopify",
+  "version": "1.0",
+  "description": "Shopify Admin API integration for managing orders, customers, and products on a Shopify store. Thin raw-REST tools; the per-store base URL is templated from the linked account's connection_config (subdomain).",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "X-Shopify-Access-Token",
+      "prefix": ""
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": ["E-Commerce"],
+  "visibility": "public",
+  "active": true
+}

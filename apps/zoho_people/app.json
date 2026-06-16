@@ -1,0 +1,21 @@
+{
+  "name": "ZOHO_PEOPLE",
+  "display_name": "Zoho People",
+  "logo": "https://cdn.simpleicons.org/zoho",
+  "provider": "Zoho",
+  "version": "1.0",
+  "description": "Thin raw-REST integration for the Zoho People API to read, add, and search HR records and forms such as employees, attendance, and leave.",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": "Zoho-oauthtoken"
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": [
+    "CRM & Support"
+  ],
+  "visibility": "public",
+  "active": true
+}

@@ -1,0 +1,285 @@
+[
+  {
+    "name": "SALESFORCE__QUERY",
+    "description": "Execute a SOQL query",
+    "tags": [
+      "query",
+      "soql"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/services/data/v59.0/query",
+      "server_url": "https://{subdomain}.my.salesforce.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "query"
+      ],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "description": "Query params",
+          "required": [
+            "q"
+          ],
+          "visible": [
+            "q"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "q": {
+              "type": "string",
+              "description": "The SOQL query string, e.g. SELECT Id, Name FROM Account LIMIT 10"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "SALESFORCE__GET_SOBJECT_RECORD",
+    "description": "Get an sObject record by ID",
+    "tags": [
+      "sobject",
+      "get"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/services/data/v59.0/sobjects/{sobject}/{id}",
+      "server_url": "https://{subdomain}.my.salesforce.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "description": "Path params",
+          "required": [
+            "sobject",
+            "id"
+          ],
+          "visible": [
+            "sobject",
+            "id"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "sobject": {
+              "type": "string",
+              "description": "The sObject type, e.g. Account, Contact, Lead"
+            },
+            "id": {
+              "type": "string",
+              "description": "The record ID"
+            }
+          }
+        },
+        "query": {
+          "type": "object",
+          "description": "Query params",
+          "required": [],
+          "visible": [
+            "fields"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "fields": {
+              "type": "string",
+              "description": "Comma-separated list of fields to return"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "name": "SALESFORCE__CREATE_SOBJECT_RECORD",
+    "description": "Create an sObject record",
+    "tags": [
+      "sobject",
+      "create"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/services/data/v59.0/sobjects/{sobject}",
+      "server_url": "https://{subdomain}.my.salesforce.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "description": "Path params",
+          "required": [
+            "sobject"
+          ],
+          "visible": [
+            "sobject"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "sobject": {
+              "type": "string",
+              "description": "The sObject type, e.g. Account, Contact, Lead"
+            }
+          }
+        },
+        "body": {
+          "type": "object",
+          "description": "Field values for the new record",
+          "additionalProperties": true,
+          "properties": {},
+          "required": [],
+          "visible": []
+        }
+      }
+    }
+  },
+  {
+    "name": "SALESFORCE__UPDATE_SOBJECT_RECORD",
+    "description": "Update an sObject record by ID",
+    "tags": [
+      "sobject",
+      "update"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PATCH",
+      "path": "/services/data/v59.0/sobjects/{sobject}/{id}",
+      "server_url": "https://{subdomain}.my.salesforce.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "description": "Path params",
+          "required": [
+            "sobject",
+            "id"
+          ],
+          "visible": [
+            "sobject",
+            "id"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "sobject": {
+              "type": "string",
+              "description": "The sObject type, e.g. Account, Contact, Lead"
+            },
+            "id": {
+              "type": "string",
+              "description": "The record ID to update"
+            }
+          }
+        },
+        "body": {
+          "type": "object",
+          "description": "Field values to update",
+          "additionalProperties": true,
+          "properties": {},
+          "required": [],
+          "visible": []
+        }
+      }
+    }
+  },
+  {
+    "name": "SALESFORCE__SEARCH",
+    "description": "Execute a SOSL search",
+    "tags": [
+      "search",
+      "sosl"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/services/data/v59.0/parameterizedSearch",
+      "server_url": "https://{subdomain}.my.salesforce.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "query"
+      ],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "description": "Query params",
+          "required": [
+            "q"
+          ],
+          "visible": [
+            "q",
+            "sobjects",
+            "fields"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "q": {
+              "type": "string",
+              "description": "The search term (SOSL search string)"
+            },
+            "sobjects": {
+              "type": "string",
+              "description": "Comma-separated list of sObjects to search"
+            },
+            "fields": {
+              "type": "string",
+              "description": "Comma-separated list of fields to return"
+            }
+          }
+        }
+      }
+    }
+  }
+]

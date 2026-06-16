@@ -1,0 +1,1568 @@
+[
+  {
+    "name": "PYLON__GETISSUES",
+    "description": "Get a list of issues",
+    "tags": [
+      "issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/issues",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "start_time": {
+              "type": "string",
+              "description": "The start time (RFC3339) of the time range to get issues for. The duration between start_time and end_time must be less than or equal to 30 days."
+            },
+            "end_time": {
+              "type": "string",
+              "description": "The end time (RFC3339) of the time range to get issues for. The duration between start_time and end_time must be less than or equal to 30 days."
+            }
+          },
+          "required": [
+            "start_time",
+            "end_time"
+          ],
+          "visible": [
+            "start_time",
+            "end_time"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__CREATEISSUE",
+    "description": "Create a new issue",
+    "tags": [
+      "issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/issues",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "account_id": {
+              "type": "string",
+              "description": "The account that this issue belongs to."
+            },
+            "assignee_id": {
+              "type": "string",
+              "description": "The user the issue should be assigned to."
+            },
+            "attachment_urls": {
+              "type": "array",
+              "description": "An array of attachment URLs to attach to this issue.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "author_unverified": {
+              "type": "boolean",
+              "description": "Whether the requester's identity has NOT been verified. Defaults to false (verified)."
+            },
+            "body_html": {
+              "type": "string",
+              "description": "The HTML content of the body of the issue."
+            },
+            "contact_id": {
+              "type": "string",
+              "description": "The contact to attribute the first message to. Makes the message appear as a customer message rather than an internal note. Only one of user_id or contact_id can be provided. Requires destination_metadata."
+            },
+            "created_at": {
+              "type": "string",
+              "description": "Timestamp of when the issue was created. If not specified, the current time will be used. (RFC3339)"
+            },
+            "custom_fields": {
+              "type": "array",
+              "description": "An array of custom fields to be used on this issue.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "slug": {
+                    "type": "string",
+                    "description": "The slug of the custom field."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The value of the custom field. Only to be used for single-valued custom fields. If unset, the custom field will be unset. If the custom field is a select field, the value must be the select option slug, which you can find from the GET /custom-fields endpoint."
+                  },
+                  "values": {
+                    "type": "array",
+                    "description": "The values of the custom field. Only to be used for multi-valued custom fields (ex. multiselect). If unset, the custom field will be unset. If the custom field is a multiselect field, the values must be the select option slugs which you can find from the GET /custom-fields endpoint.",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "slug",
+                  "value",
+                  "values"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "destination_metadata": {
+              "type": "object",
+              "properties": {
+                "chat_widget_app_id": {
+                  "type": "string",
+                  "description": "The ID of the chat widget app to use for in-app chat."
+                },
+                "destination": {
+                  "type": "string",
+                  "description": "The destination type of the issue. Can be \"email\", \"slack\", \"in_app_chat\", \"sms\", \"whatsapp\", or \"internal\". Defaults to \"internal\".\n\n`slack`: Deliver to the issue's account's Slack channel.\n\n`email`: Deliver messages to the issue requester via email.\n\n`in_app_chat`: Deliver messages to the issue requester via in-app chat.\n\n`internal`: Keep the issue internal and don't contact the requester at all.\n\n`sms`: Deliver messages to the issue requester via SMS.\n\n`whatsapp`: Deliver messages to the issue requester via WhatsApp.",
+                  "enum": [
+                    "slack",
+                    "email",
+                    "in_app_chat",
+                    "internal",
+                    "sms",
+                    "whatsapp"
+                  ]
+                },
+                "email": {
+                  "type": "string",
+                  "description": "The email that emails to the requester will be sent from. You must configure an email app in Pylon with this address."
+                },
+                "email_bccs": {
+                  "type": "array",
+                  "description": "Emails that will be BCCed on emails to the requester.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "email_ccs": {
+                  "type": "array",
+                  "description": "Emails that will be CCed on emails to the requester.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "from_sms_phone_number_id": {
+                  "type": "string",
+                  "description": "The ID of the Telnyx phone number to send SMS from. Required if destination is \"sms\"."
+                },
+                "whatsapp_app_id": {
+                  "type": "string",
+                  "description": "The ID of the WhatsApp app to send messages from. Required if destination is \"whatsapp\"."
+                },
+                "whatsapp_message_template_language": {
+                  "type": "string",
+                  "description": "The language of the WhatsApp message template to use. Required if destination is \"whatsapp\"."
+                },
+                "whatsapp_message_template_name": {
+                  "type": "string",
+                  "description": "The name of the WhatsApp message template to use. Required if destination is \"whatsapp\"."
+                }
+              },
+              "required": [],
+              "visible": [
+                "chat_widget_app_id",
+                "destination",
+                "email",
+                "email_bccs",
+                "email_ccs",
+                "from_sms_phone_number_id",
+                "whatsapp_app_id",
+                "whatsapp_message_template_language",
+                "whatsapp_message_template_name"
+              ],
+              "additionalProperties": false,
+              "description": "Specifies if/how communication will be delivered to the customer.\n\nYou can configure the issue to contact the requester via email, Slack, in-app chat, SMS, WhatsApp, or not at all.\n\nIf a destination other than `internal` is specified, a message with the issue's BodyHTML will be delivered to the requester.\n\nIf you don't wish to immediately contact the requester, you can specify the `internal` destination."
+            },
+            "priority": {
+              "type": "string",
+              "description": "The priority of the issue. Can be one of: urgent, high, medium, or low."
+            },
+            "requester_avatar_url": {
+              "type": "string",
+              "description": "The URL of an avatar of the requester."
+            },
+            "requester_email": {
+              "type": "string",
+              "description": "The email of the contact this issue is on behalf of. If no matching contact exists, one will be created. Include one of requester_id or requester_email."
+            },
+            "requester_id": {
+              "type": "string",
+              "description": "The contact this issue is on behalf of. Sets the \"Requester\" shown in the issue sidebar. Include one of requester_id or requester_email."
+            },
+            "requester_name": {
+              "type": "string",
+              "description": "The full name of the requester. Used when creating a new contact via requester_email."
+            },
+            "tags": {
+              "type": "array",
+              "description": "An array of strings to use as tags on this issue. If provided, the issue tags will be updated to the given tags.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "team_id": {
+              "type": "string",
+              "description": "The ID of the team this issue should be assigned to."
+            },
+            "title": {
+              "type": "string",
+              "description": "The title of the issue."
+            },
+            "user_id": {
+              "type": "string",
+              "description": "The internal user to attribute the first message to. Only one of user_id or contact_id can be provided. If neither is set, the API token's user is used."
+            }
+          },
+          "required": [
+            "title",
+            "body_html"
+          ],
+          "visible": [
+            "account_id",
+            "assignee_id",
+            "attachment_urls",
+            "author_unverified",
+            "body_html",
+            "contact_id",
+            "created_at",
+            "custom_fields",
+            "destination_metadata",
+            "priority",
+            "requester_avatar_url",
+            "requester_email",
+            "requester_id",
+            "requester_name",
+            "tags",
+            "team_id",
+            "title",
+            "user_id"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__SEARCHISSUES",
+    "description": "Search for issues by a given filter",
+    "tags": [
+      "issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/issues/search",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "cursor": {
+              "type": "string",
+              "description": "The cursor to use for pagination."
+            },
+            "filter": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "description": "The field for this filter.  For allowed fields, see the documentation for\n\nthe specific endpoint you are using.\n\nFor non-compound filters (any operators other than \"and\" or \"or\"),\n\nField must be set, along with either Value or Values, depending on the operator."
+                },
+                "operator": {
+                  "type": "string",
+                  "description": "The operator for this filter.\n\n`equals`: Matches objects that are exactly equal to the value in the field.\n\n`not_equals`: Matches objects that are not exactly equal to the value in the field.\n\n`contains`: For a multi-valued field, such as tags, this operator will match  objects that contain any of the values in the field.\n\n`does_not_contain`: For a multi-valued field, such as tags, this operator will match  objects that do not contain any of the values in the field.\n\n`in`: Matches objects if the field is one of several possible values,  as specified in the values array.\n\n`not_in`: Matches objects if the field is none of several possible values,  as specified in the values array.\n\n`and`: Matches objects only if all subfilters match.\n\n`or`: Matches objects if any subfilter matches.\n\n`time_is_after`: Matches objects if the field is after the given time.\n\n`time_is_before`: Matches objects if the field is before the given time.\n\n`time_range`: Matches objects if the field is between the given times.\n\n`string_contains`: Matches objects if the field contains the given string.\n\n`string_does_not_contain`: Matches objects if the field does not contain the given string.\n\n`is_set`: Matches objects if the field is set.\n\n`is_unset`: Matches objects if the field is unset.\n\n`greater_than`: Matches objects if the numeric field is greater than the given value.\n\n`less_than`: Matches objects if the numeric field is less than the given value.\n\n`greater_than_or_equals`: Matches objects if the numeric field is greater than or equal to the given value.\n\n`less_than_or_equals`: Matches objects if the numeric field is less than or equal to the given value.",
+                  "enum": [
+                    "equals",
+                    "not_equals",
+                    "contains",
+                    "does_not_contain",
+                    "in",
+                    "not_in",
+                    "and",
+                    "or",
+                    "time_is_after",
+                    "time_is_before",
+                    "time_range",
+                    "string_contains",
+                    "string_does_not_contain",
+                    "is_set",
+                    "is_unset",
+                    "greater_than",
+                    "less_than",
+                    "greater_than_or_equals",
+                    "less_than_or_equals"
+                  ]
+                },
+                "subfilters": {
+                  "type": "array",
+                  "description": "Sub-filters for this filter.  Valid only when operator is \"and\" or \"or\".\n\nThe maximum allowed depth for a tree of filters is 3.",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true
+                  }
+                },
+                "value": {
+                  "type": "string",
+                  "description": "The value for this filter. Only used for single-valued operators\n\n(\"equals\", \"not_equals\", \"contains\", \"does_not_contain\")"
+                },
+                "values": {
+                  "type": "array",
+                  "description": "The values for this filter. Only used for multi-valued operators (\"in\", \"not_in\").",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "operator",
+                "field"
+              ],
+              "visible": [
+                "field",
+                "operator",
+                "subfilters",
+                "value",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "limit": {
+              "type": "integer",
+              "description": "The number of issues to fetch. Defaults to 100. Must be greater than 0 and less than 1000."
+            },
+            "search_text": {
+              "type": "string",
+              "description": "Fuzzy text search. Results are intersected with any provided filter."
+            }
+          },
+          "required": [
+            "filter"
+          ],
+          "visible": [
+            "cursor",
+            "filter",
+            "limit",
+            "search_text"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__GETISSUE",
+    "description": "Get an issue by its ID/number",
+    "tags": [
+      "issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/issues/{id}",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID or number of the issue to fetch."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__UPDATEISSUE",
+    "description": "Update an existing issue",
+    "tags": [
+      "issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PATCH",
+      "path": "/issues/{id}",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the issue to update."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "account_id": {
+              "type": "string",
+              "description": "The ID of the account that this issue belongs to."
+            },
+            "assignee_id": {
+              "type": "string",
+              "description": "The ID of the user who should be assigned to this issue. If empty string is passed in, the issue assignee will be removed."
+            },
+            "custom_fields": {
+              "type": "array",
+              "description": "An array of custom fields to be used on this issue. Only passed in fields will be modified.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "slug": {
+                    "type": "string",
+                    "description": "The slug of the custom field."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The value of the custom field. Only to be used for single-valued custom fields. If unset, the custom field will be unset. If the custom field is a select field, the value must be the select option slug, which you can find from the GET /custom-fields endpoint."
+                  },
+                  "values": {
+                    "type": "array",
+                    "description": "The values of the custom field. Only to be used for multi-valued custom fields (ex. multiselect). If unset, the custom field will be unset. If the custom field is a multiselect field, the values must be the select option slugs which you can find from the GET /custom-fields endpoint.",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "slug",
+                  "value",
+                  "values"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "customer_portal_visible": {
+              "type": "boolean",
+              "description": "Whether the issue should be visible in the customer portal."
+            },
+            "requester_id": {
+              "type": "string",
+              "description": "The ID of the requester that this issue is on behalf of."
+            },
+            "requestor_id": {
+              "type": "string",
+              "description": "Deprecated: Use requester_id instead."
+            },
+            "state": {
+              "type": "string",
+              "description": "The state this issue should be moved to. Can be one of new, waiting_on_you, waiting_on_customer, on_hold, closed, or a custom status."
+            },
+            "tags": {
+              "type": "array",
+              "description": "An array of strings to use as tags on this issue. If provided, the issue tags will be updated to be exactly the given tags.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "team_id": {
+              "type": "string",
+              "description": "The ID of the team this issue should be assigned to. If empty string is passed in, any assigned team will be removed."
+            },
+            "title": {
+              "type": "string",
+              "description": "The title of the issue."
+            },
+            "type": {
+              "type": "string",
+              "description": "The type of the issue. Set to \"ticket\" to upgrade a conversation to a support ticket. Cannot be downgraded from \"ticket\" to \"conversation\".\n\n`conversation`: A conversation.\n\n`ticket`: A support ticket.",
+              "enum": [
+                "conversation",
+                "ticket"
+              ]
+            }
+          },
+          "required": [],
+          "visible": [
+            "account_id",
+            "assignee_id",
+            "custom_fields",
+            "customer_portal_visible",
+            "requester_id",
+            "requestor_id",
+            "state",
+            "tags",
+            "team_id",
+            "title",
+            "type"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__CREATEISSUEREPLY",
+    "description": "Reply to an issue",
+    "tags": [
+      "messages"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/issues/{id}/reply",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the issue."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "attachment_urls": {
+              "type": "array",
+              "description": "An array of attachment URLs to attach to this issue.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "body_html": {
+              "type": "string",
+              "description": "The body of the message in HTML."
+            },
+            "contact_id": {
+              "type": "string",
+              "description": "Optional contact ID to post the message as. Only one of user_id or contact_id can be provided."
+            },
+            "custom_source": {
+              "type": "object",
+              "properties": {
+                "created_at": {
+                  "type": "string",
+                  "description": "The timestamp of when the message was created in the external system. (RFC3339)"
+                },
+                "external_id": {
+                  "type": "string",
+                  "description": "The external ID of this message in the custom system."
+                },
+                "metadata": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "Arbitrary metadata to store with the message."
+                }
+              },
+              "required": [
+                "external_id"
+              ],
+              "visible": [
+                "created_at",
+                "external_id",
+                "metadata"
+              ],
+              "additionalProperties": false
+            },
+            "email_info": {
+              "type": "object",
+              "properties": {
+                "bcc_emails": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "cc_emails": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "to_emails": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [],
+              "visible": [
+                "bcc_emails",
+                "cc_emails",
+                "to_emails"
+              ],
+              "additionalProperties": false
+            },
+            "message_id": {
+              "type": "string",
+              "description": "The ID of the message to reply to."
+            },
+            "user_id": {
+              "type": "string",
+              "description": "Optional user ID to post the message as. Only one of user_id or contact_id can be provided."
+            }
+          },
+          "required": [
+            "body_html",
+            "message_id"
+          ],
+          "visible": [
+            "attachment_urls",
+            "body_html",
+            "contact_id",
+            "custom_source",
+            "email_info",
+            "message_id",
+            "user_id"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__CREATEISSUENOTE",
+    "description": "Create an internal note on an issue",
+    "tags": [
+      "messages"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/issues/{id}/note",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the issue."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "attachment_urls": {
+              "type": "array",
+              "description": "An array of attachment URLs to attach to this issue.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "body_html": {
+              "type": "string",
+              "description": "The body of the message in HTML."
+            },
+            "message_id": {
+              "type": "string",
+              "description": "The ID of the message to reply to. This message must be an internal note. You can find this from the GET /issues/{id}/messages endpoint. If neither thread_id nor message_id is provided, posts to the default internal thread or creates one."
+            },
+            "thread_id": {
+              "type": "string",
+              "description": "The ID of the thread to post the note to. Use the `id` field (not `thread_id`) from GET /issues/{id}/threads. If neither thread_id nor message_id is provided, posts to the default internal thread or creates one."
+            },
+            "thread_name": {
+              "type": "string",
+              "description": "Optional name for the internal thread created when neither thread_id nor message_id is provided. Ignored if posting to an existing thread."
+            },
+            "user_id": {
+              "type": "string",
+              "description": "Optional user ID to post the message as. If not provided, the API token user will be used."
+            }
+          },
+          "required": [
+            "body_html"
+          ],
+          "visible": [
+            "attachment_urls",
+            "body_html",
+            "message_id",
+            "thread_id",
+            "thread_name",
+            "user_id"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__GETISSUEMESSAGES",
+    "description": "Get all messages on an issue",
+    "tags": [
+      "messages"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/issues/{id}/messages",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the issue to fetch messages for."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__SNOOZEISSUE",
+    "description": "Snooze an issue",
+    "tags": [
+      "issues"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/issues/{id}/snooze",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID or number of the issue to snooze."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "snooze_until": {
+              "type": "string",
+              "description": "The date and time to snooze the issue until. (RFC3339)"
+            }
+          },
+          "required": [
+            "snooze_until"
+          ],
+          "visible": [
+            "snooze_until"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__GETACCOUNTS",
+    "description": "Get a list of accounts",
+    "tags": [
+      "accounts"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/accounts",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "cursor": {
+              "type": "string",
+              "description": "The cursor to use for pagination."
+            },
+            "limit": {
+              "type": "integer",
+              "description": "The number of accounts to fetch. Defaults to 100. Must be greater than 0 and less than 1000."
+            }
+          },
+          "required": [
+            "limit"
+          ],
+          "visible": [
+            "cursor",
+            "limit"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__SEARCHACCOUNTS",
+    "description": "Search for accounts by a given filter",
+    "tags": [
+      "accounts"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/accounts/search",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "cursor": {
+              "type": "string",
+              "description": "The cursor to use for pagination."
+            },
+            "filter": {
+              "type": "object",
+              "properties": {
+                "field": {
+                  "type": "string",
+                  "description": "The field for this filter.  For allowed fields, see the documentation for\n\nthe specific endpoint you are using.\n\nFor non-compound filters (any operators other than \"and\" or \"or\"),\n\nField must be set, along with either Value or Values, depending on the operator."
+                },
+                "operator": {
+                  "type": "string",
+                  "description": "The operator for this filter.\n\n`equals`: Matches objects that are exactly equal to the value in the field.\n\n`not_equals`: Matches objects that are not exactly equal to the value in the field.\n\n`contains`: For a multi-valued field, such as tags, this operator will match  objects that contain any of the values in the field.\n\n`does_not_contain`: For a multi-valued field, such as tags, this operator will match  objects that do not contain any of the values in the field.\n\n`in`: Matches objects if the field is one of several possible values,  as specified in the values array.\n\n`not_in`: Matches objects if the field is none of several possible values,  as specified in the values array.\n\n`and`: Matches objects only if all subfilters match.\n\n`or`: Matches objects if any subfilter matches.\n\n`time_is_after`: Matches objects if the field is after the given time.\n\n`time_is_before`: Matches objects if the field is before the given time.\n\n`time_range`: Matches objects if the field is between the given times.\n\n`string_contains`: Matches objects if the field contains the given string.\n\n`string_does_not_contain`: Matches objects if the field does not contain the given string.\n\n`is_set`: Matches objects if the field is set.\n\n`is_unset`: Matches objects if the field is unset.\n\n`greater_than`: Matches objects if the numeric field is greater than the given value.\n\n`less_than`: Matches objects if the numeric field is less than the given value.\n\n`greater_than_or_equals`: Matches objects if the numeric field is greater than or equal to the given value.\n\n`less_than_or_equals`: Matches objects if the numeric field is less than or equal to the given value.",
+                  "enum": [
+                    "equals",
+                    "not_equals",
+                    "contains",
+                    "does_not_contain",
+                    "in",
+                    "not_in",
+                    "and",
+                    "or",
+                    "time_is_after",
+                    "time_is_before",
+                    "time_range",
+                    "string_contains",
+                    "string_does_not_contain",
+                    "is_set",
+                    "is_unset",
+                    "greater_than",
+                    "less_than",
+                    "greater_than_or_equals",
+                    "less_than_or_equals"
+                  ]
+                },
+                "subfilters": {
+                  "type": "array",
+                  "description": "Sub-filters for this filter.  Valid only when operator is \"and\" or \"or\".\n\nThe maximum allowed depth for a tree of filters is 3.",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true
+                  }
+                },
+                "value": {
+                  "type": "string",
+                  "description": "The value for this filter. Only used for single-valued operators\n\n(\"equals\", \"not_equals\", \"contains\", \"does_not_contain\")"
+                },
+                "values": {
+                  "type": "array",
+                  "description": "The values for this filter. Only used for multi-valued operators (\"in\", \"not_in\").",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "operator",
+                "field"
+              ],
+              "visible": [
+                "field",
+                "operator",
+                "subfilters",
+                "value",
+                "values"
+              ],
+              "additionalProperties": false
+            },
+            "limit": {
+              "type": "integer",
+              "description": "The number of accounts to fetch. Defaults to 100. Must be greater than 0 and less than 1000."
+            },
+            "search_text": {
+              "type": "string",
+              "description": "Fuzzy text search. Results are intersected with any provided filter."
+            }
+          },
+          "required": [
+            "filter"
+          ],
+          "visible": [
+            "cursor",
+            "filter",
+            "limit",
+            "search_text"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__GETACCOUNT",
+    "description": "Get an account by its ID or external ID",
+    "tags": [
+      "accounts"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/accounts/{id}",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID or external ID of the account to fetch."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__GETCONTACTS",
+    "description": "Get all contacts",
+    "tags": [
+      "contacts"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/contacts",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "PYLON__CREATECONTACT",
+    "description": "Create a new contact",
+    "tags": [
+      "contacts"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/contacts",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "account_external_id": {
+              "type": "string",
+              "description": "The external ID of the account that this contact belongs to. Cannot be used together with account_id."
+            },
+            "account_id": {
+              "type": "string",
+              "description": "The account that this contact belongs to."
+            },
+            "avatar_url": {
+              "type": "string",
+              "description": "The avatar URL of the contact. Must be a square .png, .jpg or .jpeg."
+            },
+            "custom_fields": {
+              "type": "array",
+              "description": "An array of custom fields to be applied to this contact.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "slug": {
+                    "type": "string",
+                    "description": "The slug of the custom field."
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The value of the custom field. Only to be used for single-valued custom fields. If unset, the custom field will be unset. If the custom field is a select field, the value must be the select option slug, which you can find from the GET /custom-fields endpoint."
+                  },
+                  "values": {
+                    "type": "array",
+                    "description": "The values of the custom field. Only to be used for multi-valued custom fields (ex. multiselect). If unset, the custom field will be unset. If the custom field is a multiselect field, the values must be the select option slugs which you can find from the GET /custom-fields endpoint.",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "slug",
+                  "value",
+                  "values"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "email": {
+              "type": "string",
+              "description": "The email of the contact."
+            },
+            "external_ids": {
+              "type": "array",
+              "description": "An array of external IDs to be used on this contact.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "external_id": {
+                    "type": "string",
+                    "description": "The external ID. Must be unique per object type (ex. account)."
+                  },
+                  "label": {
+                    "type": "string",
+                    "description": "The label of the external ID. Must be unique per object."
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "external_id",
+                  "label"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "name": {
+              "type": "string",
+              "description": "The name of the contact."
+            },
+            "phone_numbers": {
+              "type": "array",
+              "description": "The phone numbers of the contact. Must contain only digits 0-9 and be 15 digits or less.",
+              "items": {
+                "type": "string"
+              }
+            },
+            "portal_role": {
+              "type": "string",
+              "description": "The portal role to assign to the contact. If not provided uses the default portal role from the portal settings.",
+              "enum": [
+                "no_access",
+                "member",
+                "admin"
+              ]
+            },
+            "portal_role_id": {
+              "type": "string",
+              "description": "The ID of the custom portal role to assign to the contact. Takes precedence over portal_role if provided."
+            },
+            "primary_phone_number": {
+              "type": "string",
+              "description": "The primary phone number. Must be in the list of phone_numbers. If there are any phone_numbers and this is not specified, the first phone number will be primary."
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "visible": [
+            "account_external_id",
+            "account_id",
+            "avatar_url",
+            "custom_fields",
+            "email",
+            "external_ids",
+            "name",
+            "phone_numbers",
+            "portal_role",
+            "portal_role_id",
+            "primary_phone_number"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__GETCONTACT",
+    "description": "Get a contact by its ID",
+    "tags": [
+      "contacts"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/contacts/{id}",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the contact."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "cursor": {
+              "type": "string",
+              "description": "The cursor to use for pagination."
+            },
+            "limit": {
+              "type": "integer",
+              "description": "The number of accounts to fetch. Defaults to 100. Must be greater than 0 and less than 1000."
+            }
+          },
+          "required": [
+            "limit"
+          ],
+          "visible": [
+            "cursor",
+            "limit"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "PYLON__GETTEAMS",
+    "description": "Get a list of teams",
+    "tags": [
+      "teams"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/teams",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "PYLON__GETUSERS",
+    "description": "Get a list of users",
+    "tags": [
+      "users"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/users",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "PYLON__GETME",
+    "description": "Get details of the organization associated with the API token",
+    "tags": [
+      "me"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/me",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "PYLON__GETTAGS",
+    "description": "Get all tags",
+    "tags": [
+      "tags"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/tags",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "PYLON__GETKNOWLEDGEBASES",
+    "description": "Get all knowledge bases",
+    "tags": [
+      "knowledge-bases"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/knowledge-bases",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "PYLON__GETARTICLES",
+    "description": "Get all articles in a knowledge base",
+    "tags": [
+      "articles"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/knowledge-bases/{id}/articles",
+      "server_url": "https://api.usepylon.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the knowledge base the articles are being fetched from."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "cursor": {
+              "type": "string",
+              "description": "The cursor to use for pagination."
+            },
+            "limit": {
+              "type": "integer",
+              "description": "The number of articles to fetch. Defaults to 100. Must be greater than 0 and less than 1000."
+            },
+            "language": {
+              "type": "string",
+              "description": "The language code to fetch articles in. If not provided, returns the default language."
+            }
+          },
+          "required": [],
+          "visible": [
+            "cursor",
+            "limit",
+            "language"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  }
+]

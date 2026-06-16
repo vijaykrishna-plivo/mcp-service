@@ -1,0 +1,692 @@
+[
+  {
+    "name": "FRESHDESK__GET_TICKETS",
+    "description": "List all tickets",
+    "tags": [
+      "Tickets"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/tickets",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "FRESHDESK__GET_CONTACTS",
+    "description": "List all contacts",
+    "tags": [
+      "Contacts"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/contacts",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "FRESHDESK__DELETE_CONTACTS",
+    "description": "Soft Delete a Contact",
+    "tags": [
+      "Contacts"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/contacts/{id}",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Provide ID"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "FRESHDESK__DELETE_CONTACTS_HARD_DELETE",
+    "description": "Permanently Delete a Contact",
+    "tags": [
+      "Contacts"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/contacts/{id}/hard_delete",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Provide ID"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "FRESHDESK__GET_AGENTS",
+    "description": "View Agents",
+    "tags": [
+      "Agents"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/agents",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "FRESHDESK__DELETE_AGENTS",
+    "description": "Delete an Agent",
+    "tags": [
+      "Agents"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/agents/{id}",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Provide ID"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "FRESHDESK__GET_GROUPS",
+    "description": "List all groups",
+    "tags": [
+      "Groups"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/groups",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "FRESHDESK__CREATE_GROUPS",
+    "description": "Create a Group",
+    "tags": [
+      "Groups"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/groups",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "agent_ids": {
+              "type": "array",
+              "description": "Array of agent user ids separated by comma (' , '). Instructions on getting the agent's user ID",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "auto_ticket_assign": {
+              "type": "integer",
+              "description": "Describes the automatic ticket assignment type. Will not be supported if your Freshdesk account is not on a plan that supports automatic ticket assignment. The accepted values are 0 and 1. To set other assignment types to a group, use Admin-Groups API. The default value is 0."
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the group"
+            },
+            "escalate_to": {
+              "type": "integer",
+              "description": "The user to whom the escalation email is sent of a ticket is unassigned. To create/update escalate_to with 'none' provide the value 'null' in the request"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of the group"
+            },
+            "unassigned_for": {
+              "type": "string",
+              "description": "The time after which an escalation email will be sent if a ticket remains unassigned. The accepted values are \"30m\" for 30 minutes, \"1h\" for 1 hour, \"2h\" for 2 hour, \"4h\" for 4 hour, \"8h\" for 8 hour, \"12h\" for 12 hour, \"1d\" for 1 day, \"2d\" for 2days, \"3d\" for 3 days. The default value is \"30m\""
+            }
+          },
+          "required": [],
+          "visible": [
+            "agent_ids",
+            "auto_ticket_assign",
+            "description",
+            "escalate_to",
+            "name",
+            "unassigned_for"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "FRESHDESK__GET_GROUPS_2",
+    "description": "View a group",
+    "tags": [
+      "Groups"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/groups/{id}",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Provide ID"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "FRESHDESK__UPDATE_GROUPS",
+    "description": "Update a group",
+    "tags": [
+      "Groups"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/groups/{id}",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Provide ID"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "agent_ids": {
+              "type": "array",
+              "description": "Array of agent user ids separated by comma (' , '). Instructions on getting the agent's user ID",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "auto_ticket_assign": {
+              "type": "integer",
+              "description": "Describes the automatic ticket assignment type. Will not be supported if your Freshdesk account is not on a plan that supports automatic ticket assignment. The accepted values are 0 and 1. To set other assignment types to a group, use Admin-Groups API. The default value is 0."
+            },
+            "description": {
+              "type": "string",
+              "description": "Description of the group"
+            },
+            "escalate_to": {
+              "type": "integer",
+              "description": "The user to whom the escalation email is sent of a ticket is unassigned. To create/update escalate_to with 'none' provide the value 'null' in the request"
+            },
+            "name": {
+              "type": "string",
+              "description": "Name of the group"
+            },
+            "unassigned_for": {
+              "type": "string",
+              "description": "The time after which an escalation email will be sent if a ticket remains unassigned. The accepted values are \"30m\" for 30 minutes, \"1h\" for 1 hour, \"2h\" for 2 hour, \"4h\" for 4 hour, \"8h\" for 8 hour, \"12h\" for 12 hour, \"1d\" for 1 day, \"2d\" for 2days, \"3d\" for 3 days. The default value is \"30m\""
+            }
+          },
+          "required": [],
+          "visible": [
+            "agent_ids",
+            "auto_ticket_assign",
+            "description",
+            "escalate_to",
+            "name",
+            "unassigned_for"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "FRESHDESK__DELETE_GROUPS",
+    "description": "Delete a group",
+    "tags": [
+      "Groups"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/groups/{id}",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Provide ID"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "FRESHDESK__GET_ADMIN_GROUPS",
+    "description": "List all Admin-Groups",
+    "tags": [
+      "Admin-Groups"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/admin/groups",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "FRESHDESK__DELETE_ADMIN_GROUPS",
+    "description": "Delete a group",
+    "tags": [
+      "Admin-Groups"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/admin/groups/{id}",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Provide ID"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "FRESHDESK__GET_COMPANIES",
+    "description": "List all Companies",
+    "tags": [
+      "Companies"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/companies",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "FRESHDESK__DELETE_COMPANIES",
+    "description": "Delete a company",
+    "tags": [
+      "Companies"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/companies/{id}",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "description": "Provide ID"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "FRESHDESK__CREATE_TICKETS_TIME_ENTRIES",
+    "description": "Create a Time Entry",
+    "tags": [
+      "Time Entries"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/tickets/{ticketID}/time_entries",
+      "server_url": "https://{subdomain}.freshdesk.com/api/v2"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticketID": {
+              "type": "integer",
+              "description": "Provide ID"
+            }
+          },
+          "required": [
+            "ticketID"
+          ],
+          "visible": [
+            "ticketID"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "agent_id": {
+              "type": "string",
+              "description": "The agent to whom this time-entry is associated. One agent can have only one timer running. Everything else will be stopped if new timer is on for an agent"
+            },
+            "billable": {
+              "type": "boolean",
+              "description": "Set as true if the entry is billable. Default value is true"
+            },
+            "executed_at": {
+              "type": "string",
+              "description": "Time at which this time-entry id added/created"
+            },
+            "note": {
+              "type": "string",
+              "description": "Description on this time-entry"
+            },
+            "start_time": {
+              "type": "string",
+              "description": "The time at which the time-entry is added or the time of the last invoked \"start-timer\" action using a toggle"
+            },
+            "time_spent": {
+              "type": "string",
+              "description": "The number of hours (in hh:mm format). Used to set the total time_spent"
+            },
+            "timer_running": {
+              "type": "boolean",
+              "description": "Indicates if the timer is running"
+            }
+          },
+          "required": [],
+          "visible": [
+            "agent_id",
+            "billable",
+            "executed_at",
+            "note",
+            "start_time",
+            "time_spent",
+            "timer_running"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  }
+]

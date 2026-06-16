@@ -1,0 +1,21 @@
+{
+  "name": "JIRA",
+  "display_name": "The Jira Cloud platform REST API",
+  "logo": "https://raw.githubusercontent.com/aipotheosis-labs/aipolabs-icons/refs/heads/main/apps/jira.svg",
+  "provider": "Atlassian",
+  "version": "1.0",
+  "description": "Jira Cloud platform REST API documentation",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": "Bearer"
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": [
+    "Productivity"
+  ],
+  "visibility": "public",
+  "active": true
+}

@@ -1,0 +1,21 @@
+{
+  "name": "CONFLUENCE",
+  "display_name": "The Confluence Cloud REST API",
+  "logo": "https://cdn.simpleicons.org/confluence",
+  "provider": "Atlassian",
+  "version": "1.0",
+  "description": "This document describes the REST API and resources provided by Confluence. The REST APIs are for developers who want to integrate Confluence into their application and for administrators who want to script interactions with the Confluence server.Confluence's REST APIs provide access to resources (da",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": "Bearer"
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": [
+    "Productivity"
+  ],
+  "visibility": "public",
+  "active": true
+}

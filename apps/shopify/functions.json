@@ -1,0 +1,1296 @@
+[
+  {
+    "name": "SHOPIFY__LISTPRODUCTS",
+    "description": "List Products",
+    "tags": [
+      "Products"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/products.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "default": 50,
+              "description": "The maximum number of results to show (maximum 250, default 50)"
+            },
+            "page_info": {
+              "type": "string",
+              "description": "A unique ID used to access a specific page in results"
+            },
+            "ids": {
+              "type": "string",
+              "description": "Show only products specified by a comma-separated list of IDs"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "active",
+                "archived",
+                "draft"
+              ],
+              "description": "Filter by product status"
+            }
+          },
+          "required": [],
+          "visible": [
+            "limit",
+            "page_info",
+            "ids",
+            "status"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__CREATEPRODUCT",
+    "description": "Create Product",
+    "tags": [
+      "Products"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/products.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "product": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "body_html": {
+                  "type": "string"
+                },
+                "vendor": {
+                  "type": "string"
+                },
+                "product_type": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "active",
+                    "archived",
+                    "draft"
+                  ]
+                },
+                "tags": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true
+                  }
+                },
+                "images": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "required": [
+                "title"
+              ],
+              "visible": [
+                "title",
+                "body_html",
+                "vendor",
+                "product_type",
+                "status",
+                "tags",
+                "variants",
+                "images"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "visible": [
+            "product"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__GETPRODUCT",
+    "description": "Get Product",
+    "tags": [
+      "Products"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/products/{product_id}.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "integer",
+              "description": "The ID of the product"
+            }
+          },
+          "required": [
+            "product_id"
+          ],
+          "visible": [
+            "product_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__UPDATEPRODUCT",
+    "description": "Update Product",
+    "tags": [
+      "Products"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/products/{product_id}.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "integer",
+              "description": "The ID of the product"
+            }
+          },
+          "required": [
+            "product_id"
+          ],
+          "visible": [
+            "product_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "product": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string"
+                },
+                "body_html": {
+                  "type": "string"
+                },
+                "vendor": {
+                  "type": "string"
+                },
+                "product_type": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "active",
+                    "archived",
+                    "draft"
+                  ]
+                },
+                "tags": {
+                  "type": "string"
+                },
+                "variants": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true
+                  }
+                },
+                "images": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "required": [
+                "title"
+              ],
+              "visible": [
+                "title",
+                "body_html",
+                "vendor",
+                "product_type",
+                "status",
+                "tags",
+                "variants",
+                "images"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "visible": [
+            "product"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__DELETEPRODUCT",
+    "description": "Delete Product",
+    "tags": [
+      "Products"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/products/{product_id}.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "product_id": {
+              "type": "integer",
+              "description": "The ID of the product"
+            }
+          },
+          "required": [
+            "product_id"
+          ],
+          "visible": [
+            "product_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__LISTCUSTOMERS",
+    "description": "List Customers",
+    "tags": [
+      "Customers"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/customers.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "default": 50,
+              "description": "The maximum number of results to show"
+            },
+            "email": {
+              "type": "string",
+              "description": "Filter customers by email address"
+            }
+          },
+          "required": [],
+          "visible": [
+            "limit",
+            "email"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__CREATECUSTOMER",
+    "description": "Create Customer",
+    "tags": [
+      "Customers"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/customers.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "customer": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "accepts_marketing": {
+                  "type": "boolean"
+                },
+                "note": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "password_confirmation": {
+                  "type": "string"
+                },
+                "addresses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "required": [],
+              "visible": [
+                "email",
+                "first_name",
+                "last_name",
+                "phone",
+                "accepts_marketing",
+                "note",
+                "tags",
+                "password",
+                "password_confirmation",
+                "addresses"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "visible": [
+            "customer"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__GETCUSTOMER",
+    "description": "Get Customer",
+    "tags": [
+      "Customers"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/customers/{customer_id}.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "customer_id": {
+              "type": "integer",
+              "description": "The ID of the customer"
+            }
+          },
+          "required": [
+            "customer_id"
+          ],
+          "visible": [
+            "customer_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__UPDATECUSTOMER",
+    "description": "Update Customer",
+    "tags": [
+      "Customers"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/customers/{customer_id}.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "customer_id": {
+              "type": "integer",
+              "description": "The ID of the customer"
+            }
+          },
+          "required": [
+            "customer_id"
+          ],
+          "visible": [
+            "customer_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "customer": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "accepts_marketing": {
+                  "type": "boolean"
+                },
+                "note": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                },
+                "password_confirmation": {
+                  "type": "string"
+                },
+                "addresses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true
+                  }
+                }
+              },
+              "required": [],
+              "visible": [
+                "email",
+                "first_name",
+                "last_name",
+                "phone",
+                "accepts_marketing",
+                "note",
+                "tags",
+                "password",
+                "password_confirmation",
+                "addresses"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "visible": [
+            "customer"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__LISTORDERS",
+    "description": "List Orders",
+    "tags": [
+      "Orders"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/orders.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "default": 50,
+              "description": "The maximum number of results to show"
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "open",
+                "closed",
+                "cancelled",
+                "any"
+              ],
+              "description": "Filter orders by status"
+            },
+            "financial_status": {
+              "type": "string",
+              "enum": [
+                "authorized",
+                "paid",
+                "partially_paid",
+                "partially_refunded",
+                "pending",
+                "refunded",
+                "unpaid",
+                "voided",
+                "any"
+              ],
+              "description": "Filter orders by financial status"
+            },
+            "fulfillment_status": {
+              "type": "string",
+              "enum": [
+                "fulfilled",
+                null,
+                "partial",
+                "restocked",
+                "unfulfilled",
+                "any"
+              ],
+              "description": "Filter orders by fulfillment status"
+            }
+          },
+          "required": [],
+          "visible": [
+            "limit",
+            "status",
+            "financial_status",
+            "fulfillment_status"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__GETORDER",
+    "description": "Get Order",
+    "tags": [
+      "Orders"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/orders/{order_id}.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "order_id": {
+              "type": "integer",
+              "description": "The ID of the order"
+            }
+          },
+          "required": [
+            "order_id"
+          ],
+          "visible": [
+            "order_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__UPDATEORDER",
+    "description": "Update Order",
+    "tags": [
+      "Orders"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/orders/{order_id}.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "order_id": {
+              "type": "integer",
+              "description": "The ID of the order"
+            }
+          },
+          "required": [
+            "order_id"
+          ],
+          "visible": [
+            "order_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "order": {
+              "type": "object",
+              "properties": {
+                "note": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "string"
+                }
+              },
+              "required": [],
+              "visible": [
+                "note",
+                "tags"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "visible": [
+            "order"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__CANCELORDER",
+    "description": "Cancel Order",
+    "tags": [
+      "Orders"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/orders/{order_id}/cancel.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "order_id": {
+              "type": "integer",
+              "description": "The ID of the order to cancel"
+            }
+          },
+          "required": [
+            "order_id"
+          ],
+          "visible": [
+            "order_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "reason": {
+              "type": "string",
+              "enum": [
+                "customer",
+                "fraud",
+                "inventory",
+                "declined",
+                "other"
+              ]
+            },
+            "email": {
+              "type": "boolean"
+            }
+          },
+          "required": [],
+          "visible": [
+            "reason",
+            "email"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__LISTINVENTORYITEMS",
+    "description": "List Inventory Items",
+    "tags": [
+      "Inventory"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/inventory_items.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "ids": {
+              "type": "string",
+              "description": "Show only inventory items specified by a comma-separated list of IDs"
+            },
+            "limit": {
+              "type": "integer",
+              "default": 50,
+              "description": "The maximum number of results to show"
+            }
+          },
+          "required": [
+            "ids"
+          ],
+          "visible": [
+            "ids",
+            "limit"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__LISTINVENTORYLEVELS",
+    "description": "List Inventory Levels",
+    "tags": [
+      "Inventory"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/inventory_levels.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "inventory_item_ids": {
+              "type": "string",
+              "description": "Comma-separated list of inventory item IDs"
+            },
+            "location_ids": {
+              "type": "string",
+              "description": "Comma-separated list of location IDs"
+            }
+          },
+          "required": [],
+          "visible": [
+            "inventory_item_ids",
+            "location_ids"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__LISTLOCATIONS",
+    "description": "List Locations",
+    "tags": [
+      "Locations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/locations.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "SHOPIFY__LISTWEBHOOKS",
+    "description": "List Webhooks",
+    "tags": [
+      "Webhooks"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/webhooks.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "SHOPIFY__CREATEWEBHOOK",
+    "description": "Create Webhook",
+    "tags": [
+      "Webhooks"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/webhooks.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "webhook": {
+              "type": "object",
+              "properties": {
+                "topic": {
+                  "type": "string",
+                  "description": "The event that triggers the webhook (e.g., orders/create, products/update)"
+                },
+                "address": {
+                  "type": "string",
+                  "description": "The URL where the webhook will POST data"
+                },
+                "format": {
+                  "type": "string",
+                  "description": "The format of the data sent to the webhook address",
+                  "enum": [
+                    "json",
+                    "xml"
+                  ]
+                }
+              },
+              "required": [
+                "topic",
+                "address",
+                "format"
+              ],
+              "visible": [
+                "topic",
+                "address",
+                "format"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "visible": [
+            "webhook"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__DELETEWEBHOOK",
+    "description": "Delete Webhook",
+    "tags": [
+      "Webhooks"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/webhooks/{webhook_id}.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "webhook_id": {
+              "type": "integer",
+              "description": "The ID of the webhook"
+            }
+          },
+          "required": [
+            "webhook_id"
+          ],
+          "visible": [
+            "webhook_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__GETSHOP",
+    "description": "Get Shop",
+    "tags": [
+      "Shop"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/shop.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "SHOPIFY__LISTCOLLECTS",
+    "description": "List Collects",
+    "tags": [
+      "Collections"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/collects.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "collection_id": {
+              "type": "integer",
+              "description": "Filter by collection ID"
+            },
+            "product_id": {
+              "type": "integer",
+              "description": "Filter by product ID"
+            }
+          },
+          "required": [],
+          "visible": [
+            "collection_id",
+            "product_id"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "SHOPIFY__LISTCUSTOMCOLLECTIONS",
+    "description": "List Custom Collections",
+    "tags": [
+      "Collections"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/custom_collections.json",
+      "server_url": "https://{subdomain}.myshopify.com/admin/api/2024-10"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "limit": {
+              "type": "integer",
+              "default": 50,
+              "description": "The maximum number of results to show"
+            }
+          },
+          "required": [],
+          "visible": [
+            "limit"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "name": "SALESFORCE",
+  "display_name": "Salesforce",
+  "logo": "https://raw.githubusercontent.com/aipotheosis-labs/aipolabs-icons/refs/heads/main/apps/salesforce.svg",
+  "provider": "Salesforce",
+  "version": "1.0",
+  "description": "Salesforce REST API for querying and managing sObjects via SOQL and SOSL.",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": "Bearer"
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": ["CRM & Support"],
+  "visibility": "public",
+  "active": true
+}

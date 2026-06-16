@@ -1,0 +1,65 @@
+# aci-mcp-server overrides for ACI's backend/compose.yml.
+#
+# Usage (paths assume aci clone at ../aci-pilot/aci — override with ACI_REPO):
+#   docker compose -f ../aci-pilot/aci/backend/compose.yml -f compose.override.yml \
+#     up -d --build db aws propelauth_mock embeddings-mock server runner
+#
+# PORT REMAP (added for co-existing with a running cx-dev-dockerized stack):
+# The CX dev stack already owns host ports 8000 (aiassist), 4566 (localstack),
+# 9100 (sentinel) and 5432 (a db). The ACI stack only needs ONE host port — the
+# server — for host-side seeding/linking, the bridge, and the browser OAuth
+# callback. Everything else talks over the compose network, so we drop their
+# host publishes (`!reset`) and move the server to 8200 (`!override`).
+# Requires Docker Compose 2.24+ for the !reset / !override merge tags.
+services:
+  aws:
+    # localstack v4.5+ refuses to start without LOCALSTACK_AUTH_TOKEN
+    # (2025 licensing change). v3.x community is tokenless and KMS works fine.
+    image: localstack/localstack:3.8
+    ports: !reset []          # internal only (server/runner reach aws:4566); host 4566 is taken
+
+  db:
+    ports: !reset []          # internal only (db:5432 on the compose net); host 5432 is taken
+
+  propelauth_mock:
+    ports: !reset []          # internal only (propelauth_mock:12800); not needed on host
+
+  embeddings-mock:
+    # Deterministic fake of the OpenAI embeddings API. REQUIRED for seeding
+    # unless you set a real SERVER_OPENAI_API_KEY / CLI_OPENAI_API_KEY in
+    # aci/backend/.env.local (upsert-app computes embeddings for every app +
+    # function). With the mock, semantic search ranking is meaningless but
+    # upsert + execute work fine.
+    image: python:3.12-slim
+    volumes:
+      # ABSOLUTE paths: Compose resolves relative volume paths against the
+      # PROJECT directory (= the base compose.yml's dir, aci-pilot/aci/backend),
+      # not this override's dir. Absolute paths sidestep that entirely.
+      - /Users/vijay.krishna/Desktop/plivo-main/aci-mcp-server/mock/embeddings_mock.py:/embeddings_mock.py:ro
+    command: python /embeddings_mock.py
+    # No host port — server reaches it via embeddings-mock:9100 on the compose
+    # network. (Host 9100 is taken by plivo-cx-sentinel.)
+
+  server:
+    environment:
+      - OPENAI_BASE_URL=http://embeddings-mock:9100/v1
+      # OAuth callback base MUST match the remapped host port, or Google's
+      # redirect after consent lands on a dead URL. This is also the exact
+      # redirect URI to whitelist in the Google OAuth client:
+      #   http://localhost:8200/v1/linked-accounts/oauth2/callback
+      - SERVER_REDIRECT_URI_BASE=http://localhost:8200
+    ports: !override
+      - "8200:8000"
+    depends_on:
+      embeddings-mock:
+        condition: service_started
+
+  runner:
+    environment:
+      - OPENAI_BASE_URL=http://embeddings-mock:9100/v1
+    volumes:
+      # Stock ACI app definitions for every CX integration + seeding scripts.
+      # ABSOLUTE paths (see embeddings-mock note above).
+      - /Users/vijay.krishna/Desktop/plivo-main/aci-mcp-server/apps:/workdir/cx-apps:ro
+      - /Users/vijay.krishna/Desktop/plivo-main/aci-mcp-server/scripts:/workdir/cx-scripts:ro
+      - /Users/vijay.krishna/Desktop/plivo-main/aci-mcp-server/secrets:/workdir/cx-secrets:ro

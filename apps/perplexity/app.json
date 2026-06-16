@@ -1,0 +1,19 @@
+{
+  "name": "PERPLEXITY",
+  "display_name": "Perplexity",
+  "logo": "https://cdn.simpleicons.org/perplexity",
+  "provider": "Perplexity",
+  "version": "1.0",
+  "description": "Perplexity AI online models for real-time, web-grounded search and chat completions.",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": "Bearer"
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": ["Search & Research"],
+  "visibility": "public",
+  "active": true
+}

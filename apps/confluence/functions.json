@@ -1,0 +1,2979 @@
+[
+  {
+    "name": "CONFLUENCE__ARCHIVEPAGES",
+    "description": "Archive pages",
+    "tags": [
+      "Content"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/wiki/rest/api/content/archive",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "pages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "The `id` of the page to be archived."
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "visible": [
+                  "id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [],
+          "visible": [
+            "pages"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__PUBLISHSHAREDDRAFT",
+    "description": "Publish shared draft",
+    "tags": [
+      "Content"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/wiki/rest/api/content/blueprint/instance/{draftId}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "draftId": {
+              "type": "string",
+              "description": "The ID of the draft page that was created from a blueprint.\nYou can find the `draftId` in the Confluence application by\nopening the draft page and checking the page URL."
+            }
+          },
+          "required": [
+            "draftId"
+          ],
+          "visible": [
+            "draftId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "default": "draft",
+              "description": "The status of the content to be updated, i.e. the draft. This is set\nto 'draft' by default, so you shouldn't need to specify it."
+            },
+            "expand": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A multi-value parameter indicating which properties of the content to expand.\n\n- `childTypes.all` returns whether the content has attachments, comments, or child pages/whiteboards.\nUse this if you only need to check whether the content has children of a particular type.\n- `childTypes.attachment` returns whether the content has attachments.\n- `childTypes.comment` returns whether the content has comments.\n- `childTypes.page` returns whether the content has child pages.\n- `childTypes.whiteboard` returns whether the content has child whiteboards.\n- `childTypes.database` returns whether the content has child databases.\n- `childTypes.embed` returns whether the content has child embeds (smartlinks).\n- `childTypes.folder` returns whether the content has child folders.\n- `container` returns the space that the content is in. This is the same as the information\nreturned by [Get space](#api-space-spaceKey-get).\n- `metadata.currentuser` returns information about the current user in relation to the content,\nincluding when they last viewed it, modified it, contributed to it, or added it as a favorite.\n- `metadata.properties` returns content properties that have been set via the Confluence REST API.\n- `metadata.labels` returns the labels that have been added to the content.\n- `metadata.frontend` this property is only used by Atlassian.\n- `operations` returns the operations for the content, which are used when setting permissions.\n- `children.page` returns pages that are descendants at the level immediately below the content.\n- `children.whiteboard` returns whiteboards that are descendants at the level immediately below the content.\n- `children.database` returns databases that are descendants at the level immediately below the content.\n- `children.embed` returns embeds (smartlinks) that are descendants at the level immediately below the content.\n- `children.folder` returns folders that are descendants at the level immediately below the content.\n- `children.attachment` returns all attachments for the content.\n- `children.comment` returns all comments on the content.\n- `restrictions.read.restrictions.user` returns the users that have permission to read the content.\n- `restrictions.read.restrictions.group` returns the groups that have permission to read the content. Note that\nthis may return deleted groups, because deleting a group doesn't remove associated restrictions.\n- `restrictions.update.restrictions.user` returns the users that have permission to update the content.\n- `restrictions.update.restrictions.group` returns the groups that have permission to update the content. Note that\nthis may return deleted groups because deleting a group doesn't remove associated restrictions.\n- `history` returns the history of the content, including the date it was created.\n- `history.lastUpdated` returns information about the most recent update of the content, including\nwho updated it and when it was updated.\n- `history.previousVersion` returns information about the update prior to the current content update.\n- `history.contributors` returns all of the users who have contributed to the content.\n- `history.nextVersion` returns information about the update after to the current content update.\n- `ancestors` returns the parent content, if the content is a page or whiteboard.\n- `body` returns the body of the content in different formats, including the editor format,\nview format, and export format.\n- `body.storage` returns the body of content in storage format.\n- `body.view` returns the body of content in view format.\n- `version` returns information about the most recent update of the content, including who updated it\nand when it was updated.\n- `descendants.page` returns pages that are descendants at any level below the content.\n- `descendants.whiteboard` returns whiteboards that are descendants at any level below the content.\n- `descendants.database` returns databases that are descendants at any level below the content.\n- `descendants.embed` returns embeds (smartlinks) that are descendants at any level below the content.\n- `descendants.folder` returns folders that are descendants at any level below the content.\n- `descendants.attachment` returns all attachments for the content, same as `children.attachment`.\n- `descendants.comment` returns all comments on the content, same as `children.comment`.\n- `space` returns the space that the content is in. This is the same as the information returned by\n[Get space](#api-space-spaceKey-get).\n\nIn addition, the following comment-specific expansions can be used:\n- `extensions.inlineProperties` returns inline comment-specific properties.\n- `extensions.resolution` returns the resolution status of each comment."
+            }
+          },
+          "required": [],
+          "visible": [
+            "status",
+            "expand"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "integer",
+                  "description": "The version number. Set this to `1`."
+                }
+              },
+              "required": [
+                "number"
+              ],
+              "visible": [
+                "number"
+              ],
+              "additionalProperties": true,
+              "description": "The version for the new content."
+            },
+            "title": {
+              "type": "string",
+              "description": "The title of the content. If you don't want to change the title,\nset this to the current title of the draft."
+            },
+            "type": {
+              "type": "string",
+              "description": "The type of content. Set this to `page`.",
+              "enum": [
+                "page"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "description": "The status of the content. Set this to `current` or omit it altogether.",
+              "enum": [
+                "current"
+              ],
+              "default": "current"
+            },
+            "space": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "description": "The key of the space"
+                }
+              },
+              "required": [
+                "key"
+              ],
+              "visible": [
+                "key"
+              ],
+              "additionalProperties": true,
+              "description": "The space for the content."
+            },
+            "ancestors": {
+              "type": "array",
+              "description": "The new ancestor (i.e. parent page) for the content. If you have\nspecified an ancestor, you must also specify a `space` property\nin the request body for the space that the ancestor is in.\n\nNote, if you specify more than one ancestor, the last ID in the array\nwill be selected as the parent page for the content.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The content ID of the ancestor."
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "visible": [
+                  "id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "title",
+            "type",
+            "version"
+          ],
+          "visible": [
+            "version",
+            "title",
+            "type",
+            "status",
+            "space",
+            "ancestors"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__PUBLISHLEGACYDRAFT",
+    "description": "Publish legacy draft",
+    "tags": [
+      "Content"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/wiki/rest/api/content/blueprint/instance/{draftId}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "draftId": {
+              "type": "string",
+              "description": "The ID of the draft page that was created from a blueprint.\nYou can find the `draftId` in the Confluence application by\nopening the draft page and checking the page URL."
+            }
+          },
+          "required": [
+            "draftId"
+          ],
+          "visible": [
+            "draftId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "default": "draft",
+              "description": "The status of the content to be updated, i.e. the draft. This is set\nto 'draft' by default, so you shouldn't need to specify it."
+            },
+            "expand": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A multi-value parameter indicating which properties of the content to expand.\n\n- `childTypes.all` returns whether the content has attachments, comments, or child pages/whiteboards.\nUse this if you only need to check whether the content has children of a particular type.\n- `childTypes.attachment` returns whether the content has attachments.\n- `childTypes.comment` returns whether the content has comments.\n- `childTypes.page` returns whether the content has child pages.\n- `childTypes.whiteboard` returns whether the content has child whiteboards.\n- `childTypes.database` returns whether the content has child databases.\n- `childTypes.embed` returns whether the content has child embeds (smartlinks).\n- `childTypes.folder` returns whether the content has child folders.\n- `container` returns the space that the content is in. This is the same as the information\nreturned by [Get space](#api-space-spaceKey-get).\n- `metadata.currentuser` returns information about the current user in relation to the content,\nincluding when they last viewed it, modified it, contributed to it, or added it as a favorite.\n- `metadata.properties` returns content properties that have been set via the Confluence REST API.\n- `metadata.labels` returns the labels that have been added to the content.\n- `metadata.frontend` this property is only used by Atlassian.\n- `operations` returns the operations for the content, which are used when setting permissions.\n- `children.page` returns pages that are descendants at the level immediately below the content.\n- `children.whiteboard` returns whiteboards that are descendants at the level immediately below the content.\n- `children.database` returns databases that are descendants at the level immediately below the content.\n- `children.embed` returns embeds (smartlinks) that are descendants at the level immediately below the content.\n- `children.folder` returns folders that are descendants at the level immediately below the content.\n- `children.attachment` returns all attachments for the content.\n- `children.comment` returns all comments on the content.\n- `restrictions.read.restrictions.user` returns the users that have permission to read the content.\n- `restrictions.read.restrictions.group` returns the groups that have permission to read the content. Note that\nthis may return deleted groups, because deleting a group doesn't remove associated restrictions.\n- `restrictions.update.restrictions.user` returns the users that have permission to update the content.\n- `restrictions.update.restrictions.group` returns the groups that have permission to update the content. Note that\nthis may return deleted groups because deleting a group doesn't remove associated restrictions.\n- `history` returns the history of the content, including the date it was created.\n- `history.lastUpdated` returns information about the most recent update of the content, including\nwho updated it and when it was updated.\n- `history.previousVersion` returns information about the update prior to the current content update.\n- `history.contributors` returns all of the users who have contributed to the content.\n- `history.nextVersion` returns information about the update after to the current content update.\n- `ancestors` returns the parent content, if the content is a page or whiteboard.\n- `body` returns the body of the content in different formats, including the editor format,\nview format, and export format.\n- `body.storage` returns the body of content in storage format.\n- `body.view` returns the body of content in view format.\n- `version` returns information about the most recent update of the content, including who updated it\nand when it was updated.\n- `descendants.page` returns pages that are descendants at any level below the content.\n- `descendants.whiteboard` returns whiteboards that are descendants at any level below the content.\n- `descendants.database` returns databases that are descendants at any level below the content.\n- `descendants.embed` returns embeds (smartlinks) that are descendants at any level below the content.\n- `descendants.folder` returns folders that are descendants at any level below the content.\n- `descendants.attachment` returns all attachments for the content, same as `children.attachment`.\n- `descendants.comment` returns all comments on the content, same as `children.comment`.\n- `space` returns the space that the content is in. This is the same as the information returned by\n[Get space](#api-space-spaceKey-get).\n\nIn addition, the following comment-specific expansions can be used:\n- `extensions.inlineProperties` returns inline comment-specific properties.\n- `extensions.resolution` returns the resolution status of each comment."
+            }
+          },
+          "required": [],
+          "visible": [
+            "status",
+            "expand"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "object",
+              "properties": {
+                "number": {
+                  "type": "integer",
+                  "description": "The version number. Set this to `1`."
+                }
+              },
+              "required": [
+                "number"
+              ],
+              "visible": [
+                "number"
+              ],
+              "additionalProperties": true,
+              "description": "The version for the new content."
+            },
+            "title": {
+              "type": "string",
+              "description": "The title of the content. If you don't want to change the title,\nset this to the current title of the draft."
+            },
+            "type": {
+              "type": "string",
+              "description": "The type of content. Set this to `page`.",
+              "enum": [
+                "page"
+              ]
+            },
+            "status": {
+              "type": "string",
+              "description": "The status of the content. Set this to `current` or omit it altogether.",
+              "enum": [
+                "current"
+              ],
+              "default": "current"
+            },
+            "space": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "description": "The key of the space"
+                }
+              },
+              "required": [
+                "key"
+              ],
+              "visible": [
+                "key"
+              ],
+              "additionalProperties": true,
+              "description": "The space for the content."
+            },
+            "ancestors": {
+              "type": "array",
+              "description": "The new ancestor (i.e. parent page) for the content. If you have\nspecified an ancestor, you must also specify a `space` property\nin the request body for the space that the ancestor is in.\n\nNote, if you specify more than one ancestor, the last ID in the array\nwill be selected as the parent page for the content.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "The content ID of the ancestor."
+                  }
+                },
+                "required": [
+                  "id"
+                ],
+                "visible": [
+                  "id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "title",
+            "type",
+            "version"
+          ],
+          "visible": [
+            "version",
+            "title",
+            "type",
+            "status",
+            "space",
+            "ancestors"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__SEARCHCONTENTBYCQL",
+    "description": "Search content by CQL",
+    "tags": [
+      "Content"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/wiki/rest/api/content/search",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "cql": {
+              "type": "string",
+              "description": "The CQL string that is used to find the requested content."
+            },
+            "cqlcontext": {
+              "type": "string",
+              "description": "The space, content, and content status to execute the search against.\nSpecify this as an object with the following properties:\n\n- `spaceKey` Key of the space to search against. Optional.\n- `contentId` ID of the content to search against. Optional. Must\nbe in the space spacified by `spaceKey`.\n- `contentStatuses` Content statuses to search against. Optional."
+            },
+            "expand": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A multi-value parameter indicating which properties of the content to expand.\n\n- `childTypes.all` returns whether the content has attachments, comments, or child pages/whiteboards.\nUse this if you only need to check whether the content has children of a particular type.\n- `childTypes.attachment` returns whether the content has attachments.\n- `childTypes.comment` returns whether the content has comments.\n- `childTypes.page` returns whether the content has child pages.\n- `childTypes.whiteboard` returns whether the content has child whiteboards.\n- `childTypes.database` returns whether the content has child databases.\n- `childTypes.embed` returns whether the content has child embeds (smartlinks).\n- `childTypes.folder` returns whether the content has child folders.\n- `container` returns the space that the content is in. This is the same as the information\nreturned by [Get space](#api-space-spaceKey-get).\n- `metadata.currentuser` returns information about the current user in relation to the content,\nincluding when they last viewed it, modified it, contributed to it, or added it as a favorite.\n- `metadata.properties` returns content properties that have been set via the Confluence REST API.\n- `metadata.labels` returns the labels that have been added to the content.\n- `metadata.frontend` this property is only used by Atlassian.\n- `operations` returns the operations for the content, which are used when setting permissions.\n- `children.page` returns pages that are descendants at the level immediately below the content.\n- `children.whiteboard` returns whiteboards that are descendants at the level immediately below the content.\n- `children.database` returns databases that are descendants at the level immediately below the content.\n- `children.embed` returns embeds (smartlinks) that are descendants at the level immediately below the content.\n- `children.folder` returns folders that are descendants at the level immediately below the content.\n- `children.attachment` returns all attachments for the content.\n- `children.comment` returns all comments on the content.\n- `restrictions.read.restrictions.user` returns the users that have permission to read the content.\n- `restrictions.read.restrictions.group` returns the groups that have permission to read the content. Note that\nthis may return deleted groups, because deleting a group doesn't remove associated restrictions.\n- `restrictions.update.restrictions.user` returns the users that have permission to update the content.\n- `restrictions.update.restrictions.group` returns the groups that have permission to update the content. Note that\nthis may return deleted groups because deleting a group doesn't remove associated restrictions.\n- `history` returns the history of the content, including the date it was created.\n- `history.lastUpdated` returns information about the most recent update of the content, including\nwho updated it and when it was updated.\n- `history.previousVersion` returns information about the update prior to the current content update.\n- `history.contributors` returns all of the users who have contributed to the content.\n- `history.nextVersion` returns information about the update after to the current content update.\n- `ancestors` returns the parent content, if the content is a page or whiteboard.\n- `body` returns the body of the content in different formats, including the editor format,\nview format, and export format.\n- `body.storage` returns the body of content in storage format.\n- `body.view` returns the body of content in view format.\n- `version` returns information about the most recent update of the content, including who updated it\nand when it was updated.\n- `descendants.page` returns pages that are descendants at any level below the content.\n- `descendants.whiteboard` returns whiteboards that are descendants at any level below the content.\n- `descendants.database` returns databases that are descendants at any level below the content.\n- `descendants.embed` returns embeds (smartlinks) that are descendants at any level below the content.\n- `descendants.folder` returns folders that are descendants at any level below the content.\n- `descendants.attachment` returns all attachments for the content, same as `children.attachment`.\n- `descendants.comment` returns all comments on the content, same as `children.comment`.\n- `space` returns the space that the content is in. This is the same as the information returned by\n[Get space](#api-space-spaceKey-get).\n\nIn addition, the following comment-specific expansions can be used:\n- `extensions.inlineProperties` returns inline comment-specific properties.\n- `extensions.resolution` returns the resolution status of each comment."
+            },
+            "cursor": {
+              "type": "string",
+              "description": "Pointer to a set of search results, returned as part of the `next` or `prev` URL from the previous search call."
+            },
+            "limit": {
+              "type": "integer",
+              "default": 25,
+              "description": "The maximum number of content objects to return per page.\nNote, this may be restricted by fixed system limits."
+            }
+          },
+          "required": [
+            "cql"
+          ],
+          "visible": [
+            "cql",
+            "cqlcontext",
+            "expand",
+            "cursor",
+            "limit"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__DELETEPAGETREE",
+    "description": "Delete page tree",
+    "tags": [
+      "Experimental"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/wiki/rest/api/content/{id}/pageTree",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content which forms root of the page tree, to be deleted."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__MOVEPAGE",
+    "description": "Move a page to a new location relative to a target page",
+    "tags": [
+      "Content - children and descendants"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/wiki/rest/api/content/{pageId}/move/{position}/{targetId}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "pageId": {
+              "type": "string",
+              "description": "The ID of the page to be moved"
+            },
+            "position": {
+              "type": "string",
+              "enum": [
+                "before",
+                "after",
+                "append"
+              ],
+              "description": "The position to move the page to relative to the target page:\n* `before` - move the page under the same parent as the target, before the target in the list of children\n* `after` - move the page under the same parent as the target, after the target in the list of children\n* `append` - move the page to be a child of the target"
+            },
+            "targetId": {
+              "type": "string",
+              "description": "The ID of the target page for this operation"
+            }
+          },
+          "required": [
+            "pageId",
+            "position",
+            "targetId"
+          ],
+          "visible": [
+            "pageId",
+            "position",
+            "targetId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__CREATEORUPDATEATTACHMENTS",
+    "description": "Create or update attachment",
+    "tags": [
+      "Content - attachments"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/wiki/rest/api/content/{id}/child/attachment",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content to add the attachment to."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "current",
+                "draft"
+              ],
+              "default": "current",
+              "description": "The status of the content that the attachment is being added to.\nThis should always be set to 'current'."
+            }
+          },
+          "required": [],
+          "visible": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string",
+              "description": "The relative location and name of the attachment to be added to\nthe content."
+            },
+            "comment": {
+              "type": "string",
+              "description": "The comment for the attachment that is being added.\nIf you specify a comment, then every file must have a comment and\nthe comments must be in the same order as the files. Alternatively,\ndon't specify any comments."
+            },
+            "minorEdit": {
+              "type": "string",
+              "description": "If `minorEdits` is set to 'true', no notification email or activity stream\nwill be generated when the attachment is added to the content."
+            }
+          },
+          "required": [
+            "file",
+            "minorEdit"
+          ],
+          "visible": [
+            "file",
+            "comment",
+            "minorEdit"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__CREATEATTACHMENT",
+    "description": "Create attachment",
+    "tags": [
+      "Content - attachments"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/wiki/rest/api/content/{id}/child/attachment",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content to add the attachment to."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "current",
+                "draft"
+              ],
+              "default": "current",
+              "description": "The status of the content that the attachment is being added to."
+            }
+          },
+          "required": [],
+          "visible": [
+            "status"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string",
+              "description": "The relative location and name of the attachment to be added to\nthe content."
+            },
+            "comment": {
+              "type": "string",
+              "description": "The comment for the attachment that is being added.\nIf you specify a comment, then every file must have a comment and\nthe comments must be in the same order as the files. Alternatively,\ndon't specify any comments."
+            },
+            "minorEdit": {
+              "type": "string",
+              "description": "If `minorEdits` is set to 'true', no notification email or activity stream\nwill be generated when the attachment is added to the content."
+            }
+          },
+          "required": [
+            "file",
+            "minorEdit"
+          ],
+          "visible": [
+            "file",
+            "comment",
+            "minorEdit"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__UPDATEATTACHMENTPROPERTIES",
+    "description": "Update attachment properties",
+    "tags": [
+      "Content - attachments"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/wiki/rest/api/content/{id}/child/attachment/{attachmentId}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content that the attachment is attached to."
+            },
+            "attachmentId": {
+              "type": "string",
+              "description": "The ID of the attachment to update."
+            }
+          },
+          "required": [
+            "id",
+            "attachmentId"
+          ],
+          "visible": [
+            "id",
+            "attachmentId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string",
+              "description": "Set this to \"attachment\""
+            },
+            "status": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "container": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "Container for content. This can be either a space (containing a page or blogpost)\nor a page/blog post (containing an attachment or comment)"
+            },
+            "metadata": {
+              "type": "object",
+              "properties": {
+                "mediaType": {
+                  "type": "string"
+                }
+              },
+              "required": [],
+              "visible": [
+                "mediaType"
+              ],
+              "additionalProperties": false
+            },
+            "extensions": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "version": {
+              "type": "object",
+              "properties": {
+                "by": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "known",
+                        "unknown",
+                        "anonymous",
+                        "user"
+                      ]
+                    },
+                    "username": {
+                      "type": "string",
+                      "description": "This property is no longer available and will be removed from the documentation soon.\nUse `accountId` instead.\nSee the [deprecation notice](/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for details."
+                    },
+                    "userKey": {
+                      "type": "string",
+                      "description": "This property is no longer available and will be removed from the documentation soon.\nUse `accountId` instead.\nSee the [deprecation notice](/cloud/confluence/deprecation-notice-user-privacy-api-migration-guide/) for details."
+                    },
+                    "accountId": {
+                      "type": "string",
+                      "description": "The account ID of the user, which uniquely identifies the user across all Atlassian products.\nFor example, `384093:32b4d9w0-f6a5-3535-11a3-9c8c88d10192`."
+                    },
+                    "accountType": {
+                      "type": "string",
+                      "description": "The account type of the user, may return empty string if unavailable. App is if the user is a bot user created on behalf of an Atlassian app.",
+                      "enum": [
+                        "atlassian",
+                        "app",
+                        ""
+                      ]
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "The email address of the user. Depending on the user's privacy setting, this may return an empty string."
+                    },
+                    "publicName": {
+                      "type": "string",
+                      "description": "The public name or nickname of the user. Will always contain a value."
+                    },
+                    "profilePicture": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "This object represents an icon. If used as a profilePicture, this may be returned as null, depending on the user's privacy setting."
+                    },
+                    "displayName": {
+                      "type": "string",
+                      "description": "The displays name of the user. Depending on the user's privacy setting, this may be the same as publicName."
+                    },
+                    "timeZone": {
+                      "type": "string",
+                      "description": "This displays user time zone. Depending on the user's privacy setting, this may return null."
+                    },
+                    "externalCollaborator": {
+                      "type": "boolean",
+                      "description": "This is deprecated. Use `isGuest` instead to find out whether the user is a guest user."
+                    },
+                    "isExternalCollaborator": {
+                      "type": "boolean",
+                      "description": "This is deprecated. Use `isGuest` instead to find out whether the user is a guest user."
+                    },
+                    "isGuest": {
+                      "type": "boolean",
+                      "description": "Whether the user is a guest user"
+                    },
+                    "operations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "details": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "personalSpace": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "_expandable": {
+                      "type": "object",
+                      "properties": {
+                        "operations": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "type": "string"
+                        },
+                        "personalSpace": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [],
+                      "visible": [
+                        "operations",
+                        "details",
+                        "personalSpace"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "_links": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    }
+                  },
+                  "required": [
+                    "type"
+                  ],
+                  "visible": [
+                    "type",
+                    "username",
+                    "userKey",
+                    "accountId",
+                    "accountType",
+                    "email",
+                    "publicName",
+                    "profilePicture",
+                    "displayName",
+                    "timeZone",
+                    "externalCollaborator",
+                    "isExternalCollaborator",
+                    "isGuest",
+                    "operations",
+                    "details",
+                    "personalSpace",
+                    "_expandable",
+                    "_links"
+                  ],
+                  "additionalProperties": true
+                },
+                "when": {
+                  "type": "string"
+                },
+                "friendlyWhen": {
+                  "type": "string"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "number": {
+                  "type": "integer",
+                  "description": "Set this to the current version number incremented by one"
+                },
+                "minorEdit": {
+                  "type": "boolean",
+                  "description": "If `minorEdit` is set to 'true', no notification email or activity\nstream will be generated for the change."
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Can be \"page\", \"blogpost\", \"attachment\" or \"content\""
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "space": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "history": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "version": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "ancestors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "operations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "children": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "childTypes": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "Shows whether a piece of content has attachments, comments, or child pages/whiteboards.\nNote, this doesn't actually contain the child objects."
+                    },
+                    "descendants": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "container": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "Container for content. This can be either a space (containing a page or blogpost)\nor a page/blog post (containing an attachment or comment)"
+                    },
+                    "body": {
+                      "type": "object",
+                      "properties": {
+                        "view": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "export_view": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "styled_view": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "storage": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "wiki": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "editor": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "editor2": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "anonymous_export_view": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "atlas_doc_format": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "dynamic": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "raw": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "_expandable": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        }
+                      },
+                      "required": [],
+                      "visible": [
+                        "view",
+                        "export_view",
+                        "styled_view",
+                        "storage",
+                        "wiki",
+                        "editor",
+                        "editor2",
+                        "anonymous_export_view",
+                        "atlas_doc_format",
+                        "dynamic",
+                        "raw",
+                        "_expandable"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "restrictions": {
+                      "type": "object",
+                      "properties": {
+                        "read": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "update": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "_expandable": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "_links": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        }
+                      },
+                      "required": [],
+                      "visible": [
+                        "read",
+                        "update",
+                        "_expandable",
+                        "_links"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "Metadata object for page, blogpost, comment content"
+                    },
+                    "macroRenderedOutput": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "extensions": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "_expandable": {
+                      "type": "object",
+                      "properties": {
+                        "childTypes": {
+                          "type": "string"
+                        },
+                        "container": {
+                          "type": "string"
+                        },
+                        "metadata": {
+                          "type": "string"
+                        },
+                        "operations": {
+                          "type": "string"
+                        },
+                        "children": {
+                          "type": "string"
+                        },
+                        "restrictions": {
+                          "type": "string"
+                        },
+                        "history": {
+                          "type": "string"
+                        },
+                        "ancestors": {
+                          "type": "string"
+                        },
+                        "body": {
+                          "type": "string"
+                        },
+                        "version": {
+                          "type": "string"
+                        },
+                        "descendants": {
+                          "type": "string"
+                        },
+                        "space": {
+                          "type": "string"
+                        },
+                        "extensions": {
+                          "type": "string"
+                        },
+                        "schedulePublishDate": {
+                          "type": "string"
+                        },
+                        "schedulePublishInfo": {
+                          "type": "string"
+                        },
+                        "macroRenderedOutput": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [],
+                      "visible": [
+                        "childTypes",
+                        "container",
+                        "metadata",
+                        "operations",
+                        "children",
+                        "restrictions",
+                        "history",
+                        "ancestors",
+                        "body",
+                        "version",
+                        "descendants",
+                        "space",
+                        "extensions",
+                        "schedulePublishDate",
+                        "schedulePublishInfo",
+                        "macroRenderedOutput"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "_links": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "type"
+                  ],
+                  "visible": [
+                    "id",
+                    "type",
+                    "status",
+                    "title",
+                    "space",
+                    "history",
+                    "version",
+                    "ancestors",
+                    "operations",
+                    "children",
+                    "childTypes",
+                    "descendants",
+                    "container",
+                    "body",
+                    "restrictions",
+                    "metadata",
+                    "macroRenderedOutput",
+                    "extensions",
+                    "_expandable",
+                    "_links"
+                  ],
+                  "additionalProperties": true,
+                  "description": "Base object for all content types."
+                },
+                "collaborators": {
+                  "type": "object",
+                  "properties": {
+                    "users": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "userKeys": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "_links": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "users",
+                    "userKeys",
+                    "_links"
+                  ],
+                  "additionalProperties": true
+                },
+                "_expandable": {
+                  "type": "object",
+                  "properties": {
+                    "content": {
+                      "type": "string"
+                    },
+                    "collaborators": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "content",
+                    "collaborators"
+                  ],
+                  "additionalProperties": false
+                },
+                "_links": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "contentTypeModified": {
+                  "type": "boolean",
+                  "description": "True if content type is modifed in this version (e.g. page to blog)"
+                },
+                "confRev": {
+                  "type": "string",
+                  "description": "The revision id provided by confluence to be used as a revision in Synchrony"
+                },
+                "syncRev": {
+                  "type": "string",
+                  "description": "The revision id provided by Synchrony"
+                },
+                "syncRevSource": {
+                  "type": "string",
+                  "description": "Source of the synchrony revision"
+                }
+              },
+              "required": [
+                "minorEdit",
+                "number",
+                "when"
+              ],
+              "visible": [
+                "by",
+                "when",
+                "friendlyWhen",
+                "message",
+                "number",
+                "minorEdit",
+                "content",
+                "collaborators",
+                "_expandable",
+                "_links",
+                "contentTypeModified",
+                "confRev",
+                "syncRev",
+                "syncRevSource"
+              ],
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "id",
+            "type",
+            "version"
+          ],
+          "visible": [
+            "id",
+            "type",
+            "status",
+            "title",
+            "container",
+            "metadata",
+            "extensions",
+            "version"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__UPDATEATTACHMENTDATA",
+    "description": "Update attachment data",
+    "tags": [
+      "Content - attachments"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/wiki/rest/api/content/{id}/child/attachment/{attachmentId}/data",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content that the attachment is attached to."
+            },
+            "attachmentId": {
+              "type": "string",
+              "description": "The ID of the attachment to update."
+            }
+          },
+          "required": [
+            "id",
+            "attachmentId"
+          ],
+          "visible": [
+            "id",
+            "attachmentId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string",
+              "description": "The relative location and name of the attachment to be added to\nthe content."
+            },
+            "comment": {
+              "type": "string",
+              "description": "The comment for the attachment that is being added.\nIf you specify a comment, then every file must have a comment and\nthe comments must be in the same order as the files. Alternatively,\ndon't specify any comments."
+            },
+            "minorEdit": {
+              "type": "string",
+              "description": "If `minorEdits` is set to 'true', no notification email or activity stream\nwill be generated when the attachment is added to the content."
+            }
+          },
+          "required": [
+            "file",
+            "minorEdit"
+          ],
+          "visible": [
+            "file",
+            "comment",
+            "minorEdit"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__DOWNLOADATTATCHMENT",
+    "description": "Get URI to download attachment",
+    "tags": [
+      "Content - attachments"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/wiki/rest/api/content/{id}/child/attachment/{attachmentId}/download",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content that the attachment is attached to."
+            },
+            "attachmentId": {
+              "type": "string",
+              "description": "The ID of the attachment to download."
+            }
+          },
+          "required": [
+            "id",
+            "attachmentId"
+          ],
+          "visible": [
+            "id",
+            "attachmentId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "type": "integer",
+              "description": "The version of the attachment. If this parameter is absent, the redirect URI will download the latest version of the attachment."
+            },
+            "status": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "The statuses allowed on the retrieved attachment. If this parameter is absent, it will default to `current`."
+            }
+          },
+          "required": [],
+          "visible": [
+            "version",
+            "status"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__GETCONTENTDESCENDANTS",
+    "description": "Get content descendants",
+    "tags": [
+      "Content - children and descendants"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/wiki/rest/api/content/{id}/descendant",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content to be queried for its descendants."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "attachment",
+                  "comment",
+                  "page"
+                ]
+              },
+              "description": "A multi-value parameter indicating which properties of the children to\nexpand, where:\n\n- `attachment` returns all attachments for the content.\n- `comments` returns all comments for the content.\n- `page` returns all child pages of the content.\n- `whiteboard` returns all child whiteboards of the content.\n- `database` returns all child databases of the content.\n- `embed` returns all child embeds of the content.\n- `folder` returns all child folders of the content."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__GETDESCENDANTSOFTYPE",
+    "description": "Get content descendants by type",
+    "tags": [
+      "Content - children and descendants"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/wiki/rest/api/content/{id}/descendant/{type}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content to be queried for its descendants."
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "page",
+                "comment",
+                "attachment"
+              ],
+              "description": "The type of descendants to return."
+            }
+          },
+          "required": [
+            "id",
+            "type"
+          ],
+          "visible": [
+            "id",
+            "type"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "depth": {
+              "type": "string",
+              "enum": [
+                "all",
+                "root",
+                "<any positive integer argument in the range of 1 and 100>"
+              ],
+              "default": "all",
+              "description": "Filter the results to descendants upto a desired level of the content. Note, the maximum value supported is 100. root level of the content means immediate (level 1) descendants of the type requested. all represents returning all descendants of the type requested."
+            },
+            "expand": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A multi-value parameter indicating which properties of the content to expand.\n\n- `childTypes.all` returns whether the content has attachments, comments, or child pages/whiteboards.\nUse this if you only need to check whether the content has children of a particular type.\n- `childTypes.attachment` returns whether the content has attachments.\n- `childTypes.comment` returns whether the content has comments.\n- `childTypes.page` returns whether the content has child pages.\n- `childTypes.whiteboard` returns whether the content has child whiteboards.\n- `childTypes.database` returns whether the content has child databases.\n- `childTypes.embed` returns whether the content has child embeds (smartlinks).\n- `childTypes.folder` returns whether the content has child folders.\n- `container` returns the space that the content is in. This is the same as the information\nreturned by [Get space](#api-space-spaceKey-get).\n- `metadata.currentuser` returns information about the current user in relation to the content,\nincluding when they last viewed it, modified it, contributed to it, or added it as a favorite.\n- `metadata.properties` returns content properties that have been set via the Confluence REST API.\n- `metadata.labels` returns the labels that have been added to the content.\n- `metadata.frontend` this property is only used by Atlassian.\n- `operations` returns the operations for the content, which are used when setting permissions.\n- `children.page` returns pages that are descendants at the level immediately below the content.\n- `children.whiteboard` returns whiteboards that are descendants at the level immediately below the content.\n- `children.database` returns databases that are descendants at the level immediately below the content.\n- `children.embed` returns embeds (smartlinks) that are descendants at the level immediately below the content.\n- `children.folder` returns folders that are descendants at the level immediately below the content.\n- `children.attachment` returns all attachments for the content.\n- `children.comment` returns all comments on the content.\n- `restrictions.read.restrictions.user` returns the users that have permission to read the content.\n- `restrictions.read.restrictions.group` returns the groups that have permission to read the content. Note that\nthis may return deleted groups, because deleting a group doesn't remove associated restrictions.\n- `restrictions.update.restrictions.user` returns the users that have permission to update the content.\n- `restrictions.update.restrictions.group` returns the groups that have permission to update the content. Note that\nthis may return deleted groups because deleting a group doesn't remove associated restrictions.\n- `history` returns the history of the content, including the date it was created.\n- `history.lastUpdated` returns information about the most recent update of the content, including\nwho updated it and when it was updated.\n- `history.previousVersion` returns information about the update prior to the current content update.\n- `history.contributors` returns all of the users who have contributed to the content.\n- `history.nextVersion` returns information about the update after to the current content update.\n- `ancestors` returns the parent content, if the content is a page or whiteboard.\n- `body` returns the body of the content in different formats, including the editor format,\nview format, and export format.\n- `body.storage` returns the body of content in storage format.\n- `body.view` returns the body of content in view format.\n- `version` returns information about the most recent update of the content, including who updated it\nand when it was updated.\n- `descendants.page` returns pages that are descendants at any level below the content.\n- `descendants.whiteboard` returns whiteboards that are descendants at any level below the content.\n- `descendants.database` returns databases that are descendants at any level below the content.\n- `descendants.embed` returns embeds (smartlinks) that are descendants at any level below the content.\n- `descendants.folder` returns folders that are descendants at any level below the content.\n- `descendants.attachment` returns all attachments for the content, same as `children.attachment`.\n- `descendants.comment` returns all comments on the content, same as `children.comment`.\n- `space` returns the space that the content is in. This is the same as the information returned by\n[Get space](#api-space-spaceKey-get).\n\nIn addition, the following comment-specific expansions can be used:\n- `extensions.inlineProperties` returns inline comment-specific properties.\n- `extensions.resolution` returns the resolution status of each comment."
+            },
+            "start": {
+              "type": "integer",
+              "default": 0,
+              "description": "The starting index of the returned content."
+            },
+            "limit": {
+              "type": "integer",
+              "default": 25,
+              "description": "The maximum number of content to return per page. Note,\nthis may be restricted by fixed system limits."
+            }
+          },
+          "required": [],
+          "visible": [
+            "depth",
+            "expand",
+            "start",
+            "limit"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__GETMACROBODYBYMACROID",
+    "description": "Get macro body by macro ID",
+    "tags": [
+      "Content - macro body"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/wiki/rest/api/content/{id}/history/{version}/macro/id/{macroId}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID for the content that contains the macro."
+            },
+            "version": {
+              "type": "integer",
+              "description": "The version of the content that contains the macro. Specifying `0` as the `version` will return\nthe macro body for the latest content version."
+            },
+            "macroId": {
+              "type": "string",
+              "description": "The ID of the macro. This is usually passed by the app that the\nmacro is in. Otherwise, find the macro ID by querying the desired\ncontent and version, then expanding the body in storage format.\nFor example, '/content/196611/version/7?expand=content.body.storage'."
+            }
+          },
+          "required": [
+            "id",
+            "version",
+            "macroId"
+          ],
+          "visible": [
+            "id",
+            "version",
+            "macroId"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__GETANDCONVERTMACROBODYBYMACROID",
+    "description": "Get macro body by macro ID and convert the representation synchronously",
+    "tags": [
+      "Content - macro body"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/wiki/rest/api/content/{id}/history/{version}/macro/id/{macroId}/convert/{to}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID for the content that contains the macro."
+            },
+            "version": {
+              "type": "integer",
+              "description": "The version of the content that contains the macro. Specifying `0` as the `version` will return\nthe macro body for the latest content version."
+            },
+            "macroId": {
+              "type": "string",
+              "description": "The ID of the macro. This is usually passed by the app that the\nmacro is in. Otherwise, find the macro ID by querying the desired\ncontent and version, then expanding the body in storage format.\nFor example, '/content/196611/version/7?expand=content.body.storage'."
+            },
+            "to": {
+              "type": "string",
+              "description": "The content representation to return the macro in."
+            }
+          },
+          "required": [
+            "id",
+            "version",
+            "macroId",
+            "to"
+          ],
+          "visible": [
+            "id",
+            "version",
+            "macroId",
+            "to"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A multi-value parameter indicating which properties of the content to expand and populate. Expands are dependent on the\n`to` conversion format and may be irrelevant for certain conversions (e.g. `macroRenderedOutput` is redundant when\nconverting to `view` format). \n\nIf rendering to `view` format, and the body content being converted includes arbitrary nested content (such as macros); then it is \nnecessary to include webresource expands in the request. Webresources for content body are the batched JS and CSS dependencies for\nany nested dynamic content (i.e. macros).\n\n- `embeddedContent` returns metadata for nested content (e.g. page included using page include macro)\n- `mediaToken` returns JWT token for retrieving attachment data from Media API\n- `macroRenderedOutput` additionally converts body to view format\n- `webresource.superbatch.uris.js` returns all common JS dependencies as static URLs\n- `webresource.superbatch.uris.css` returns all common CSS dependencies as static URLs\n- `webresource.superbatch.uris.all` returns all common dependencies as static URLs\n- `webresource.superbatch.tags.all` returns all common JS dependencies as html `<script>` tags\n- `webresource.superbatch.tags.css` returns all common CSS dependencies as html `<style>` tags\n- `webresource.superbatch.tags.js` returns all common dependencies as html `<script>` and `<style>` tags\n- `webresource.uris.js` returns JS dependencies specific to conversion\n- `webresource.uris.css` returns CSS dependencies specific to conversion\n- `webresource.uris.all` returns all dependencies specific to conversion     \n- `webresource.tags.all` returns common JS dependencies as html `<script>` tags\n- `webresource.tags.css` returns common CSS dependencies as html `<style>` tags\n- `webresource.tags.js` returns common dependencies as html `<script>` and `<style>` tags"
+            },
+            "spaceKeyContext": {
+              "type": "string",
+              "description": "The space key used for resolving embedded content (page includes,\nfiles, and links) in the content body. For example, if the source content\ncontains the link `<ac:link><ri:page ri:content-title=\"Example page\" /><ac:link>`\nand the `spaceKeyContext=TEST` parameter is provided, then the link\nwill be converted to a link to the \"Example page\" page in the \"TEST\" space."
+            },
+            "embeddedContentRender": {
+              "type": "string",
+              "enum": [
+                "current",
+                "version-at-save"
+              ],
+              "default": "current",
+              "description": "Mode used for rendering embedded content, like attachments.\n\n- `current` renders the embedded content using the latest version.\n- `version-at-save` renders the embedded content using the version at\nthe time of save."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand",
+            "spaceKeyContext",
+            "embeddedContentRender"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__GETANDASYNCCONVERTMACROBODYBYMACROID",
+    "description": "Get macro body by macro ID and convert representation Asynchronously",
+    "tags": [
+      "Content - macro body"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/wiki/rest/api/content/{id}/history/{version}/macro/id/{macroId}/convert/async/{to}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID for the content that contains the macro."
+            },
+            "version": {
+              "type": "integer",
+              "description": "The version of the content that contains the macro. Specifying `0` as the `version` will return\nthe macro body for the latest content version."
+            },
+            "macroId": {
+              "type": "string",
+              "description": "The ID of the macro. For apps, this is passed to the macro by the Connect/Forge framework.\nOtherwise, find the macro ID by querying the desired\ncontent and version, then expanding the body in storage format.\nFor example, '/content/196611/version/7?expand=content.body.storage'."
+            },
+            "to": {
+              "type": "string",
+              "enum": [
+                "export_view",
+                "view",
+                "styled_view"
+              ],
+              "description": "The content representation to return the macro in.\nCurrently, the following conversions are allowed:\n\n- `export_view`\n- `styled_view`\n- `view`"
+            }
+          },
+          "required": [
+            "id",
+            "version",
+            "macroId",
+            "to"
+          ],
+          "visible": [
+            "id",
+            "version",
+            "macroId",
+            "to"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A multi-value parameter indicating which properties of the content to expand and populate. Expands are dependent on the\n`to` conversion format and may be irrelevant for certain conversions (e.g. `macroRenderedOutput` is redundant when\nconverting to `view` format). \n\nIf rendering to `view` format, and the body content being converted includes arbitrary nested content (such as macros); then it is \nnecessary to include webresource expands in the request. Webresources for content body are the batched JS and CSS dependencies for\nany nested dynamic content (i.e. macros).\n\n- `embeddedContent` returns metadata for nested content (e.g. page included using page include macro)\n- `mediaToken` returns JWT token for retrieving attachment data from Media API\n- `macroRenderedOutput` additionally converts body to view format\n- `webresource.superbatch.uris.js` returns all common JS dependencies as static URLs\n- `webresource.superbatch.uris.css` returns all common CSS dependencies as static URLs\n- `webresource.superbatch.uris.all` returns all common dependencies as static URLs\n- `webresource.superbatch.tags.all` returns all common JS dependencies as html `<script>` tags\n- `webresource.superbatch.tags.css` returns all common CSS dependencies as html `<style>` tags\n- `webresource.superbatch.tags.js` returns all common dependencies as html `<script>` and `<style>` tags\n- `webresource.uris.js` returns JS dependencies specific to conversion\n- `webresource.uris.css` returns CSS dependencies specific to conversion\n- `webresource.uris.all` returns all dependencies specific to conversion     \n- `webresource.tags.all` returns common JS dependencies as html `<script>` tags\n- `webresource.tags.css` returns common CSS dependencies as html `<style>` tags\n- `webresource.tags.js` returns common dependencies as html `<script>` and `<style>` tags"
+            },
+            "allowCache": {
+              "type": "boolean",
+              "default": false,
+              "description": "Controls whether conversion results are cached and reused for identical requests.\n\n- `false`: Each request creates a new conversion task, even if an identical request was made previously.\n- `true`: Enables caching behavior for identical requests from the same user.\n  - If no cached result exists, a new conversion task is created\n  - If a cached result exists, the existing task is marked as RERUNNING and will complete with status COMPLETED\n  - Returns the same task ID for identical requests, allowing you to retrieve the cached result\n\nFor large macros that are slow to convert and for which it is acceptable to show cached data, set this field to `true`."
+            },
+            "spaceKeyContext": {
+              "type": "string",
+              "description": "The space key used for resolving embedded content (page includes,\nfiles, and links) in the content body. For example, if the source content\ncontains the link `<ac:link><ri:page ri:content-title=\"Example page\" /><ac:link>`\nand the `spaceKeyContext=TEST` parameter is provided, then the link\nwill be converted to a link to the \"Example page\" page in the \"TEST\" space."
+            },
+            "embeddedContentRender": {
+              "type": "string",
+              "enum": [
+                "current",
+                "version-at-save"
+              ],
+              "default": "current",
+              "description": "Mode used for rendering embedded content, like attachments.\n\n- `current` renders the embedded content using the latest version.\n- `version-at-save` renders the embedded content using the version at\nthe time of save."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand",
+            "allowCache",
+            "spaceKeyContext",
+            "embeddedContentRender"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__ADDLABELSTOCONTENT",
+    "description": "Add labels to content",
+    "tags": [
+      "Content labels"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/wiki/rest/api/content/{id}/label",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content that will have labels added to it."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "visible": [],
+          "additionalProperties": true,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__DELETE_CONTENT_LABEL",
+    "description": "Remove label from content using query parameter",
+    "tags": [
+      "Content labels"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/wiki/rest/api/content/{id}/label",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content that the label will be removed from."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the label to be removed."
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "visible": [
+            "name"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__REMOVELABELFROMCONTENT",
+    "description": "Remove label from content",
+    "tags": [
+      "Content labels"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/wiki/rest/api/content/{id}/label/{label}",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content that the label will be removed from."
+            },
+            "label": {
+              "type": "string",
+              "description": "The name of the label to be removed."
+            }
+          },
+          "required": [
+            "id",
+            "label"
+          ],
+          "visible": [
+            "id",
+            "label"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__GETWATCHESFORPAGE",
+    "description": "Get watches for page",
+    "tags": [
+      "Content watches"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/wiki/rest/api/content/{id}/notification/child-created",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content to be queried for its watches."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "integer",
+              "default": 0,
+              "description": "The starting index of the returned watches."
+            },
+            "limit": {
+              "type": "integer",
+              "default": 200,
+              "description": "The maximum number of watches to return per page.\nNote, this may be restricted by fixed system limits."
+            }
+          },
+          "required": [],
+          "visible": [
+            "start",
+            "limit"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__GETWATCHESFORSPACE",
+    "description": "Get watches for space",
+    "tags": [
+      "Content watches"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/wiki/rest/api/content/{id}/notification/created",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content to be queried for its watches."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "start": {
+              "type": "integer",
+              "default": 0,
+              "description": "The starting index of the returned watches."
+            },
+            "limit": {
+              "type": "integer",
+              "default": 200,
+              "description": "The maximum number of watches to return per page.\nNote, this may be restricted by fixed system limits."
+            }
+          },
+          "required": [],
+          "visible": [
+            "start",
+            "limit"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__COPYPAGEHIERARCHY",
+    "description": "Copy page hierarchy",
+    "tags": [
+      "Content - children and descendants"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/wiki/rest/api/content/{id}/pagehierarchy/copy",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "copyAttachments": {
+              "type": "boolean",
+              "description": "If set to `true`, attachments are copied to the destination page.",
+              "default": false
+            },
+            "copyPermissions": {
+              "type": "boolean",
+              "description": "If set to `true`, page permissions are copied to the destination page.",
+              "default": false
+            },
+            "copyProperties": {
+              "type": "boolean",
+              "description": "If set to `true`, content properties are copied to the destination page.",
+              "default": false
+            },
+            "copyLabels": {
+              "type": "boolean",
+              "description": "If set to `true`, labels are copied to the destination page.",
+              "default": false
+            },
+            "copyCustomContents": {
+              "type": "boolean",
+              "description": "If set to `true`, custom contents are copied to the destination page.",
+              "default": false
+            },
+            "copyDescendants": {
+              "type": "boolean",
+              "description": "If set to `true`, descendants are copied to the destination page.",
+              "default": true
+            },
+            "destinationPageId": {
+              "type": "string"
+            },
+            "titleOptions": {
+              "type": "object",
+              "properties": {
+                "prefix": {
+                  "type": "string"
+                },
+                "replace": {
+                  "type": "string"
+                },
+                "search": {
+                  "type": "string"
+                }
+              },
+              "required": [],
+              "visible": [
+                "prefix",
+                "replace",
+                "search"
+              ],
+              "additionalProperties": false,
+              "description": "Required for copying page in the same space."
+            }
+          },
+          "required": [
+            "destinationPageId"
+          ],
+          "visible": [
+            "copyAttachments",
+            "copyPermissions",
+            "copyProperties",
+            "copyLabels",
+            "copyCustomContents",
+            "copyDescendants",
+            "destinationPageId",
+            "titleOptions"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__COPYPAGE",
+    "description": "Copy single page",
+    "tags": [
+      "Content - children and descendants"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/wiki/rest/api/content/{id}/copy",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "A multi-value parameter indicating which properties of the content to expand.\nMaximum sub-expansions allowed is `8`.\n\n- `childTypes.all` returns whether the content has attachments, comments, or child pages/whiteboards.\nUse this if you only need to check whether the content has children of a particular type.\n- `childTypes.attachment` returns whether the content has attachments.\n- `childTypes.comment` returns whether the content has comments.\n- `childTypes.page` returns whether the content has child pages.\n- `childTypes.whiteboard` returns whether the content has child whiteboards.\n- `childTypes.database` returns whether the content has child databases.\n- `childTypes.embed` returns whether the content has child embeds (smartlinks).\n- `childTypes.folder` returns whether the content has child folder.\n- `container` returns the space that the content is in. This is the same as the information\nreturned by [Get space](#api-space-spaceKey-get).\n- `metadata.currentuser` returns information about the current user in relation to the content,\nincluding when they last viewed it, modified it, contributed to it, or added it as a favorite.\n- `metadata.properties` returns content properties that have been set via the Confluence REST API.\n- `metadata.labels` returns the labels that have been added to the content.\n- `metadata.frontend` this property is only used by Atlassian.\n- `operations` returns the operations for the content, which are used when setting permissions.\n- `children.page` returns pages that are descendants at the level immediately below the content.\n- `children.whiteboard` returns whiteboards that are descendants at the level immediately below the content.\n- `children.database` returns databases that are descendants at the level immediately below the content.\n- `children.embed` returns embeds (smartlinks) that are descendants at the level immediately below the content.\n- `children.folder` returns folders that are descendants at the level immediately below the content.\n- `children.attachment` returns all attachments for the content.\n- `children.comment` returns all comments on the content.\n- `restrictions.read.restrictions.user` returns the users that have permission to read the content.\n- `restrictions.read.restrictions.group` returns the groups that have permission to read the content. Note that\nthis may return deleted groups, because deleting a group doesn't remove associated restrictions.\n- `restrictions.update.restrictions.user` returns the users that have permission to update the content.\n- `restrictions.update.restrictions.group` returns the groups that have permission to update the content. Note that\nthis may return deleted groups because deleting a group doesn't remove associated restrictions.\n- `history` returns the history of the content, including the date it was created.\n- `history.lastUpdated` returns information about the most recent update of the content, including\nwho updated it and when it was updated.\n- `history.previousVersion` returns information about the update prior to the current content update.\n- `history.contributors` returns all of the users who have contributed to the content.\n- `history.nextVersion` returns information about the update after to the current content update.\n- `ancestors` returns the parent content, if the content is a page or whiteboard.\n- `body` returns the body of the content in different formats, including the editor format,\nview format, and export format.\n- `body.storage` returns the body of content in storage format.\n- `body.view` returns the body of content in view format.\n- `version` returns information about the most recent update of the content, including who updated it\nand when it was updated.\n- `descendants.page` returns pages that are descendants at any level below the content.\n- `descendants.whiteboard` returns whiteboards that are descendants at any level below the content.\n- `descendants.database` returns databases that are descendants at any level below the content.\n- `descendants.embed` returns embeds (smartlinks) that are descendants at any level below the content.\n- `descendants.folder` returns folders that are descendants at any level below the content.\n- `descendants.attachment` returns all attachments for the content, same as `children.attachment`.\n- `descendants.comment` returns all comments on the content, same as `children.comment`.\n- `space` returns the space that the content is in. This is the same as the information returned by\n[Get space](#api-space-spaceKey-get).\n\nIn addition, the following comment-specific expansions can be used:\n- `extensions.inlineProperties` returns inline comment-specific properties.\n- `extensions.resolution` returns the resolution status of each comment."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "copyAttachments": {
+              "type": "boolean",
+              "description": "If set to `true`, attachments are copied to the destination page.",
+              "default": false
+            },
+            "copyPermissions": {
+              "type": "boolean",
+              "description": "If set to `true`, page permissions are copied to the destination page.",
+              "default": false
+            },
+            "copyProperties": {
+              "type": "boolean",
+              "description": "If set to `true`, content properties are copied to the destination page.",
+              "default": false
+            },
+            "copyLabels": {
+              "type": "boolean",
+              "description": "If set to `true`, labels are copied to the destination page.",
+              "default": false
+            },
+            "copyCustomContents": {
+              "type": "boolean",
+              "description": "If set to `true`, custom contents are copied to the destination page.",
+              "default": false
+            },
+            "destination": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "space",
+                    "existing_page",
+                    "parent_page",
+                    "parent_content"
+                  ]
+                },
+                "value": {
+                  "type": "string",
+                  "description": "The space key for `space` type, and content id for `parent_page`, `parent_content`, and `existing_page`"
+                }
+              },
+              "required": [
+                "type",
+                "value"
+              ],
+              "visible": [
+                "type",
+                "value"
+              ],
+              "additionalProperties": false,
+              "description": "Defines where the page will be copied to, and can be one of the following types.\n\n  - `parent_page`: page will be copied as a child of the specified parent page\n  - `parent_content`: page will be copied as a child of the specified parent content\n  - `space`: page will be copied to the specified space as a root page on the space\n  - `existing_page`: page will be copied and replace the specified page"
+            },
+            "pageTitle": {
+              "type": "string",
+              "description": "If defined, this will replace the title of the destination page."
+            },
+            "body": {
+              "type": "object",
+              "properties": {
+                "storage": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "description": "The body of the content in the relevant format."
+                    },
+                    "representation": {
+                      "type": "string",
+                      "description": "The content format type. Set the value of this property to\nthe name of the format being used, e.g. 'storage'.",
+                      "enum": [
+                        "view",
+                        "export_view",
+                        "styled_view",
+                        "storage",
+                        "editor",
+                        "editor2",
+                        "anonymous_export_view",
+                        "wiki",
+                        "atlas_doc_format",
+                        "plain",
+                        "raw"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "representation",
+                    "value"
+                  ],
+                  "visible": [
+                    "value",
+                    "representation"
+                  ],
+                  "additionalProperties": true,
+                  "description": "This object is used when creating or updating content."
+                },
+                "editor2": {
+                  "type": "object",
+                  "properties": {
+                    "value": {
+                      "type": "string",
+                      "description": "The body of the content in the relevant format."
+                    },
+                    "representation": {
+                      "type": "string",
+                      "description": "The content format type. Set the value of this property to\nthe name of the format being used, e.g. 'storage'.",
+                      "enum": [
+                        "view",
+                        "export_view",
+                        "styled_view",
+                        "storage",
+                        "editor",
+                        "editor2",
+                        "anonymous_export_view",
+                        "wiki",
+                        "atlas_doc_format",
+                        "plain",
+                        "raw"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "representation",
+                    "value"
+                  ],
+                  "visible": [
+                    "value",
+                    "representation"
+                  ],
+                  "additionalProperties": true,
+                  "description": "This object is used when creating or updating content."
+                }
+              },
+              "required": [],
+              "visible": [
+                "storage",
+                "editor2"
+              ],
+              "additionalProperties": false,
+              "description": "If defined, this will replace the body of the destination page."
+            }
+          },
+          "required": [
+            "destination"
+          ],
+          "visible": [
+            "copyAttachments",
+            "copyPermissions",
+            "copyProperties",
+            "copyLabels",
+            "copyCustomContents",
+            "destination",
+            "pageTitle",
+            "body"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__CHECKCONTENTPERMISSION",
+    "description": "Check content permissions",
+    "tags": [
+      "Content permissions"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/wiki/rest/api/content/{id}/permission/check",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content to check permissions against."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "subject": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "user",
+                    "group"
+                  ]
+                },
+                "identifier": {
+                  "type": "string",
+                  "description": "for `type=user`, identifier should be user's accountId or `anonymous` for anonymous users\n\nfor `type=group`, identifier should be ID of the group"
+                }
+              },
+              "required": [
+                "identifier",
+                "type"
+              ],
+              "visible": [
+                "type",
+                "identifier"
+              ],
+              "additionalProperties": false,
+              "description": "The user or group that the permission applies to."
+            },
+            "operation": {
+              "type": "string",
+              "description": "The content permission operation to check.",
+              "enum": [
+                "read",
+                "update",
+                "delete"
+              ]
+            }
+          },
+          "required": [
+            "operation",
+            "subject"
+          ],
+          "visible": [
+            "subject",
+            "operation"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__GETRESTRICTIONS",
+    "description": "Get restrictions",
+    "tags": [
+      "Content restrictions"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/wiki/rest/api/content/{id}/restriction",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content to be queried for its restrictions."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "restrictions.user",
+                  "read.restrictions.user",
+                  "update.restrictions.user",
+                  "restrictions.group",
+                  "read.restrictions.group",
+                  "update.restrictions.group",
+                  "content"
+                ]
+              },
+              "description": "A multi-value parameter indicating which properties of the content\nrestrictions to expand. By default, the following objects are expanded:\n`restrictions.user`, `restrictions.group`.\n\n- `restrictions.user` returns the piece of content that the restrictions are\napplied to.\n- `restrictions.group` returns the piece of content that the restrictions are\napplied to.\n- `content` returns the piece of content that the restrictions are\napplied to."
+            },
+            "start": {
+              "type": "integer",
+              "default": 0,
+              "description": "The starting index of the users and groups in the returned restrictions."
+            },
+            "limit": {
+              "type": "integer",
+              "default": 100,
+              "description": "The maximum number of users and the maximum number of groups, in the\nreturned restrictions, to return per page. Note, this may be restricted\nby fixed system limits."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand",
+            "start",
+            "limit"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "CONFLUENCE__UPDATERESTRICTIONS",
+    "description": "Update restrictions",
+    "tags": [
+      "Content restrictions"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/wiki/rest/api/content/{id}/restriction",
+      "server_url": "https://{site}.atlassian.net"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "The ID of the content to update restrictions for."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "visible": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "expand": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "restrictions.user",
+                  "read.restrictions.user",
+                  "update.restrictions.user",
+                  "restrictions.group",
+                  "read.restrictions.group",
+                  "update.restrictions.group",
+                  "content"
+                ]
+              },
+              "description": "A multi-value parameter indicating which properties of the content\nrestrictions (returned in response) to expand.\n\n- `restrictions.user` returns the piece of content that the restrictions are\napplied to. Expanded by default.\n- `restrictions.group` returns the piece of content that the restrictions are\napplied to. Expanded by default.\n- `content` returns the piece of content that the restrictions are\napplied to."
+            }
+          },
+          "required": [],
+          "visible": [
+            "expand"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "visible": [],
+          "additionalProperties": true,
+          "description": "Request body"
+        }
+      }
+    }
+  }
+]

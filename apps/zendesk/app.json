@@ -1,0 +1,13 @@
+{
+  "name": "ZENDESK",
+  "display_name": "Zendesk",
+  "logo": "https://raw.githubusercontent.com/aipotheosis-labs/aipolabs-icons/refs/heads/main/apps/zendesk.svg",
+  "provider": "Zendesk",
+  "version": "1.0",
+  "description": "Zendesk customer support and ticketing platform.",
+  "security_schemes": { "api_key": { "location": "header", "name": "Authorization", "prefix": "Bearer" } },
+  "default_security_credentials_by_scheme": {},
+  "categories": ["CRM & Support"],
+  "visibility": "public",
+  "active": true
+}

@@ -1,0 +1,1016 @@
+[
+  {
+    "name": "ZOHO_CRM__GETRECORDS",
+    "description": "Get Records for a specific module",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/{module}",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "module": {
+              "type": "string",
+              "description": "Specifies the module name"
+            }
+          },
+          "required": [
+            "module"
+          ],
+          "visible": [
+            "module"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "fields": {
+              "type": "string",
+              "description": "Specify the API names of the fields you want to retrieve when fetching the records."
+            },
+            "territory_id": {
+              "type": "string",
+              "description": "Specify the territory ID to get the list of records that belongs to a specific territory"
+            },
+            "ids": {
+              "type": "string",
+              "description": "To retrieve specific records based on their unique ID."
+            },
+            "cvid": {
+              "type": "string",
+              "description": "Specify the custom view ID to get the list of records based on custom views"
+            },
+            "per_page": {
+              "type": "integer",
+              "description": "Specify how many records to return per page"
+            },
+            "page": {
+              "type": "integer",
+              "description": "To get the list of records from the respective pages"
+            },
+            "page_token": {
+              "type": "string",
+              "description": "To fetch more than 2000 records, you must include the \"page_token\" param in the request"
+            },
+            "sort_order": {
+              "type": "string",
+              "enum": [
+                "desc",
+                "asc"
+              ],
+              "description": "To sort the available list of records in either ascending or descending order"
+            },
+            "sort_by": {
+              "type": "string",
+              "enum": [
+                "id",
+                "Created_Time",
+                "Modified_Time"
+              ],
+              "description": "To sort the records based on the fields id, Created_Time, and Modified_Time. The default value is 'id'"
+            },
+            "converted": {
+              "type": "string",
+              "enum": [
+                "false",
+                "true",
+                "both"
+              ],
+              "description": "To get the list of converted records"
+            },
+            "include_child": {
+              "type": "boolean",
+              "description": "To include records from the child territories"
+            }
+          },
+          "required": [],
+          "visible": [
+            "fields",
+            "territory_id",
+            "ids",
+            "cvid",
+            "per_page",
+            "page",
+            "page_token",
+            "sort_order",
+            "sort_by",
+            "converted",
+            "include_child"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_CRM__CREATERECORDS",
+    "description": "Create a Record in a specific module",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/{module}",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "module": {
+              "type": "string",
+              "description": "Specifies the module name"
+            }
+          },
+          "required": [
+            "module"
+          ],
+          "visible": [
+            "module"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "description": "Request body containing one or more records to be created or updated.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the record. Required when modifying an existing record."
+                  },
+                  "$append_values": {
+                    "type": "string",
+                    "description": "Controls whether values in a multi-select picklist field should be appended or replaced during an update operation."
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "id",
+                  "$append_values"
+                ],
+                "additionalProperties": true,
+                "description": "Payload representing a single record to be created or updated."
+              }
+            },
+            "apply_feature_execution": {
+              "type": "array",
+              "description": "List of features that should be executed on demand during record processing.",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "visible": [],
+                "additionalProperties": true,
+                "description": "Feature execution configuration object."
+              }
+            },
+            "skip_feature_execution": {
+              "type": "array",
+              "description": "List of features that should be skipped during record processing.",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "visible": [],
+                "additionalProperties": true,
+                "description": "Feature skip configuration object."
+              }
+            },
+            "trigger": {
+              "type": "array",
+              "description": "List of automation triggers to invoke during the record operation.",
+              "items": {
+                "type": "string",
+                "description": "Type of automation trigger to be executed.",
+                "enum": [
+                  "approval",
+                  "workflow",
+                  "blueprint",
+                  "pathfinder",
+                  "orchestration"
+                ]
+              }
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "visible": [
+            "data",
+            "apply_feature_execution",
+            "skip_feature_execution",
+            "trigger"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_CRM__UPDATERECORDS",
+    "description": "To update existing entities or records in a specified module",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/{module}",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "module": {
+              "type": "string",
+              "description": "Specifies the module name"
+            }
+          },
+          "required": [
+            "module"
+          ],
+          "visible": [
+            "module"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "description": "Request body containing one or more records to be created or updated.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the record. Required when modifying an existing record."
+                  },
+                  "$append_values": {
+                    "type": "string",
+                    "description": "Controls whether values in a multi-select picklist field should be appended or replaced during an update operation."
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "id",
+                  "$append_values"
+                ],
+                "additionalProperties": true,
+                "description": "Payload representing a single record to be created or updated."
+              }
+            },
+            "apply_feature_execution": {
+              "type": "array",
+              "description": "List of features that should be executed on demand during record processing.",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "visible": [],
+                "additionalProperties": true,
+                "description": "Feature execution configuration object."
+              }
+            },
+            "skip_feature_execution": {
+              "type": "array",
+              "description": "List of features that should be skipped during record processing.",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "visible": [],
+                "additionalProperties": true,
+                "description": "Feature skip configuration object."
+              }
+            },
+            "trigger": {
+              "type": "array",
+              "description": "List of automation triggers to invoke during the record operation.",
+              "items": {
+                "type": "string",
+                "description": "Type of automation trigger to be executed.",
+                "enum": [
+                  "approval",
+                  "workflow",
+                  "blueprint",
+                  "pathfinder",
+                  "orchestration"
+                ]
+              }
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "visible": [
+            "data",
+            "apply_feature_execution",
+            "skip_feature_execution",
+            "trigger"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_CRM__DELETERECORDS",
+    "description": "Delete multiple records from a module",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/{module}",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "module": {
+              "type": "string",
+              "description": "Specifies the module name"
+            }
+          },
+          "required": [
+            "module"
+          ],
+          "visible": [
+            "module"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "ids": {
+              "type": "string",
+              "description": "To retrieve specific records based on their unique ID."
+            }
+          },
+          "required": [],
+          "visible": [
+            "ids"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_CRM__GETRECORD",
+    "description": "Get Record for a specific module with RecordId",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/{module}/{recordID}",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "recordID": {
+              "type": "string",
+              "description": "This ID is used to uniquely identify a record"
+            },
+            "module": {
+              "type": "string",
+              "description": "Specifies the module name"
+            }
+          },
+          "required": [
+            "recordID",
+            "module"
+          ],
+          "visible": [
+            "recordID",
+            "module"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_CRM__UPDATERECORD",
+    "description": "To update existing entities or records in a specified module with the recordID",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/{module}/{recordID}",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "module": {
+              "type": "string",
+              "description": "Specifies the module name"
+            },
+            "recordID": {
+              "type": "string",
+              "description": "This ID is used to uniquely identify a record"
+            }
+          },
+          "required": [
+            "module",
+            "recordID"
+          ],
+          "visible": [
+            "module",
+            "recordID"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "description": "Request body containing one or more records to be created or updated.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the record. Required when modifying an existing record."
+                  },
+                  "$append_values": {
+                    "type": "string",
+                    "description": "Controls whether values in a multi-select picklist field should be appended or replaced during an update operation."
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "id",
+                  "$append_values"
+                ],
+                "additionalProperties": true,
+                "description": "Payload representing a single record to be created or updated."
+              }
+            },
+            "apply_feature_execution": {
+              "type": "array",
+              "description": "List of features that should be executed on demand during record processing.",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "visible": [],
+                "additionalProperties": true,
+                "description": "Feature execution configuration object."
+              }
+            },
+            "skip_feature_execution": {
+              "type": "array",
+              "description": "List of features that should be skipped during record processing.",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "visible": [],
+                "additionalProperties": true,
+                "description": "Feature skip configuration object."
+              }
+            },
+            "trigger": {
+              "type": "array",
+              "description": "List of automation triggers to invoke during the record operation.",
+              "items": {
+                "type": "string",
+                "description": "Type of automation trigger to be executed.",
+                "enum": [
+                  "approval",
+                  "workflow",
+                  "blueprint",
+                  "pathfinder",
+                  "orchestration"
+                ]
+              }
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "visible": [
+            "data",
+            "apply_feature_execution",
+            "skip_feature_execution",
+            "trigger"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_CRM__DELETERECORD",
+    "description": "Delete a single record by ID",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/{module}/{recordID}",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "module": {
+              "type": "string",
+              "description": "Specifies the module name"
+            },
+            "recordID": {
+              "type": "string",
+              "description": "This ID is used to uniquely identify a record"
+            }
+          },
+          "required": [
+            "module",
+            "recordID"
+          ],
+          "visible": [
+            "module",
+            "recordID"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_CRM__UPSERTRECORDS",
+    "description": "To insert a new or update an existing record based on duplicate check field",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/{module}/upsert",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "module": {
+              "type": "string",
+              "description": "Specifies the module name"
+            }
+          },
+          "required": [
+            "module"
+          ],
+          "visible": [
+            "module"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "description": "List of records to be created or updated using the upsert operation.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the record. If null or omitted, a new record may be created."
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "id"
+                ],
+                "additionalProperties": true,
+                "description": "Single record payload containing field-value pairs for upsert."
+              }
+            },
+            "trigger": {
+              "type": "array",
+              "description": "List of automation triggers to be executed during the upsert operation.",
+              "items": {
+                "type": "string",
+                "description": "Name of the trigger to be executed."
+              }
+            },
+            "duplicate_check_fields": {
+              "type": "array",
+              "description": "Defines the ordered list of fields used to detect duplicate records during upsert.",
+              "items": {
+                "type": "string",
+                "description": "API name of the field used for duplicate record verification."
+              }
+            },
+            "wf_trigger": {
+              "type": "string",
+              "description": "Workflow trigger identifier to be executed as part of the upsert operation."
+            },
+            "lar_id": {
+              "type": "string",
+              "description": "Layout assignment rule identifier used to determine record layout during upsert."
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "visible": [
+            "data",
+            "trigger",
+            "duplicate_check_fields",
+            "wf_trigger",
+            "lar_id"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_CRM__GETDELETEDRECORDS",
+    "description": "Get deleted records from a module",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/{module}/deleted",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "module": {
+              "type": "string",
+              "description": "Specifies the module name"
+            }
+          },
+          "required": [
+            "module"
+          ],
+          "visible": [
+            "module"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "all",
+                "recycle",
+                "permanent"
+              ],
+              "default": "all",
+              "description": "Specifies the type of deleted records to retrieve. Use 'all' to get all deleted records, 'recycle' for records in recycle bin, or 'permanent' for permanently deleted records."
+            },
+            "page": {
+              "type": "integer",
+              "default": 1,
+              "description": "To get the list of records from the respective pages. Default value for page is 1."
+            },
+            "per_page": {
+              "type": "integer",
+              "default": 200,
+              "description": "To get the list of records available per page. The default and the maximum possible value is 200."
+            }
+          },
+          "required": [],
+          "visible": [
+            "type",
+            "page",
+            "per_page"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_CRM__CLONERECORD",
+    "description": "To clone a record in a module",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/{module}/{recordID}/actions/clone",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "module": {
+              "type": "string",
+              "description": "Specifies the module name"
+            },
+            "recordID": {
+              "type": "string",
+              "description": "This ID is used to uniquely identify a record"
+            }
+          },
+          "required": [
+            "module",
+            "recordID"
+          ],
+          "visible": [
+            "module",
+            "recordID"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "data": {
+              "type": "array",
+              "description": "Request body containing one or more records to be created or updated.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "description": "Unique identifier of the record. Required when modifying an existing record."
+                  },
+                  "$append_values": {
+                    "type": "string",
+                    "description": "Controls whether values in a multi-select picklist field should be appended or replaced during an update operation."
+                  }
+                },
+                "required": [],
+                "visible": [
+                  "id",
+                  "$append_values"
+                ],
+                "additionalProperties": true,
+                "description": "Payload representing a single record to be created or updated."
+              }
+            },
+            "apply_feature_execution": {
+              "type": "array",
+              "description": "List of features that should be executed on demand during record processing.",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "visible": [],
+                "additionalProperties": true,
+                "description": "Feature execution configuration object."
+              }
+            },
+            "skip_feature_execution": {
+              "type": "array",
+              "description": "List of features that should be skipped during record processing.",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "visible": [],
+                "additionalProperties": true,
+                "description": "Feature skip configuration object."
+              }
+            },
+            "trigger": {
+              "type": "array",
+              "description": "List of automation triggers to invoke during the record operation.",
+              "items": {
+                "type": "string",
+                "description": "Type of automation trigger to be executed.",
+                "enum": [
+                  "approval",
+                  "workflow",
+                  "blueprint",
+                  "pathfinder",
+                  "orchestration"
+                ]
+              }
+            }
+          },
+          "required": [
+            "data"
+          ],
+          "visible": [
+            "data",
+            "apply_feature_execution",
+            "skip_feature_execution",
+            "trigger"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZOHO_CRM__EXECUTECOQLQUERY",
+    "description": "Execute COQL query",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/coql",
+      "server_url": "https://www.zohoapis.{region}/crm/v8"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "select_query": {
+              "type": "string",
+              "description": "COQL select query to fetch records data"
+            },
+            "include_meta": {
+              "type": "array",
+              "description": "List of metadata to include in the response. Currently only supports 'fields' to get field metadata for select columns.",
+              "items": {
+                "type": "string",
+                "description": "Metadata type to include",
+                "enum": [
+                  "fields"
+                ]
+              }
+            }
+          },
+          "required": [
+            "select_query"
+          ],
+          "visible": [
+            "select_query",
+            "include_meta"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  }
+]

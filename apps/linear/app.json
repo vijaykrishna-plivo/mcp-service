@@ -1,0 +1,21 @@
+{
+  "name": "LINEAR",
+  "display_name": "Linear",
+  "logo": "https://raw.githubusercontent.com/aipotheosis-labs/aipolabs-icons/refs/heads/main/apps/linear.svg",
+  "provider": "Linear",
+  "version": "1.0",
+  "description": "Linear issue tracking and project management via its GraphQL API.",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": ""
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": [
+    "Project Management"
+  ],
+  "visibility": "public",
+  "active": true
+}

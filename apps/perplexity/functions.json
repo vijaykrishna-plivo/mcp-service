@@ -1,0 +1,1171 @@
+[
+  {
+    "name": "PERPLEXITY__CHAT_COMPLETIONS_CHAT_COMPLETIONS_POST",
+    "description": "Create Chat Completion",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/v1/sonar",
+      "server_url": "https://api.perplexity.ai"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "max_tokens": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "model": {
+              "type": "string",
+              "description": "Model to use, for example, sonar-pro",
+              "enum": [
+                "sonar",
+                "sonar-pro",
+                "sonar-deep-research",
+                "sonar-reasoning-pro"
+              ]
+            },
+            "stream": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "stop": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "temperature": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "top_p": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "response_format": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "messages": {
+              "type": "array",
+              "description": "Array of messages forming the conversation history",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "role": {
+                    "type": "string",
+                    "description": "Chat roles enum",
+                    "enum": [
+                      "system",
+                      "user",
+                      "assistant",
+                      "tool"
+                    ]
+                  },
+                  "content": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": true
+                  }
+                },
+                "required": [
+                  "role",
+                  "content"
+                ],
+                "visible": [
+                  "role",
+                  "content"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "web_search_options": {
+              "type": "object",
+              "properties": {
+                "search_context_size": {
+                  "type": "string",
+                  "description": "Amount of search context to include (low, medium, or high)",
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ],
+                  "default": "low"
+                },
+                "search_type": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "user_location": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "image_results_enhanced_relevance": {
+                  "type": "boolean",
+                  "description": "When true, applies enhanced relevance filtering to image results",
+                  "default": false
+                }
+              },
+              "required": [],
+              "visible": [
+                "search_context_size",
+                "search_type",
+                "user_location",
+                "image_results_enhanced_relevance"
+              ],
+              "additionalProperties": false,
+              "description": "Configuration options for web search behavior"
+            },
+            "search_mode": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "return_images": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "return_related_questions": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "enable_search_classifier": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "disable_search": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "search_domain_filter": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "search_language_filter": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "search_recency_filter": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "search_after_date_filter": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "search_before_date_filter": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "last_updated_before_filter": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "last_updated_after_filter": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "image_format_filter": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "image_domain_filter": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "stream_mode": {
+              "type": "string",
+              "description": "Controls the format of streaming events. 'full' suppresses reasoning events and includes metadata inline; 'concise' emits reasoning events separately",
+              "enum": [
+                "full",
+                "concise"
+              ],
+              "default": "full"
+            },
+            "reasoning_effort": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "language_preference": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "model",
+            "messages"
+          ],
+          "visible": [
+            "max_tokens",
+            "model",
+            "stream",
+            "stop",
+            "temperature",
+            "top_p",
+            "response_format",
+            "messages",
+            "web_search_options",
+            "search_mode",
+            "return_images",
+            "return_related_questions",
+            "enable_search_classifier",
+            "disable_search",
+            "search_domain_filter",
+            "search_language_filter",
+            "search_recency_filter",
+            "search_after_date_filter",
+            "search_before_date_filter",
+            "last_updated_before_filter",
+            "last_updated_after_filter",
+            "image_format_filter",
+            "image_domain_filter",
+            "stream_mode",
+            "reasoning_effort",
+            "language_preference"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PERPLEXITY__SEARCH_SEARCH_POST",
+    "description": "Search the Web",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/search",
+      "server_url": "https://api.perplexity.ai"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "country": {
+              "type": "string",
+              "description": "ISO 3166-1 alpha-2 country code"
+            },
+            "max_results": {
+              "type": "integer",
+              "description": "Maximum number of results to return",
+              "default": 10
+            },
+            "search_context_size": {
+              "type": "string",
+              "description": "Controls how much content is extracted from result pages.\n\n- `low` \u2014 short passages most relevant to the query.\n- `medium` \u2014 a balanced amount of content per document.\n- `high` (default) \u2014 detailed content relevant to the query.\n\nOmit when using `max_tokens` or `max_tokens_per_page`."
+            },
+            "max_tokens": {
+              "type": "integer",
+              "description": "Maximum total webpage content tokens to return across all search results"
+            },
+            "max_tokens_per_page": {
+              "type": "integer",
+              "description": "Maximum webpage content tokens to extract from each result page"
+            },
+            "query": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "search_language_filter": {
+              "type": "array",
+              "description": "ISO 639-1 language codes (2-character max)",
+              "items": {
+                "type": "string"
+              }
+            },
+            "search_domain_filter": {
+              "type": "array",
+              "description": "Limit search results to specific domains (max 20)",
+              "items": {
+                "type": "string"
+              }
+            },
+            "last_updated_after_filter": {
+              "type": "string",
+              "description": "Input: MM/DD/YYYY, Output: YYYY-MM-DD"
+            },
+            "last_updated_before_filter": {
+              "type": "string",
+              "description": "Input: MM/DD/YYYY, Output: YYYY-MM-DD"
+            },
+            "search_after_date_filter": {
+              "type": "string",
+              "description": "Input: MM/DD/YYYY, Output: YYYY-MM-DD"
+            },
+            "search_before_date_filter": {
+              "type": "string",
+              "description": "Input: MM/DD/YYYY, Output: YYYY-MM-DD"
+            },
+            "search_recency_filter": {
+              "type": "string",
+              "description": "Time-based recency filter for search results",
+              "enum": [
+                "hour",
+                "day",
+                "week",
+                "month",
+                "year"
+              ]
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "visible": [
+            "country",
+            "max_results",
+            "search_context_size",
+            "max_tokens",
+            "max_tokens_per_page",
+            "query",
+            "search_language_filter",
+            "search_domain_filter",
+            "last_updated_after_filter",
+            "last_updated_before_filter",
+            "search_after_date_filter",
+            "search_before_date_filter",
+            "search_recency_filter"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PERPLEXITY__EMBEDDINGS_V1_EMBEDDINGS_POST",
+    "description": "Create Embeddings",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/v1/embeddings",
+      "server_url": "https://api.perplexity.ai"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "model": {
+              "type": "string",
+              "description": "The embedding model to use",
+              "enum": [
+                "pplx-embed-v1-0.6b",
+                "pplx-embed-v1-4b"
+              ]
+            },
+            "dimensions": {
+              "type": "integer",
+              "description": "Number of dimensions for output embeddings (Matryoshka). Range: 128-1024 for pplx-embed-v1-0.6b, 128-2560 for pplx-embed-v1-4b. Defaults to full dimensions (1024 or 2560)."
+            },
+            "encoding_format": {
+              "type": "string",
+              "description": "Output encoding format for embeddings. base64_int8 returns base64-encoded signed int8 values. base64_binary returns base64-encoded packed binary (1 bit per dimension).",
+              "enum": [
+                "base64_int8",
+                "base64_binary"
+              ],
+              "default": "base64_int8"
+            }
+          },
+          "required": [
+            "input",
+            "model"
+          ],
+          "visible": [
+            "input",
+            "model",
+            "dimensions",
+            "encoding_format"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PERPLEXITY__CREATE_V1_CONTEXTUALIZEDEMBEDDINGS",
+    "description": "Create Contextualized Embeddings",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/v1/contextualizedembeddings",
+      "server_url": "https://api.perplexity.ai"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "array",
+              "description": "Nested array structure where each inner array contains chunks from a single document. Chunks within the same document are encoded with document-level context awareness. Maximum 512 documents. Total chunks across all documents must not exceed 16,000. Total tokens per document must not exceed 32K. All chunks in a single request must not exceed 120,000 tokens combined. Empty strings are not allowed.",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "model": {
+              "type": "string",
+              "description": "The contextualized embedding model to use",
+              "enum": [
+                "pplx-embed-context-v1-0.6b",
+                "pplx-embed-context-v1-4b"
+              ]
+            },
+            "dimensions": {
+              "type": "integer",
+              "description": "Number of dimensions for output embeddings (Matryoshka). Range: 128-1024 for pplx-embed-context-v1-0.6b, 128-2560 for pplx-embed-context-v1-4b. Defaults to full dimensions (1024 or 2560)."
+            },
+            "encoding_format": {
+              "type": "string",
+              "description": "Output encoding format for embeddings. base64_int8 returns base64-encoded signed int8 values. base64_binary returns base64-encoded packed binary (1 bit per dimension).",
+              "enum": [
+                "base64_int8",
+                "base64_binary"
+              ],
+              "default": "base64_int8"
+            }
+          },
+          "required": [
+            "input",
+            "model"
+          ],
+          "visible": [
+            "input",
+            "model",
+            "dimensions",
+            "encoding_format"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PERPLEXITY__GET_ASYNC_SONAR",
+    "description": "Get Async Chat Completion",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/v1/async/sonar/{api_request}",
+      "server_url": "https://api.perplexity.ai"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "api_request": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "api_request"
+          ],
+          "visible": [
+            "api_request"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "PERPLEXITY__GET_ASYNC_SONAR_2",
+    "description": "List Async Chat Completions",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/v1/async/sonar",
+      "server_url": "https://api.perplexity.ai"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "PERPLEXITY__CREATE_ASYNC_SONAR",
+    "description": "Create Async Chat Completion",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/v1/async/sonar",
+      "server_url": "https://api.perplexity.ai"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "request": {
+              "type": "object",
+              "properties": {
+                "max_tokens": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "model": {
+                  "type": "string",
+                  "description": "Model to use, for example, sonar-pro",
+                  "enum": [
+                    "sonar",
+                    "sonar-pro",
+                    "sonar-deep-research",
+                    "sonar-reasoning-pro"
+                  ]
+                },
+                "stream": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "stop": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "temperature": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "top_p": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "response_format": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "messages": {
+                  "type": "array",
+                  "description": "Array of messages forming the conversation history",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "role": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      },
+                      "content": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "role",
+                      "content"
+                    ],
+                    "visible": [
+                      "role",
+                      "content"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "web_search_options": {
+                  "type": "object",
+                  "properties": {
+                    "search_context_size": {
+                      "type": "string",
+                      "description": "Amount of search context to include (low, medium, or high)",
+                      "enum": [
+                        "low",
+                        "medium",
+                        "high"
+                      ],
+                      "default": "low"
+                    },
+                    "search_type": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "user_location": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "image_results_enhanced_relevance": {
+                      "type": "boolean",
+                      "description": "When true, applies enhanced relevance filtering to image results",
+                      "default": false
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "search_context_size",
+                    "search_type",
+                    "user_location",
+                    "image_results_enhanced_relevance"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Configuration options for web search behavior"
+                },
+                "search_mode": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "return_images": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "return_related_questions": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "enable_search_classifier": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "disable_search": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "search_domain_filter": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "search_language_filter": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "search_recency_filter": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "search_after_date_filter": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "search_before_date_filter": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "last_updated_before_filter": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "last_updated_after_filter": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "image_format_filter": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "image_domain_filter": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "stream_mode": {
+                  "type": "string",
+                  "description": "Controls the format of streaming events. 'full' suppresses reasoning events and includes metadata inline; 'concise' emits reasoning events separately",
+                  "enum": [
+                    "full",
+                    "concise"
+                  ],
+                  "default": "full"
+                },
+                "reasoning_effort": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "language_preference": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                }
+              },
+              "required": [
+                "model",
+                "messages"
+              ],
+              "visible": [
+                "max_tokens",
+                "model",
+                "stream",
+                "stop",
+                "temperature",
+                "top_p",
+                "response_format",
+                "messages",
+                "web_search_options",
+                "search_mode",
+                "return_images",
+                "return_related_questions",
+                "enable_search_classifier",
+                "disable_search",
+                "search_domain_filter",
+                "search_language_filter",
+                "search_recency_filter",
+                "search_after_date_filter",
+                "search_before_date_filter",
+                "last_updated_before_filter",
+                "last_updated_after_filter",
+                "image_format_filter",
+                "image_domain_filter",
+                "stream_mode",
+                "reasoning_effort",
+                "language_preference"
+              ],
+              "additionalProperties": false
+            },
+            "idempotency_key": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            }
+          },
+          "required": [
+            "request"
+          ],
+          "visible": [
+            "request",
+            "idempotency_key"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PERPLEXITY__CREATEAGENT",
+    "description": "Create Agent Response",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/v1/agent",
+      "server_url": "https://api.perplexity.ai"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "input": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true
+            },
+            "instructions": {
+              "type": "string",
+              "description": "System instructions for the model"
+            },
+            "language_preference": {
+              "type": "string",
+              "description": "ISO 639-1 language code for response language"
+            },
+            "max_output_tokens": {
+              "type": "integer",
+              "description": "Maximum tokens to generate"
+            },
+            "max_steps": {
+              "type": "integer",
+              "description": "Maximum number of research loop steps.\nIf provided, overrides the preset's max_steps value.\nMust be >= 1 if specified. Maximum allowed is 10.\n"
+            },
+            "model": {
+              "type": "string",
+              "description": "Model ID in provider/model format (e.g., \"openai/gpt-5\", \"anthropic/claude-sonnet-4-6\").\nIf models is also provided, models takes precedence.\nRequired if neither models nor preset is provided.\n"
+            },
+            "models": {
+              "type": "array",
+              "description": "Model fallback chain. Each model is in provider/model format.\nModels are tried in order until one succeeds.\nMax 5 models allowed. If set, takes precedence over single model field.\nThe response.model will reflect the model that actually succeeded.\n",
+              "items": {
+                "type": "string"
+              }
+            },
+            "preset": {
+              "type": "string",
+              "description": "Preset configuration name (e.g., \"fast-search\", \"pro-search\", \"deep-research\").\nPre-configured model with system prompt and search parameters.\nRequired if model is not provided.\n"
+            },
+            "reasoning": {
+              "type": "object",
+              "properties": {
+                "effort": {
+                  "type": "string",
+                  "description": "How much effort the model should spend on reasoning",
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high"
+                  ]
+                }
+              },
+              "required": [],
+              "visible": [
+                "effort"
+              ],
+              "additionalProperties": false
+            },
+            "response_format": {
+              "type": "object",
+              "properties": {
+                "json_schema": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string",
+                      "description": "Optional description of the schema"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name of the schema (1-64 alphanumeric chars)"
+                    },
+                    "schema": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "The JSON schema object"
+                    },
+                    "strict": {
+                      "type": "boolean",
+                      "description": "Whether to enforce strict schema validation"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "schema"
+                  ],
+                  "visible": [
+                    "description",
+                    "name",
+                    "schema",
+                    "strict"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Defines a JSON schema for structured output validation"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of response format",
+                  "enum": [
+                    "json_schema"
+                  ]
+                }
+              },
+              "required": [
+                "type"
+              ],
+              "visible": [
+                "json_schema",
+                "type"
+              ],
+              "additionalProperties": false,
+              "description": "Specifies the desired output format for the model response"
+            },
+            "stream": {
+              "type": "boolean",
+              "description": "If true, returns SSE stream instead of JSON"
+            },
+            "tools": {
+              "type": "array",
+              "description": "Tools available to the model",
+              "items": {
+                "type": "object",
+                "properties": {},
+                "required": [],
+                "visible": [],
+                "additionalProperties": true
+              }
+            }
+          },
+          "required": [
+            "input"
+          ],
+          "visible": [
+            "input",
+            "instructions",
+            "language_preference",
+            "max_output_tokens",
+            "max_steps",
+            "model",
+            "models",
+            "preset",
+            "reasoning",
+            "response_format",
+            "stream",
+            "tools"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "PERPLEXITY__LISTMODELS",
+    "description": "List Models",
+    "tags": [],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/v1/models",
+      "server_url": "https://api.perplexity.ai"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  }
+]

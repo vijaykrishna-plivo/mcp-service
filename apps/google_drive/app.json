@@ -1,0 +1,21 @@
+{
+  "name": "GOOGLE_DRIVE",
+  "display_name": "Drive API",
+  "logo": "https://raw.githubusercontent.com/aipotheosis-labs/aipolabs-icons/refs/heads/main/apps/google_drive.svg",
+  "provider": "Google",
+  "version": "1.0",
+  "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": "Bearer"
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": [
+    "File Storage"
+  ],
+  "visibility": "public",
+  "active": true
+}

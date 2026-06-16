@@ -1,0 +1,3864 @@
+[
+  {
+    "name": "ZENDESK__LISTORGANIZATIONS",
+    "description": "List Organizations",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/organizations",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "Pagination parameter. Supports both traditional offset and cursor-based pagination:\n\n- Traditional: `?page=2` (integer page number)\n- Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before)\n\nThese are mutually exclusive - use one format or the other, not both.\n"
+            },
+            "per_page": {
+              "type": "integer",
+              "description": "Number of records to return per page.\n\nNote: Default and maximum values vary by endpoint. Check endpoint-specific\ndocumentation for limits.\n"
+            },
+            "sort": {
+              "type": "string",
+              "description": "Field to sort results by. Prefix with `-` for descending order.\n\nWhen used with cursor pagination, this determines the cursor ordering.\n\nExample: `?sort=name` or `?sort=-created_at`\n"
+            },
+            "include_boundary_indicators": {
+              "type": "boolean",
+              "description": "When true, includes `has_more` indicator in the cursor pagination response meta.\n\nOnly valid with cursor pagination (page[size], page[after], page[before]).\n"
+            },
+            "include_item_cursors": {
+              "type": "boolean",
+              "description": "When true, includes cursor values for each item in the cursor pagination response.\n\nOnly valid with cursor pagination (page[size], page[after], page[before]).\n"
+            }
+          },
+          "required": [],
+          "visible": [
+            "page",
+            "per_page",
+            "sort",
+            "include_boundary_indicators",
+            "include_item_cursors"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__CREATEORGANIZATION",
+    "description": "Create Organization",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/api/v2/organizations",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "body": {
+          "type": "object",
+          "properties": {
+            "organization": {
+              "type": "object",
+              "properties": {
+                "created_at": {
+                  "type": "string",
+                  "description": "The time the organization was created"
+                },
+                "details": {
+                  "type": "string",
+                  "description": "Any details obout the organization, such as the address"
+                },
+                "domain_names": {
+                  "type": "array",
+                  "description": "An array of domain names associated with this organization",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "external_id": {
+                  "type": "string",
+                  "description": "A unique external id to associate organizations to an external record. The id is case-insensitive. For example, \"company1\" and \"Company1\" are considered the same"
+                },
+                "group_id": {
+                  "type": "integer",
+                  "description": "New tickets from users in this organization are automatically put in this group"
+                },
+                "id": {
+                  "type": "integer",
+                  "description": "Automatically assigned when the organization is created"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "A unique name for the organization"
+                },
+                "notes": {
+                  "type": "string",
+                  "description": "Any notes you have about the organization"
+                },
+                "organization_fields": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "Custom fields for this organization. See [Custom organization fields](/api-reference/ticketing/organizations/organizations/#custom-organization-fields)"
+                },
+                "shared_comments": {
+                  "type": "boolean",
+                  "description": "End users in this organization are able to comment on each other's tickets"
+                },
+                "shared_tickets": {
+                  "type": "boolean",
+                  "description": "End users in this organization are able to see each other's tickets"
+                },
+                "tags": {
+                  "type": "array",
+                  "description": "The tags of the organization",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "updated_at": {
+                  "type": "string",
+                  "description": "The time of the last update of the organization"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The API url of this organization"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "visible": [
+                "created_at",
+                "details",
+                "domain_names",
+                "external_id",
+                "group_id",
+                "id",
+                "name",
+                "notes",
+                "organization_fields",
+                "shared_comments",
+                "shared_tickets",
+                "tags",
+                "updated_at",
+                "url"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "organization"
+          ],
+          "visible": [
+            "organization"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__SHOWORGANIZATION",
+    "description": "Show Organization",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/organizations/{organization_id}",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "include": {
+              "type": "string",
+              "description": "Include additional related data. Supported values: `lookup_relationship_fields`.\n"
+            },
+            "include_boundary_indicators": {
+              "type": "boolean",
+              "description": "When true, includes `has_more` indicator in the cursor pagination response meta.\n\nOnly valid with cursor pagination (page[size], page[after], page[before]).\n"
+            },
+            "include_item_cursors": {
+              "type": "boolean",
+              "description": "When true, includes cursor values for each item in the cursor pagination response.\n\nOnly valid with cursor pagination (page[size], page[after], page[before]).\n"
+            }
+          },
+          "required": [],
+          "visible": [
+            "include",
+            "include_boundary_indicators",
+            "include_item_cursors"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__UPDATEORGANIZATION",
+    "description": "Update Organization",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/api/v2/organizations/{organization_id}",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__DELETEORGANIZATION",
+    "description": "Delete Organization",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/api/v2/organizations/{organization_id}",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__GET_ORGANIZATIONS_ORGANIZATION_MEMBERSHIPS",
+    "description": "List Organization Memberships by Organization",
+    "tags": [
+      "Organization Memberships"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/organizations/{organization_id}/organization_memberships",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__LISTORGANIZATIONREQUESTS",
+    "description": "List Organization Requests",
+    "tags": [
+      "Requests"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/organizations/{organization_id}/requests",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "sort_by": {
+              "type": "string",
+              "description": "Possible values are \"updated_at\", \"created_at\""
+            },
+            "sort_order": {
+              "type": "string",
+              "description": "One of \"asc\", \"desc\". Defaults to \"asc\""
+            }
+          },
+          "required": [],
+          "visible": [
+            "sort_by",
+            "sort_order"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__GET_ORGANIZATIONS_SUBSCRIPTIONS",
+    "description": "List Subscriptions By Organization",
+    "tags": [
+      "Organization Subscriptions",
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/organizations/{organization_id}/subscriptions",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__LISTORGANIZATIONTAGS",
+    "description": "List Organization Tags",
+    "tags": [
+      "Tags"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/organizations/{organization_id}/tags",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__SETORGANIZATIONTAGS",
+    "description": "Set Organization Tags",
+    "tags": [
+      "Tags"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/api/v2/organizations/{organization_id}/tags",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__ADDORGANIZATIONTAGS",
+    "description": "Add Organization Tags",
+    "tags": [
+      "Tags"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/api/v2/organizations/{organization_id}/tags",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__REMOVEORGANIZATIONTAGS",
+    "description": "Remove Organization Tags",
+    "tags": [
+      "Tags"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/api/v2/organizations/{organization_id}/tags",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__LISTORGANIZATIONTICKETS",
+    "description": "List Organization Tickets",
+    "tags": [
+      "Tickets"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/organizations/{organization_id}/tickets",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__LISTORGANIZATIONUSERS",
+    "description": "List Organization Users",
+    "tags": [
+      "Users"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/organizations/{organization_id}/users",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "organization_id": {
+              "type": "integer",
+              "description": "The ID of an organization"
+            }
+          },
+          "required": [
+            "organization_id"
+          ],
+          "visible": [
+            "organization_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "role": {
+              "type": "string",
+              "description": "Filters the results by role. Possible values are \"end-user\", \"agent\", \"admin\", or a custom role name\n"
+            },
+            "role[]": {
+              "type": "string",
+              "description": "Filters the results by more than one role using the format `role[]={role}&role[]={role}`\n"
+            },
+            "permission_set": {
+              "type": "integer",
+              "description": "For custom roles which is available on the Enterprise plan and above. You can only filter by one role ID per request"
+            },
+            "external_id": {
+              "type": "string",
+              "description": "List users by external id. External id has to be unique for each user under the same account."
+            },
+            "sort_by": {
+              "type": "string",
+              "enum": [
+                "id",
+                "name",
+                "created_at",
+                "updated_at"
+              ],
+              "description": "The field to sort users by"
+            },
+            "sort_order": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "default": "asc",
+              "description": "The sort order"
+            },
+            "page": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "Pagination parameter. Supports both traditional offset and cursor-based pagination:\n\n- Traditional: `?page=2` (integer page number)\n- Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before)\n\nThese are mutually exclusive - use one format or the other, not both.\n"
+            },
+            "per_page": {
+              "type": "integer",
+              "description": "Number of records to return per page.\n\nNote: Default and maximum values vary by endpoint. Check endpoint-specific\ndocumentation for limits.\n"
+            }
+          },
+          "required": [],
+          "visible": [
+            "role",
+            "role[]",
+            "permission_set",
+            "external_id",
+            "sort_by",
+            "sort_order",
+            "page",
+            "per_page"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__AUTOCOMPLETEORGANIZATIONS",
+    "description": "Autocomplete Organizations",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/organizations/autocomplete",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "A substring of an organization to search for"
+            },
+            "field_id": {
+              "type": "string",
+              "description": "The id of a lookup relationship field.  The type of field is determined\nby the `source` param\n"
+            },
+            "source": {
+              "type": "string",
+              "description": "If a `field_id` is provided, this specifies the type of the field.\nFor example, if the field is on a \"zen:user\", it references a field on a user\n"
+            },
+            "include_boundary_indicators": {
+              "type": "boolean",
+              "description": "When true, includes `has_more` indicator in the cursor pagination response meta.\n\nOnly valid with cursor pagination (page[size], page[after], page[before]).\n"
+            },
+            "include_item_cursors": {
+              "type": "boolean",
+              "description": "When true, includes cursor values for each item in the cursor pagination response.\n\nOnly valid with cursor pagination (page[size], page[after], page[before]).\n"
+            }
+          },
+          "required": [
+            "name"
+          ],
+          "visible": [
+            "name",
+            "field_id",
+            "source",
+            "include_boundary_indicators",
+            "include_item_cursors"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__CREATEMANYORGANIZATIONS",
+    "description": "Create Many Organizations",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/api/v2/organizations/create_many",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "ZENDESK__CREATEORUPDATEORGANIZATION",
+    "description": "Create Or Update Organization",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/api/v2/organizations/create_or_update",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [],
+      "additionalProperties": false,
+      "properties": {}
+    }
+  },
+  {
+    "name": "ZENDESK__DELETEMANYORGANIZATIONS",
+    "description": "Bulk Delete Organizations",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/api/v2/organizations/destroy_many",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "ids": {
+              "type": "string",
+              "description": "A list of organization ids"
+            },
+            "external_ids": {
+              "type": "string",
+              "description": "A list of external ids"
+            }
+          },
+          "required": [],
+          "visible": [
+            "ids",
+            "external_ids"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__SEARCHORGANIZATIONS",
+    "description": "Search Organizations",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/organizations/search",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "external_id": {
+              "type": "integer",
+              "description": "The external id of an organization"
+            },
+            "name": {
+              "type": "string",
+              "description": "The name of an organization"
+            }
+          },
+          "required": [],
+          "visible": [
+            "external_id",
+            "name"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__UPDATEMANYORGANIZATIONS",
+    "description": "Update Many Organizations",
+    "tags": [
+      "Organizations"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/api/v2/organizations/update_many",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "ids": {
+              "type": "string",
+              "description": "A list of organization ids"
+            },
+            "external_ids": {
+              "type": "string",
+              "description": "A list of external ids"
+            }
+          },
+          "required": [],
+          "visible": [
+            "ids",
+            "external_ids"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__LISTTICKETS",
+    "description": "List Tickets",
+    "tags": [
+      "Tickets"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/tickets",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [],
+      "visible": [
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "external_id": {
+              "type": "string",
+              "description": "Lists tickets by external id. External ids don't have to be unique for each ticket. As a result, the request may return multiple tickets with the same external id."
+            },
+            "sort_by": {
+              "type": "string",
+              "enum": [
+                "id",
+                "subject",
+                "deleted_at",
+                "created_at",
+                "updated_at",
+                "status",
+                "requester",
+                "requester.name",
+                "group",
+                "assignee",
+                "assignee.name"
+              ],
+              "description": "Sort by"
+            },
+            "sort_order": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "description": "Sort order. Defaults to \"asc\""
+            },
+            "support_type_scope": {
+              "type": "string",
+              "description": "Lists tickets by support type. Possible values are \"all\", \"agent\", or \"ai_agent\". Defaults to \"agent\"\n"
+            },
+            "page": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "Pagination parameter. Supports both traditional offset and cursor-based pagination:\n\n- Traditional: `?page=2` (integer page number)\n- Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before)\n\nThese are mutually exclusive - use one format or the other, not both.\n"
+            },
+            "per_page": {
+              "type": "integer",
+              "description": "Number of records to return per page.\n\nNote: Default and maximum values vary by endpoint. Check endpoint-specific\ndocumentation for limits.\n"
+            },
+            "sort": {
+              "type": "string",
+              "description": "Field to sort results by. Prefix with `-` for descending order.\n\nWhen used with cursor pagination, this determines the cursor ordering.\n\nExample: `?sort=name` or `?sort=-created_at`\n"
+            },
+            "include": {
+              "type": "string",
+              "description": "Sideloads to include in the response. Accepts a comma-separated list of values.\nSee [Sideloading](/api-reference/ticketing/tickets/tickets/#sideloading).\n"
+            },
+            "start_time": {
+              "type": "integer",
+              "description": "Unix epoch time to filter tickets. Only tickets created or updated after\nthis time are returned. Example: `?start_time=1332034771`\n"
+            }
+          },
+          "required": [],
+          "visible": [
+            "external_id",
+            "sort_by",
+            "sort_order",
+            "support_type_scope",
+            "page",
+            "per_page",
+            "sort",
+            "include",
+            "start_time"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__CREATETICKET",
+    "description": "Create Ticket",
+    "tags": [
+      "Tickets"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "POST",
+      "path": "/api/v2/tickets",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "body"
+      ],
+      "visible": [
+        "query",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "type": "object",
+          "properties": {
+            "include": {
+              "type": "string",
+              "description": "Sideloads to include in the response. Accepts a comma-separated list of values.\nSee [Sideloading](/api-reference/ticketing/tickets/tickets/#sideloading).\n"
+            }
+          },
+          "required": [],
+          "visible": [
+            "include"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "system_metadata": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "System metadata for the request, typically set by internal clients"
+            },
+            "ticket": {
+              "type": "object",
+              "properties": {
+                "additional_collaborators": {
+                  "type": "array",
+                  "description": "Write only. An array of numeric IDs, emails, or objects containing name and email properties. See [Setting Collaborators](/api-reference/ticketing/tickets/tickets/#setting-collaborators). An email notification is sent to them when the ticket is updated",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [],
+                    "visible": [
+                      "email",
+                      "name"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "allow_attachments": {
+                  "type": "boolean",
+                  "description": "Permission for agents to add add attachments to a comment. Defaults to true"
+                },
+                "allow_channelback": {
+                  "type": "boolean",
+                  "description": "Is false if channelback is disabled, true otherwise. Only applicable for channels framework ticket"
+                },
+                "assignee_email": {
+                  "type": "string",
+                  "description": "Write only. The email address of the agent to assign the ticket to"
+                },
+                "assignee_id": {
+                  "type": "integer",
+                  "description": "The agent currently assigned to the ticket"
+                },
+                "attribute_value_ids": {
+                  "type": "array",
+                  "description": "Write only. An array of the IDs of attribute values to be associated with the ticket",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "brand_id": {
+                  "type": "integer",
+                  "description": "The id of the brand this ticket is associated with. See [Setting up multiple brands](https://support.zendesk.com/hc/en-us/articles/4408829476378)"
+                },
+                "collaborator_ids": {
+                  "type": "array",
+                  "description": "The ids of users currently CC'ed on the ticket",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "collaborators": {
+                  "type": "array",
+                  "description": "Write only. Users to add as cc's when creating a ticket. See [Setting Collaborators](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-collaborators)",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [],
+                    "visible": [
+                      "email",
+                      "name"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "comment": {
+                  "type": "object",
+                  "properties": {
+                    "add_short_url": {
+                      "type": "boolean",
+                      "description": "Internal flag for adding short URLs to the comment"
+                    },
+                    "attachments": {
+                      "type": "array",
+                      "description": "Attachments, if any. See [Attachment](/api-reference/ticketing/tickets/ticket-attachments/)",
+                      "items": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "audit_id": {
+                      "type": "integer",
+                      "description": "The id of the ticket audit record. See [Show Audit](/api-reference/ticketing/tickets/ticket_audits/#show-audit)"
+                    },
+                    "author_id": {
+                      "type": "integer",
+                      "description": "The id of the comment author. If null or omitted on create, defaults to the authenticated user. See [Author id](#author-id)"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "The comment string. See [Bodies](#bodies)"
+                    },
+                    "channel_back": {
+                      "type": "string",
+                      "description": "Internal channel back identifier for the comment"
+                    },
+                    "channel_source_id": {
+                      "type": "string",
+                      "description": "Internal channel source identifier for the comment"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "The time the comment was created"
+                    },
+                    "html_body": {
+                      "type": "string",
+                      "description": "The comment formatted as HTML. See [Bodies](#bodies)"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "Automatically assigned when the comment is created"
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "System information (web client, IP address, etc.) and comment flags, if any. See [Comment flags](#comment-flags)"
+                    },
+                    "plain_body": {
+                      "type": "string",
+                      "description": "The comment presented as plain text. See [Bodies](#bodies)"
+                    },
+                    "public": {
+                      "type": "boolean",
+                      "description": "true if a public comment; false if an internal note. The initial value set on ticket creation persists for any additional comment unless you change it"
+                    },
+                    "translate_to": {
+                      "type": "string",
+                      "description": "The locale code to translate the comment body to."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "`Comment` or `VoiceComment`. The JSON object for adding voice comments to tickets is different. See [Adding voice comments to tickets](/documentation/ticketing/managing-tickets/adding-voice-comments-to-tickets)"
+                    },
+                    "uploads": {
+                      "type": "array",
+                      "description": "List of tokens received from [uploading files](/api-reference/ticketing/tickets/ticket-attachments/#upload-files) for comment attachments. The files are attached by creating or updating tickets with the tokens. See [Attaching files](/api-reference/ticketing/tickets/tickets/#attaching-files) in Tickets",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "via": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "Describes how the object was created. See the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference)"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "add_short_url",
+                    "attachments",
+                    "audit_id",
+                    "author_id",
+                    "body",
+                    "channel_back",
+                    "channel_source_id",
+                    "created_at",
+                    "html_body",
+                    "id",
+                    "metadata",
+                    "plain_body",
+                    "public",
+                    "translate_to",
+                    "type",
+                    "uploads",
+                    "via"
+                  ],
+                  "additionalProperties": false
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "When this record was created"
+                },
+                "custom_fields": {
+                  "type": "array",
+                  "description": "Custom field values to set on the ticket.\nEach entry specifies a field ID and its value.\nSee [Setting custom field values](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-custom-field-values)\n",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "description": "The ID of the custom field"
+                      },
+                      "value": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "visible": [
+                      "id",
+                      "value"
+                    ],
+                    "additionalProperties": false,
+                    "description": "A ticket custom field value assignment"
+                  }
+                },
+                "custom_status_id": {
+                  "type": "integer",
+                  "description": "The custom ticket status id of the ticket. See [custom ticket statuses](#custom-ticket-statuses)"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The first comment on the ticket. When [creating a ticket](#create-ticket), use `comment` to set the description.\nSee [Description and first comment](#description-and-first-comment).\nOn create, can be set directly as an alternative to `comment`. Silently ignored on update.\n"
+                },
+                "due_at": {
+                  "type": "string",
+                  "description": "If this is a ticket of type \"task\" it has a due date.  Due date format uses [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format"
+                },
+                "email_cc_ids": {
+                  "type": "array",
+                  "description": "The ids of agents or end users currently CC'ed on the ticket. See [CCs and followers resources](https://support.zendesk.com/hc/en-us/articles/4408822451482) in the Support Help Center",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "email_ccs": {
+                  "type": "array",
+                  "description": "Write only. An array of objects that represent agent or end users email CCs to add or delete from the ticket. See [Setting email CCs](/documentation/ticketing/managing-tickets/creating-and-updating-tickets/#setting-email-ccs). Ignored when [CCs and followers](https://support.zendesk.com/hc/en-us/articles/4408822451482) is not enabled",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": false
+                  }
+                },
+                "encoded_id": {
+                  "type": "string",
+                  "description": "An encoded string representing the ticket's unique identifier"
+                },
+                "external_id": {
+                  "type": "string",
+                  "description": "An id you can use to link Zendesk Support tickets to local records"
+                },
+                "fields": {
+                  "type": "array",
+                  "description": "Alias for custom_fields. Custom field values to set on the ticket.\nEach entry specifies a field ID and its value.\n",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "description": "The ID of the custom field"
+                      },
+                      "value": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "visible": [
+                      "id",
+                      "value"
+                    ],
+                    "additionalProperties": false,
+                    "description": "A ticket custom field value assignment"
+                  }
+                },
+                "follower_ids": {
+                  "type": "array",
+                  "description": "The ids of agents currently following the ticket. Ignored when [CCs and followers](https://support.zendesk.com/hc/en-us/articles/4408822451482) is not enabled",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "followers": {
+                  "type": "array",
+                  "description": "Write only. An array of objects that represents agent followers to add or delete from the ticket. See [Setting followers](/documentation/ticketing/managing-tickets/creating-and-updating-tickets/#setting-followers). Ignored when [CCs and followers](https://support.zendesk.com/hc/en-us/articles/4408822451482) is not enabled",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "enum": [
+                          "put",
+                          "delete"
+                        ]
+                      },
+                      "user_email": {
+                        "type": "string"
+                      },
+                      "user_id": {
+                        "type": "integer"
+                      },
+                      "user_name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [],
+                    "visible": [
+                      "action",
+                      "user_email",
+                      "user_id",
+                      "user_name"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "followup_ids": {
+                  "type": "array",
+                  "description": "The ids of the followups created from this ticket. Ids are only visible once the ticket is closed",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "forum_topic_id": {
+                  "type": "integer",
+                  "description": "The topic in the Zendesk Web portal this ticket originated from, if any. The Web portal is deprecated"
+                },
+                "from_messaging_channel": {
+                  "type": "boolean",
+                  "description": "If true, the ticket's [via type](/documentation/ticketing/reference-guides/via-object-reference/) is a messaging channel."
+                },
+                "generated_timestamp": {
+                  "type": "integer",
+                  "description": "A Unix timestamp that represents the most accurate reading of when this record was last updated. It is updated for all ticket updates, including system updates"
+                },
+                "group_id": {
+                  "type": "integer",
+                  "description": "The group this ticket is assigned to"
+                },
+                "has_incidents": {
+                  "type": "boolean",
+                  "description": "Is true if a ticket is a problem type and has one or more incidents linked to it. Otherwise, the value is false."
+                },
+                "id": {
+                  "type": "integer",
+                  "description": "Automatically assigned when the ticket is created"
+                },
+                "is_public": {
+                  "type": "boolean",
+                  "description": "Is true if any comments are public, false otherwise"
+                },
+                "macro_id": {
+                  "type": "integer",
+                  "description": "Write only. A single macro ID to be recorded in the ticket audit"
+                },
+                "macro_ids": {
+                  "type": "array",
+                  "description": "Write only. List of macro IDs to be recorded in the ticket audit",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "metadata": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "Write only. Metadata for the audit. In the `audit` object, the data is specified in the `custom` property of the `metadata` object. See [Setting Metadata](/documentation/ticketing/managing-tickets/creating-and-updating-tickets/#setting-metadata)"
+                },
+                "organization_id": {
+                  "type": "integer",
+                  "description": "The organization of the requester. You can only specify the ID of an organization associated with the requester. See [Organization Memberships](/api-reference/ticketing/organizations/organization_memberships/)"
+                },
+                "origin_zrn": {
+                  "type": "string",
+                  "description": "Write only. The Zendesk Resource Name (ZRN) of the origin for this ticket"
+                },
+                "priority": {
+                  "type": "string",
+                  "description": "The urgency with which the ticket should be addressed",
+                  "enum": [
+                    "urgent",
+                    "high",
+                    "normal",
+                    "low"
+                  ]
+                },
+                "problem_id": {
+                  "type": "integer",
+                  "description": "For tickets of type \"incident\", the ID of the problem the incident is linked to"
+                },
+                "raw_subject": {
+                  "type": "string",
+                  "description": "The dynamic content placeholder, if present, or the \"subject\" value, if not. See [Dynamic Content Items](/api-reference/ticketing/ticket-management/dynamic_content/).\nWhen set on create or update, overrides the `subject` field.\n"
+                },
+                "recipient": {
+                  "type": "string",
+                  "description": "The original recipient e-mail address of the ticket. Notification emails for the ticket are sent from this address"
+                },
+                "requester": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "requester_id": {
+                  "type": "integer",
+                  "description": "The user who requested this ticket"
+                },
+                "safe_update": {
+                  "type": "boolean",
+                  "description": "Write only. Optional boolean. When true and an `updated_stamp` date is included, protects against ticket update collisions and returns a message to let you know if one occurs. See [Protecting against ticket update collisions](/documentation/ticketing/managing-tickets/creating-and-updating-tickets/#protecting-against-ticket-update-collisions). A value of false has the same effect as true. Omit the property to force the updates to not be safe"
+                },
+                "satisfaction_probability": {
+                  "type": "number",
+                  "description": "The predicted satisfaction probability score"
+                },
+                "satisfaction_rating": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "The satisfaction rating of the ticket, if it exists, or the state of satisfaction, \"offered\" or \"unoffered\". The value is null for plan types that don't support CSAT"
+                },
+                "sharing_agreement_ids": {
+                  "type": "array",
+                  "description": "An array of the numeric IDs of sharing agreements. Note that this replaces any existing agreements",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "sharing_agreements": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "status": {
+                  "type": "string",
+                  "description": "The state of the ticket.\n\nIf your account has activated custom ticket statuses, this is the ticket's\nstatus category. See [custom ticket statuses](#custom-ticket-statuses)\n",
+                  "enum": [
+                    "new",
+                    "open",
+                    "pending",
+                    "hold",
+                    "solved",
+                    "closed"
+                  ]
+                },
+                "subject": {
+                  "type": "string",
+                  "description": "The value of the subject field for this ticket. See [Subject](/api-reference/ticketing/tickets/tickets/#subject)\n"
+                },
+                "submitter_id": {
+                  "type": "integer",
+                  "description": "The user who submitted the ticket. The submitter always becomes the\nauthor of the first comment on the ticket.\n\nIf not specified, defaults to the authenticated user.\n"
+                },
+                "support_type": {
+                  "type": "string",
+                  "description": "The type of support that handled the ticket",
+                  "enum": [
+                    "agent",
+                    "ai_agent"
+                  ]
+                },
+                "suspended_ticket_id": {
+                  "type": "integer",
+                  "description": "Write only. The ID of the suspended ticket being recovered"
+                },
+                "suspension_type_id": {
+                  "type": "integer",
+                  "description": "Write only. The suspension type ID when recovering a suspended ticket"
+                },
+                "system_metadata": {
+                  "type": "object",
+                  "properties": {
+                    "client": {
+                      "type": "string"
+                    },
+                    "ip_address": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "client",
+                    "ip_address"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Write only. System metadata for the ticket, typically set by internal clients"
+                },
+                "tags": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "tde_workspace": {
+                  "type": "object",
+                  "properties": {
+                    "previous_workspace": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [],
+                      "visible": [
+                        "id",
+                        "title"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "ADD",
+                        "CHANGE",
+                        "DELETE"
+                      ]
+                    },
+                    "workspace": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [],
+                      "visible": [
+                        "id",
+                        "title"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "previous_workspace",
+                    "type",
+                    "workspace"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Write only. TDE workspace information for the ticket"
+                },
+                "ticket_form_id": {
+                  "type": "integer",
+                  "description": "Enterprise only. The id of the ticket form to render for the ticket"
+                },
+                "tpe_voice_comment": {
+                  "type": "object",
+                  "properties": {
+                    "agent_id": {
+                      "type": "integer"
+                    },
+                    "answering_machine_detection_status": {
+                      "type": "string"
+                    },
+                    "app_id": {
+                      "type": "integer"
+                    },
+                    "app_name": {
+                      "type": "string"
+                    },
+                    "author_id": {
+                      "type": "integer"
+                    },
+                    "call_connected_at": {
+                      "type": "string"
+                    },
+                    "call_disposition": {
+                      "type": "string"
+                    },
+                    "call_ended_at": {
+                      "type": "string"
+                    },
+                    "call_id": {
+                      "type": "integer"
+                    },
+                    "call_recording_consent": {
+                      "type": "string"
+                    },
+                    "call_recording_consent_action": {
+                      "type": "string"
+                    },
+                    "call_recording_consent_keypress": {
+                      "type": "string"
+                    },
+                    "call_started_at": {
+                      "type": "string"
+                    },
+                    "call_type": {
+                      "type": "string"
+                    },
+                    "callback_number": {
+                      "type": "string"
+                    },
+                    "callback_requested_at": {
+                      "type": "string"
+                    },
+                    "completion_status": {
+                      "type": "string"
+                    },
+                    "connection_attempts": {
+                      "type": "integer"
+                    },
+                    "consultation_time": {
+                      "type": "integer"
+                    },
+                    "direction": {
+                      "type": "string"
+                    },
+                    "disconnection_reason": {
+                      "type": "string"
+                    },
+                    "dnis": {
+                      "type": "string"
+                    },
+                    "duration": {
+                      "type": "integer"
+                    },
+                    "end_user_id": {
+                      "type": "integer"
+                    },
+                    "end_user_location": {
+                      "type": "string"
+                    },
+                    "exceeded_queue_time": {
+                      "type": "boolean"
+                    },
+                    "extension": {
+                      "type": "string"
+                    },
+                    "external_id": {
+                      "type": "string"
+                    },
+                    "from_line": {
+                      "type": "string"
+                    },
+                    "from_line_nickname": {
+                      "type": "string"
+                    },
+                    "hold_time": {
+                      "type": "integer"
+                    },
+                    "intent": {
+                      "type": "string"
+                    },
+                    "ivr_destination_group_name": {
+                      "type": "string"
+                    },
+                    "ivr_time_spent": {
+                      "type": "integer"
+                    },
+                    "language": {
+                      "type": "string"
+                    },
+                    "line_type": {
+                      "type": "string"
+                    },
+                    "longest_hold_time": {
+                      "type": "integer"
+                    },
+                    "number_of_holds": {
+                      "type": "integer"
+                    },
+                    "outside_business_hours": {
+                      "type": "boolean"
+                    },
+                    "overflowed_to": {
+                      "type": "string"
+                    },
+                    "phone_name": {
+                      "type": "string"
+                    },
+                    "public": {
+                      "type": "boolean"
+                    },
+                    "quality_score": {
+                      "type": "integer"
+                    },
+                    "queue_name": {
+                      "type": "string"
+                    },
+                    "queue_time": {
+                      "type": "integer"
+                    },
+                    "recorded": {
+                      "type": "boolean"
+                    },
+                    "recording_time": {
+                      "type": "integer"
+                    },
+                    "recording_type": {
+                      "type": "string"
+                    },
+                    "recording_url": {
+                      "type": "string"
+                    },
+                    "sentiment_agent": {
+                      "type": "string"
+                    },
+                    "sentiment_call": {
+                      "type": "string"
+                    },
+                    "sentiment_customer": {
+                      "type": "string"
+                    },
+                    "sentiment_trend": {
+                      "type": "string"
+                    },
+                    "short_summary": {
+                      "type": "string"
+                    },
+                    "summary": {
+                      "type": "string"
+                    },
+                    "talk_time": {
+                      "type": "integer"
+                    },
+                    "time_to_answer": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "to_line": {
+                      "type": "string"
+                    },
+                    "to_line_nickname": {
+                      "type": "string"
+                    },
+                    "transcript": {
+                      "type": "string"
+                    },
+                    "via_id": {
+                      "type": "integer"
+                    },
+                    "video_recording_url": {
+                      "type": "string"
+                    },
+                    "voicemail": {
+                      "type": "boolean"
+                    },
+                    "voicemail_requested_at": {
+                      "type": "string"
+                    },
+                    "wait_time": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "agent_id",
+                    "answering_machine_detection_status",
+                    "app_id",
+                    "app_name",
+                    "author_id",
+                    "call_connected_at",
+                    "call_disposition",
+                    "call_ended_at",
+                    "call_id",
+                    "call_recording_consent",
+                    "call_recording_consent_action",
+                    "call_recording_consent_keypress",
+                    "call_started_at",
+                    "call_type",
+                    "callback_number",
+                    "callback_requested_at",
+                    "completion_status",
+                    "connection_attempts",
+                    "consultation_time",
+                    "direction",
+                    "disconnection_reason",
+                    "dnis",
+                    "duration",
+                    "end_user_id",
+                    "end_user_location",
+                    "exceeded_queue_time",
+                    "extension",
+                    "external_id",
+                    "from_line",
+                    "from_line_nickname",
+                    "hold_time",
+                    "intent",
+                    "ivr_destination_group_name",
+                    "ivr_time_spent",
+                    "language",
+                    "line_type",
+                    "longest_hold_time",
+                    "number_of_holds",
+                    "outside_business_hours",
+                    "overflowed_to",
+                    "phone_name",
+                    "public",
+                    "quality_score",
+                    "queue_name",
+                    "queue_time",
+                    "recorded",
+                    "recording_time",
+                    "recording_type",
+                    "recording_url",
+                    "sentiment_agent",
+                    "sentiment_call",
+                    "sentiment_customer",
+                    "sentiment_trend",
+                    "short_summary",
+                    "summary",
+                    "talk_time",
+                    "time_to_answer",
+                    "title",
+                    "to_line",
+                    "to_line_nickname",
+                    "transcript",
+                    "via_id",
+                    "video_recording_url",
+                    "voicemail",
+                    "voicemail_requested_at",
+                    "wait_time"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Write only. A TPE voice comment for Talk Partner Edition tickets"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of this ticket",
+                  "enum": [
+                    "problem",
+                    "incident",
+                    "question",
+                    "task"
+                  ]
+                },
+                "updated_at": {
+                  "type": "string",
+                  "description": "When this record last got updated. It is updated only if the update generates a [ticket event](#incremental-ticket-event-export)"
+                },
+                "updated_stamp": {
+                  "type": "string",
+                  "description": "Write only. Datetime of last update received from API. See the `safe_update` property"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The API url of this ticket"
+                },
+                "via": {
+                  "type": "object",
+                  "properties": {
+                    "channel": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "source": {
+                      "type": "object",
+                      "properties": {
+                        "from": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "rel": {
+                          "type": "string"
+                        },
+                        "to": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        }
+                      },
+                      "required": [],
+                      "visible": [
+                        "from",
+                        "rel",
+                        "to"
+                      ],
+                      "additionalProperties": true,
+                      "description": "For some channels a source object gives more information about how or why the ticket or event was created\n"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "channel",
+                    "source"
+                  ],
+                  "additionalProperties": false,
+                  "description": "An object explaining how the ticket was created. See the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference)\n"
+                },
+                "via_followup_source_id": {
+                  "type": "integer",
+                  "description": "Write only. The id of a closed ticket when creating a follow-up ticket. See [Creating a follow-up ticket](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#creating-a-follow-up-ticket)"
+                },
+                "via_id": {
+                  "type": "integer",
+                  "description": "Write only. For more information, see the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference/)"
+                },
+                "voice_comment": {
+                  "type": "object",
+                  "properties": {
+                    "answered_by_id": {
+                      "type": "integer",
+                      "description": "The agent who answered the call"
+                    },
+                    "call_duration": {
+                      "type": "integer",
+                      "description": "Duration of the call in seconds"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Incoming phone number"
+                    },
+                    "location": {
+                      "type": "string",
+                      "description": "Location of the caller"
+                    },
+                    "recording_url": {
+                      "type": "string",
+                      "description": "URL of the recording"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Dialed phone number"
+                    },
+                    "transcription_text": {
+                      "type": "string",
+                      "description": "Transcription of the call"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "answered_by_id",
+                    "call_duration",
+                    "from",
+                    "location",
+                    "recording_url",
+                    "to",
+                    "transcription_text"
+                  ],
+                  "additionalProperties": true,
+                  "description": "Write only. A voice comment for Talk tickets. See [Adding voice comments to tickets](/documentation/ticketing/managing-tickets/adding-voice-comments-to-tickets/)"
+                }
+              },
+              "required": [],
+              "visible": [
+                "additional_collaborators",
+                "allow_attachments",
+                "allow_channelback",
+                "assignee_email",
+                "assignee_id",
+                "attribute_value_ids",
+                "brand_id",
+                "collaborator_ids",
+                "collaborators",
+                "comment",
+                "created_at",
+                "custom_fields",
+                "custom_status_id",
+                "description",
+                "due_at",
+                "email_cc_ids",
+                "email_ccs",
+                "encoded_id",
+                "external_id",
+                "fields",
+                "follower_ids",
+                "followers",
+                "followup_ids",
+                "forum_topic_id",
+                "from_messaging_channel",
+                "generated_timestamp",
+                "group_id",
+                "has_incidents",
+                "id",
+                "is_public",
+                "macro_id",
+                "macro_ids",
+                "metadata",
+                "organization_id",
+                "origin_zrn",
+                "priority",
+                "problem_id",
+                "raw_subject",
+                "recipient",
+                "requester",
+                "requester_id",
+                "safe_update",
+                "satisfaction_probability",
+                "satisfaction_rating",
+                "sharing_agreement_ids",
+                "sharing_agreements",
+                "status",
+                "subject",
+                "submitter_id",
+                "support_type",
+                "suspended_ticket_id",
+                "suspension_type_id",
+                "system_metadata",
+                "tags",
+                "tde_workspace",
+                "ticket_form_id",
+                "tpe_voice_comment",
+                "type",
+                "updated_at",
+                "updated_stamp",
+                "url",
+                "via",
+                "via_followup_source_id",
+                "via_id",
+                "voice_comment"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "visible": [
+            "system_metadata",
+            "ticket"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__SHOWTICKET",
+    "description": "Show Ticket",
+    "tags": [
+      "Tickets"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/tickets/{ticket_id}",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticket_id": {
+              "type": "integer",
+              "description": "The ID of the ticket"
+            }
+          },
+          "required": [
+            "ticket_id"
+          ],
+          "visible": [
+            "ticket_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "include": {
+              "type": "string",
+              "description": "Sideloads to include in the response. Accepts a comma-separated list of values.\nSee [Sideloading](/api-reference/ticketing/tickets/tickets/#sideloading).\n"
+            },
+            "reduced_payload_size": {
+              "type": "boolean",
+              "description": "When true, returns a reduced ticket payload (omits null custom fields)."
+            },
+            "remove_duplicate_fields": {
+              "type": "boolean",
+              "description": "When true, removes duplicate custom field entries from the response."
+            }
+          },
+          "required": [],
+          "visible": [
+            "include",
+            "reduced_payload_size",
+            "remove_duplicate_fields"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__UPDATETICKET",
+    "description": "Update Ticket",
+    "tags": [
+      "Tickets"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/api/v2/tickets/{ticket_id}",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path",
+        "body"
+      ],
+      "visible": [
+        "path",
+        "body"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticket_id": {
+              "type": "integer",
+              "description": "The ID of the ticket"
+            }
+          },
+          "required": [
+            "ticket_id"
+          ],
+          "visible": [
+            "ticket_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "body": {
+          "type": "object",
+          "properties": {
+            "system_metadata": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "System metadata for the request, typically set by internal clients"
+            },
+            "ticket": {
+              "type": "object",
+              "properties": {
+                "additional_collaborators": {
+                  "type": "array",
+                  "description": "Write only. An array of numeric IDs, emails, or objects containing name and email properties. See [Setting Collaborators](/api-reference/ticketing/tickets/tickets/#setting-collaborators). An email notification is sent to them when the ticket is updated",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [],
+                    "visible": [
+                      "email",
+                      "name"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "allow_attachments": {
+                  "type": "boolean",
+                  "description": "Permission for agents to add add attachments to a comment. Defaults to true"
+                },
+                "allow_channelback": {
+                  "type": "boolean",
+                  "description": "Is false if channelback is disabled, true otherwise. Only applicable for channels framework ticket"
+                },
+                "assignee_email": {
+                  "type": "string",
+                  "description": "Write only. The email address of the agent to assign the ticket to"
+                },
+                "assignee_id": {
+                  "type": "integer",
+                  "description": "The agent currently assigned to the ticket"
+                },
+                "attribute_value_ids": {
+                  "type": "array",
+                  "description": "Write only. An array of the IDs of attribute values to be associated with the ticket",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "brand_id": {
+                  "type": "integer",
+                  "description": "The id of the brand this ticket is associated with. See [Setting up multiple brands](https://support.zendesk.com/hc/en-us/articles/4408829476378)"
+                },
+                "collaborator_ids": {
+                  "type": "array",
+                  "description": "The ids of users currently CC'ed on the ticket",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "collaborators": {
+                  "type": "array",
+                  "description": "Write only. Users to add as cc's when creating a ticket. See [Setting Collaborators](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-collaborators)",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [],
+                    "visible": [
+                      "email",
+                      "name"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "comment": {
+                  "type": "object",
+                  "properties": {
+                    "add_short_url": {
+                      "type": "boolean",
+                      "description": "Internal flag for adding short URLs to the comment"
+                    },
+                    "attachments": {
+                      "type": "array",
+                      "description": "Attachments, if any. See [Attachment](/api-reference/ticketing/tickets/ticket-attachments/)",
+                      "items": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "audit_id": {
+                      "type": "integer",
+                      "description": "The id of the ticket audit record. See [Show Audit](/api-reference/ticketing/tickets/ticket_audits/#show-audit)"
+                    },
+                    "author_id": {
+                      "type": "integer",
+                      "description": "The id of the comment author. If null or omitted on create, defaults to the authenticated user. See [Author id](#author-id)"
+                    },
+                    "body": {
+                      "type": "string",
+                      "description": "The comment string. See [Bodies](#bodies)"
+                    },
+                    "channel_back": {
+                      "type": "string",
+                      "description": "Internal channel back identifier for the comment"
+                    },
+                    "channel_source_id": {
+                      "type": "string",
+                      "description": "Internal channel source identifier for the comment"
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "The time the comment was created"
+                    },
+                    "html_body": {
+                      "type": "string",
+                      "description": "The comment formatted as HTML. See [Bodies](#bodies)"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "description": "Automatically assigned when the comment is created"
+                    },
+                    "metadata": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "System information (web client, IP address, etc.) and comment flags, if any. See [Comment flags](#comment-flags)"
+                    },
+                    "plain_body": {
+                      "type": "string",
+                      "description": "The comment presented as plain text. See [Bodies](#bodies)"
+                    },
+                    "public": {
+                      "type": "boolean",
+                      "description": "true if a public comment; false if an internal note. The initial value set on ticket creation persists for any additional comment unless you change it"
+                    },
+                    "translate_to": {
+                      "type": "string",
+                      "description": "The locale code to translate the comment body to."
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "`Comment` or `VoiceComment`. The JSON object for adding voice comments to tickets is different. See [Adding voice comments to tickets](/documentation/ticketing/managing-tickets/adding-voice-comments-to-tickets)"
+                    },
+                    "uploads": {
+                      "type": "array",
+                      "description": "List of tokens received from [uploading files](/api-reference/ticketing/tickets/ticket-attachments/#upload-files) for comment attachments. The files are attached by creating or updating tickets with the tokens. See [Attaching files](/api-reference/ticketing/tickets/tickets/#attaching-files) in Tickets",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "via": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true,
+                      "description": "Describes how the object was created. See the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference)"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "add_short_url",
+                    "attachments",
+                    "audit_id",
+                    "author_id",
+                    "body",
+                    "channel_back",
+                    "channel_source_id",
+                    "created_at",
+                    "html_body",
+                    "id",
+                    "metadata",
+                    "plain_body",
+                    "public",
+                    "translate_to",
+                    "type",
+                    "uploads",
+                    "via"
+                  ],
+                  "additionalProperties": false
+                },
+                "created_at": {
+                  "type": "string",
+                  "description": "When this record was created"
+                },
+                "custom_fields": {
+                  "type": "array",
+                  "description": "Custom field values to set on the ticket.\nEach entry specifies a field ID and its value.\nSee [Setting custom field values](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#setting-custom-field-values)\n",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "description": "The ID of the custom field"
+                      },
+                      "value": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "visible": [
+                      "id",
+                      "value"
+                    ],
+                    "additionalProperties": false,
+                    "description": "A ticket custom field value assignment"
+                  }
+                },
+                "custom_status_id": {
+                  "type": "integer",
+                  "description": "The custom ticket status id of the ticket. See [custom ticket statuses](#custom-ticket-statuses)"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "The first comment on the ticket. When [creating a ticket](#create-ticket), use `comment` to set the description.\nSee [Description and first comment](#description-and-first-comment).\nOn create, can be set directly as an alternative to `comment`. Silently ignored on update.\n"
+                },
+                "due_at": {
+                  "type": "string",
+                  "description": "If this is a ticket of type \"task\" it has a due date.  Due date format uses [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format"
+                },
+                "email_cc_ids": {
+                  "type": "array",
+                  "description": "The ids of agents or end users currently CC'ed on the ticket. See [CCs and followers resources](https://support.zendesk.com/hc/en-us/articles/4408822451482) in the Support Help Center",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "email_ccs": {
+                  "type": "array",
+                  "description": "Write only. An array of objects that represent agent or end users email CCs to add or delete from the ticket. See [Setting email CCs](/documentation/ticketing/managing-tickets/creating-and-updating-tickets/#setting-email-ccs). Ignored when [CCs and followers](https://support.zendesk.com/hc/en-us/articles/4408822451482) is not enabled",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "required": [],
+                    "visible": [],
+                    "additionalProperties": false
+                  }
+                },
+                "encoded_id": {
+                  "type": "string",
+                  "description": "An encoded string representing the ticket's unique identifier"
+                },
+                "external_id": {
+                  "type": "string",
+                  "description": "An id you can use to link Zendesk Support tickets to local records"
+                },
+                "fields": {
+                  "type": "array",
+                  "description": "Alias for custom_fields. Custom field values to set on the ticket.\nEach entry specifies a field ID and its value.\n",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer",
+                        "description": "The ID of the custom field"
+                      },
+                      "value": {
+                        "type": "object",
+                        "properties": {},
+                        "required": [],
+                        "visible": [],
+                        "additionalProperties": true
+                      }
+                    },
+                    "required": [
+                      "id"
+                    ],
+                    "visible": [
+                      "id",
+                      "value"
+                    ],
+                    "additionalProperties": false,
+                    "description": "A ticket custom field value assignment"
+                  }
+                },
+                "follower_ids": {
+                  "type": "array",
+                  "description": "The ids of agents currently following the ticket. Ignored when [CCs and followers](https://support.zendesk.com/hc/en-us/articles/4408822451482) is not enabled",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "followers": {
+                  "type": "array",
+                  "description": "Write only. An array of objects that represents agent followers to add or delete from the ticket. See [Setting followers](/documentation/ticketing/managing-tickets/creating-and-updating-tickets/#setting-followers). Ignored when [CCs and followers](https://support.zendesk.com/hc/en-us/articles/4408822451482) is not enabled",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "action": {
+                        "type": "string",
+                        "enum": [
+                          "put",
+                          "delete"
+                        ]
+                      },
+                      "user_email": {
+                        "type": "string"
+                      },
+                      "user_id": {
+                        "type": "integer"
+                      },
+                      "user_name": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [],
+                    "visible": [
+                      "action",
+                      "user_email",
+                      "user_id",
+                      "user_name"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "followup_ids": {
+                  "type": "array",
+                  "description": "The ids of the followups created from this ticket. Ids are only visible once the ticket is closed",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "forum_topic_id": {
+                  "type": "integer",
+                  "description": "The topic in the Zendesk Web portal this ticket originated from, if any. The Web portal is deprecated"
+                },
+                "from_messaging_channel": {
+                  "type": "boolean",
+                  "description": "If true, the ticket's [via type](/documentation/ticketing/reference-guides/via-object-reference/) is a messaging channel."
+                },
+                "generated_timestamp": {
+                  "type": "integer",
+                  "description": "A Unix timestamp that represents the most accurate reading of when this record was last updated. It is updated for all ticket updates, including system updates"
+                },
+                "group_id": {
+                  "type": "integer",
+                  "description": "The group this ticket is assigned to"
+                },
+                "has_incidents": {
+                  "type": "boolean",
+                  "description": "Is true if a ticket is a problem type and has one or more incidents linked to it. Otherwise, the value is false."
+                },
+                "id": {
+                  "type": "integer",
+                  "description": "Automatically assigned when the ticket is created"
+                },
+                "is_public": {
+                  "type": "boolean",
+                  "description": "Is true if any comments are public, false otherwise"
+                },
+                "macro_id": {
+                  "type": "integer",
+                  "description": "Write only. A single macro ID to be recorded in the ticket audit"
+                },
+                "macro_ids": {
+                  "type": "array",
+                  "description": "Write only. List of macro IDs to be recorded in the ticket audit",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "metadata": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "Write only. Metadata for the audit. In the `audit` object, the data is specified in the `custom` property of the `metadata` object. See [Setting Metadata](/documentation/ticketing/managing-tickets/creating-and-updating-tickets/#setting-metadata)"
+                },
+                "organization_id": {
+                  "type": "integer",
+                  "description": "The organization of the requester. You can only specify the ID of an organization associated with the requester. See [Organization Memberships](/api-reference/ticketing/organizations/organization_memberships/)"
+                },
+                "origin_zrn": {
+                  "type": "string",
+                  "description": "Write only. The Zendesk Resource Name (ZRN) of the origin for this ticket"
+                },
+                "priority": {
+                  "type": "string",
+                  "description": "The urgency with which the ticket should be addressed",
+                  "enum": [
+                    "urgent",
+                    "high",
+                    "normal",
+                    "low"
+                  ]
+                },
+                "problem_id": {
+                  "type": "integer",
+                  "description": "For tickets of type \"incident\", the ID of the problem the incident is linked to"
+                },
+                "raw_subject": {
+                  "type": "string",
+                  "description": "The dynamic content placeholder, if present, or the \"subject\" value, if not. See [Dynamic Content Items](/api-reference/ticketing/ticket-management/dynamic_content/).\nWhen set on create or update, overrides the `subject` field.\n"
+                },
+                "recipient": {
+                  "type": "string",
+                  "description": "The original recipient e-mail address of the ticket. Notification emails for the ticket are sent from this address"
+                },
+                "requester": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "requester_id": {
+                  "type": "integer",
+                  "description": "The user who requested this ticket"
+                },
+                "safe_update": {
+                  "type": "boolean",
+                  "description": "Write only. Optional boolean. When true and an `updated_stamp` date is included, protects against ticket update collisions and returns a message to let you know if one occurs. See [Protecting against ticket update collisions](/documentation/ticketing/managing-tickets/creating-and-updating-tickets/#protecting-against-ticket-update-collisions). A value of false has the same effect as true. Omit the property to force the updates to not be safe"
+                },
+                "satisfaction_probability": {
+                  "type": "number",
+                  "description": "The predicted satisfaction probability score"
+                },
+                "satisfaction_rating": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true,
+                  "description": "The satisfaction rating of the ticket, if it exists, or the state of satisfaction, \"offered\" or \"unoffered\". The value is null for plan types that don't support CSAT"
+                },
+                "sharing_agreement_ids": {
+                  "type": "array",
+                  "description": "An array of the numeric IDs of sharing agreements. Note that this replaces any existing agreements",
+                  "items": {
+                    "type": "integer"
+                  }
+                },
+                "sharing_agreements": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "status": {
+                  "type": "string",
+                  "description": "The state of the ticket.\n\nIf your account has activated custom ticket statuses, this is the ticket's\nstatus category. See [custom ticket statuses](#custom-ticket-statuses)\n",
+                  "enum": [
+                    "new",
+                    "open",
+                    "pending",
+                    "hold",
+                    "solved",
+                    "closed"
+                  ]
+                },
+                "subject": {
+                  "type": "string",
+                  "description": "The value of the subject field for this ticket. See [Subject](/api-reference/ticketing/tickets/tickets/#subject)\n"
+                },
+                "submitter_id": {
+                  "type": "integer",
+                  "description": "The user who submitted the ticket. The submitter always becomes the\nauthor of the first comment on the ticket.\n\nIf not specified, defaults to the authenticated user.\n"
+                },
+                "support_type": {
+                  "type": "string",
+                  "description": "The type of support that handled the ticket",
+                  "enum": [
+                    "agent",
+                    "ai_agent"
+                  ]
+                },
+                "suspended_ticket_id": {
+                  "type": "integer",
+                  "description": "Write only. The ID of the suspended ticket being recovered"
+                },
+                "suspension_type_id": {
+                  "type": "integer",
+                  "description": "Write only. The suspension type ID when recovering a suspended ticket"
+                },
+                "system_metadata": {
+                  "type": "object",
+                  "properties": {
+                    "client": {
+                      "type": "string"
+                    },
+                    "ip_address": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "client",
+                    "ip_address"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Write only. System metadata for the ticket, typically set by internal clients"
+                },
+                "tags": {
+                  "type": "object",
+                  "properties": {},
+                  "required": [],
+                  "visible": [],
+                  "additionalProperties": true
+                },
+                "tde_workspace": {
+                  "type": "object",
+                  "properties": {
+                    "previous_workspace": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [],
+                      "visible": [
+                        "id",
+                        "title"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "ADD",
+                        "CHANGE",
+                        "DELETE"
+                      ]
+                    },
+                    "workspace": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "title": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [],
+                      "visible": [
+                        "id",
+                        "title"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "previous_workspace",
+                    "type",
+                    "workspace"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Write only. TDE workspace information for the ticket"
+                },
+                "ticket_form_id": {
+                  "type": "integer",
+                  "description": "Enterprise only. The id of the ticket form to render for the ticket"
+                },
+                "tpe_voice_comment": {
+                  "type": "object",
+                  "properties": {
+                    "agent_id": {
+                      "type": "integer"
+                    },
+                    "answering_machine_detection_status": {
+                      "type": "string"
+                    },
+                    "app_id": {
+                      "type": "integer"
+                    },
+                    "app_name": {
+                      "type": "string"
+                    },
+                    "author_id": {
+                      "type": "integer"
+                    },
+                    "call_connected_at": {
+                      "type": "string"
+                    },
+                    "call_disposition": {
+                      "type": "string"
+                    },
+                    "call_ended_at": {
+                      "type": "string"
+                    },
+                    "call_id": {
+                      "type": "integer"
+                    },
+                    "call_recording_consent": {
+                      "type": "string"
+                    },
+                    "call_recording_consent_action": {
+                      "type": "string"
+                    },
+                    "call_recording_consent_keypress": {
+                      "type": "string"
+                    },
+                    "call_started_at": {
+                      "type": "string"
+                    },
+                    "call_type": {
+                      "type": "string"
+                    },
+                    "callback_number": {
+                      "type": "string"
+                    },
+                    "callback_requested_at": {
+                      "type": "string"
+                    },
+                    "completion_status": {
+                      "type": "string"
+                    },
+                    "connection_attempts": {
+                      "type": "integer"
+                    },
+                    "consultation_time": {
+                      "type": "integer"
+                    },
+                    "direction": {
+                      "type": "string"
+                    },
+                    "disconnection_reason": {
+                      "type": "string"
+                    },
+                    "dnis": {
+                      "type": "string"
+                    },
+                    "duration": {
+                      "type": "integer"
+                    },
+                    "end_user_id": {
+                      "type": "integer"
+                    },
+                    "end_user_location": {
+                      "type": "string"
+                    },
+                    "exceeded_queue_time": {
+                      "type": "boolean"
+                    },
+                    "extension": {
+                      "type": "string"
+                    },
+                    "external_id": {
+                      "type": "string"
+                    },
+                    "from_line": {
+                      "type": "string"
+                    },
+                    "from_line_nickname": {
+                      "type": "string"
+                    },
+                    "hold_time": {
+                      "type": "integer"
+                    },
+                    "intent": {
+                      "type": "string"
+                    },
+                    "ivr_destination_group_name": {
+                      "type": "string"
+                    },
+                    "ivr_time_spent": {
+                      "type": "integer"
+                    },
+                    "language": {
+                      "type": "string"
+                    },
+                    "line_type": {
+                      "type": "string"
+                    },
+                    "longest_hold_time": {
+                      "type": "integer"
+                    },
+                    "number_of_holds": {
+                      "type": "integer"
+                    },
+                    "outside_business_hours": {
+                      "type": "boolean"
+                    },
+                    "overflowed_to": {
+                      "type": "string"
+                    },
+                    "phone_name": {
+                      "type": "string"
+                    },
+                    "public": {
+                      "type": "boolean"
+                    },
+                    "quality_score": {
+                      "type": "integer"
+                    },
+                    "queue_name": {
+                      "type": "string"
+                    },
+                    "queue_time": {
+                      "type": "integer"
+                    },
+                    "recorded": {
+                      "type": "boolean"
+                    },
+                    "recording_time": {
+                      "type": "integer"
+                    },
+                    "recording_type": {
+                      "type": "string"
+                    },
+                    "recording_url": {
+                      "type": "string"
+                    },
+                    "sentiment_agent": {
+                      "type": "string"
+                    },
+                    "sentiment_call": {
+                      "type": "string"
+                    },
+                    "sentiment_customer": {
+                      "type": "string"
+                    },
+                    "sentiment_trend": {
+                      "type": "string"
+                    },
+                    "short_summary": {
+                      "type": "string"
+                    },
+                    "summary": {
+                      "type": "string"
+                    },
+                    "talk_time": {
+                      "type": "integer"
+                    },
+                    "time_to_answer": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "to_line": {
+                      "type": "string"
+                    },
+                    "to_line_nickname": {
+                      "type": "string"
+                    },
+                    "transcript": {
+                      "type": "string"
+                    },
+                    "via_id": {
+                      "type": "integer"
+                    },
+                    "video_recording_url": {
+                      "type": "string"
+                    },
+                    "voicemail": {
+                      "type": "boolean"
+                    },
+                    "voicemail_requested_at": {
+                      "type": "string"
+                    },
+                    "wait_time": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "agent_id",
+                    "answering_machine_detection_status",
+                    "app_id",
+                    "app_name",
+                    "author_id",
+                    "call_connected_at",
+                    "call_disposition",
+                    "call_ended_at",
+                    "call_id",
+                    "call_recording_consent",
+                    "call_recording_consent_action",
+                    "call_recording_consent_keypress",
+                    "call_started_at",
+                    "call_type",
+                    "callback_number",
+                    "callback_requested_at",
+                    "completion_status",
+                    "connection_attempts",
+                    "consultation_time",
+                    "direction",
+                    "disconnection_reason",
+                    "dnis",
+                    "duration",
+                    "end_user_id",
+                    "end_user_location",
+                    "exceeded_queue_time",
+                    "extension",
+                    "external_id",
+                    "from_line",
+                    "from_line_nickname",
+                    "hold_time",
+                    "intent",
+                    "ivr_destination_group_name",
+                    "ivr_time_spent",
+                    "language",
+                    "line_type",
+                    "longest_hold_time",
+                    "number_of_holds",
+                    "outside_business_hours",
+                    "overflowed_to",
+                    "phone_name",
+                    "public",
+                    "quality_score",
+                    "queue_name",
+                    "queue_time",
+                    "recorded",
+                    "recording_time",
+                    "recording_type",
+                    "recording_url",
+                    "sentiment_agent",
+                    "sentiment_call",
+                    "sentiment_customer",
+                    "sentiment_trend",
+                    "short_summary",
+                    "summary",
+                    "talk_time",
+                    "time_to_answer",
+                    "title",
+                    "to_line",
+                    "to_line_nickname",
+                    "transcript",
+                    "via_id",
+                    "video_recording_url",
+                    "voicemail",
+                    "voicemail_requested_at",
+                    "wait_time"
+                  ],
+                  "additionalProperties": false,
+                  "description": "Write only. A TPE voice comment for Talk Partner Edition tickets"
+                },
+                "type": {
+                  "type": "string",
+                  "description": "The type of this ticket",
+                  "enum": [
+                    "problem",
+                    "incident",
+                    "question",
+                    "task"
+                  ]
+                },
+                "updated_at": {
+                  "type": "string",
+                  "description": "When this record last got updated. It is updated only if the update generates a [ticket event](#incremental-ticket-event-export)"
+                },
+                "updated_stamp": {
+                  "type": "string",
+                  "description": "Write only. Datetime of last update received from API. See the `safe_update` property"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The API url of this ticket"
+                },
+                "via": {
+                  "type": "object",
+                  "properties": {
+                    "channel": {
+                      "type": "object",
+                      "properties": {},
+                      "required": [],
+                      "visible": [],
+                      "additionalProperties": true
+                    },
+                    "source": {
+                      "type": "object",
+                      "properties": {
+                        "from": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        },
+                        "rel": {
+                          "type": "string"
+                        },
+                        "to": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "visible": [],
+                          "additionalProperties": true
+                        }
+                      },
+                      "required": [],
+                      "visible": [
+                        "from",
+                        "rel",
+                        "to"
+                      ],
+                      "additionalProperties": true,
+                      "description": "For some channels a source object gives more information about how or why the ticket or event was created\n"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "channel",
+                    "source"
+                  ],
+                  "additionalProperties": false,
+                  "description": "An object explaining how the ticket was created. See the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference)\n"
+                },
+                "via_followup_source_id": {
+                  "type": "integer",
+                  "description": "Write only. The id of a closed ticket when creating a follow-up ticket. See [Creating a follow-up ticket](/documentation/ticketing/managing-tickets/creating-and-updating-tickets#creating-a-follow-up-ticket)"
+                },
+                "via_id": {
+                  "type": "integer",
+                  "description": "Write only. For more information, see the [Via object reference](/documentation/ticketing/reference-guides/via-object-reference/)"
+                },
+                "voice_comment": {
+                  "type": "object",
+                  "properties": {
+                    "answered_by_id": {
+                      "type": "integer",
+                      "description": "The agent who answered the call"
+                    },
+                    "call_duration": {
+                      "type": "integer",
+                      "description": "Duration of the call in seconds"
+                    },
+                    "from": {
+                      "type": "string",
+                      "description": "Incoming phone number"
+                    },
+                    "location": {
+                      "type": "string",
+                      "description": "Location of the caller"
+                    },
+                    "recording_url": {
+                      "type": "string",
+                      "description": "URL of the recording"
+                    },
+                    "to": {
+                      "type": "string",
+                      "description": "Dialed phone number"
+                    },
+                    "transcription_text": {
+                      "type": "string",
+                      "description": "Transcription of the call"
+                    }
+                  },
+                  "required": [],
+                  "visible": [
+                    "answered_by_id",
+                    "call_duration",
+                    "from",
+                    "location",
+                    "recording_url",
+                    "to",
+                    "transcription_text"
+                  ],
+                  "additionalProperties": true,
+                  "description": "Write only. A voice comment for Talk tickets. See [Adding voice comments to tickets](/documentation/ticketing/managing-tickets/adding-voice-comments-to-tickets/)"
+                }
+              },
+              "required": [],
+              "visible": [
+                "additional_collaborators",
+                "allow_attachments",
+                "allow_channelback",
+                "assignee_email",
+                "assignee_id",
+                "attribute_value_ids",
+                "brand_id",
+                "collaborator_ids",
+                "collaborators",
+                "comment",
+                "created_at",
+                "custom_fields",
+                "custom_status_id",
+                "description",
+                "due_at",
+                "email_cc_ids",
+                "email_ccs",
+                "encoded_id",
+                "external_id",
+                "fields",
+                "follower_ids",
+                "followers",
+                "followup_ids",
+                "forum_topic_id",
+                "from_messaging_channel",
+                "generated_timestamp",
+                "group_id",
+                "has_incidents",
+                "id",
+                "is_public",
+                "macro_id",
+                "macro_ids",
+                "metadata",
+                "organization_id",
+                "origin_zrn",
+                "priority",
+                "problem_id",
+                "raw_subject",
+                "recipient",
+                "requester",
+                "requester_id",
+                "safe_update",
+                "satisfaction_probability",
+                "satisfaction_rating",
+                "sharing_agreement_ids",
+                "sharing_agreements",
+                "status",
+                "subject",
+                "submitter_id",
+                "support_type",
+                "suspended_ticket_id",
+                "suspension_type_id",
+                "system_metadata",
+                "tags",
+                "tde_workspace",
+                "ticket_form_id",
+                "tpe_voice_comment",
+                "type",
+                "updated_at",
+                "updated_stamp",
+                "url",
+                "via",
+                "via_followup_source_id",
+                "via_id",
+                "voice_comment"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [],
+          "visible": [
+            "system_metadata",
+            "ticket"
+          ],
+          "additionalProperties": false,
+          "description": "Request body"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__DELETETICKET",
+    "description": "Delete Ticket",
+    "tags": [
+      "Tickets"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "DELETE",
+      "path": "/api/v2/tickets/{ticket_id}",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticket_id": {
+              "type": "integer",
+              "description": "The ID of the ticket"
+            }
+          },
+          "required": [
+            "ticket_id"
+          ],
+          "visible": [
+            "ticket_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__LISTAUDITSFORTICKET",
+    "description": "List Audits for a Ticket",
+    "tags": [
+      "Ticket Audits"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/tickets/{ticket_id}/audits",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticket_id": {
+              "type": "integer",
+              "description": "The ID of the ticket"
+            }
+          },
+          "required": [
+            "ticket_id"
+          ],
+          "visible": [
+            "ticket_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "page": {
+              "type": "object",
+              "properties": {},
+              "required": [],
+              "visible": [],
+              "additionalProperties": true,
+              "description": "Pagination parameter. Supports both traditional offset and cursor-based pagination:\n\n- Traditional: `?page=2` (integer page number)\n- Cursor: `?page[size]=50&page[after]=cursor` (deepObject with size, after, before)\n\nThese are mutually exclusive - use one format or the other, not both.\n"
+            },
+            "sort": {
+              "type": "string",
+              "description": "Field to sort results by. Prefix with `-` for descending order.\n\nWhen used with cursor pagination, this determines the cursor ordering.\n\nExample: `?sort=name` or `?sort=-created_at`\n"
+            },
+            "include": {
+              "type": "string",
+              "description": "A comma-separated list of sideloads to include in the response.\n"
+            },
+            "include_boundary_indicators": {
+              "type": "boolean",
+              "description": "When true, includes `has_more` indicator in the cursor pagination response meta.\n\nOnly valid with cursor pagination (page[size], page[after], page[before]).\n"
+            },
+            "include_item_cursors": {
+              "type": "boolean",
+              "description": "When true, includes cursor values for each item in the cursor pagination response.\n\nOnly valid with cursor pagination (page[size], page[after], page[before]).\n"
+            },
+            "filter_events": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Filter audit events by type. Use the format `filter_events[]=Type1&filter_events[]=Type2`."
+            },
+            "sort_order": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "description": "Sort order. Defaults to \"asc\""
+            }
+          },
+          "required": [],
+          "visible": [
+            "page",
+            "sort",
+            "include",
+            "include_boundary_indicators",
+            "include_item_cursors",
+            "filter_events",
+            "sort_order"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__SHOWTICKETAUDIT",
+    "description": "Show Audit",
+    "tags": [
+      "Ticket Audits"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/tickets/{ticket_id}/audits/{ticket_audit_id}",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticket_id": {
+              "type": "integer",
+              "description": "The ID of the ticket"
+            },
+            "ticket_audit_id": {
+              "type": "integer",
+              "description": "The ID of the ticket audit"
+            }
+          },
+          "required": [
+            "ticket_id",
+            "ticket_audit_id"
+          ],
+          "visible": [
+            "ticket_id",
+            "ticket_audit_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__MAKETICKETCOMMENTPRIVATEFROMAUDITS",
+    "description": "Change a Comment From Public To Private",
+    "tags": [
+      "Ticket Audits"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "PUT",
+      "path": "/api/v2/tickets/{ticket_id}/audits/{ticket_audit_id}/make_private",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticket_id": {
+              "type": "integer",
+              "description": "The ID of the ticket"
+            },
+            "ticket_audit_id": {
+              "type": "integer",
+              "description": "The ID of the ticket audit"
+            }
+          },
+          "required": [
+            "ticket_id",
+            "ticket_audit_id"
+          ],
+          "visible": [
+            "ticket_id",
+            "ticket_audit_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__LISTTICKETCOLLABORATORS",
+    "description": "List Collaborators for a Ticket",
+    "tags": [
+      "Tickets"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/tickets/{ticket_id}/collaborators",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticket_id": {
+              "type": "integer",
+              "description": "The ID of the ticket"
+            }
+          },
+          "required": [
+            "ticket_id"
+          ],
+          "visible": [
+            "ticket_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        }
+      }
+    }
+  },
+  {
+    "name": "ZENDESK__LISTTICKETCOMMENTS",
+    "description": "List Comments",
+    "tags": [
+      "Ticket Comments"
+    ],
+    "visibility": "public",
+    "active": true,
+    "protocol": "rest",
+    "protocol_data": {
+      "method": "GET",
+      "path": "/api/v2/tickets/{ticket_id}/comments",
+      "server_url": "https://{subdomain}.zendesk.com"
+    },
+    "parameters": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "visible": [
+        "path",
+        "query"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "object",
+          "properties": {
+            "ticket_id": {
+              "type": "integer",
+              "description": "The ID of the ticket"
+            }
+          },
+          "required": [
+            "ticket_id"
+          ],
+          "visible": [
+            "ticket_id"
+          ],
+          "additionalProperties": false,
+          "description": "Path parameters"
+        },
+        "query": {
+          "type": "object",
+          "properties": {
+            "include_inline_images": {
+              "type": "boolean",
+              "description": "Default is false. When true, inline images are also listed as attachments in the response"
+            },
+            "include": {
+              "type": "string",
+              "description": "Accepts \"users\". Use this parameter to list email CCs by side-loading users. Example: `?include=users`. **Note**: If the comment source is email, a deleted user will be represented as the CCd email address. If the comment source is anything else, a deleted user will be represented as the user name."
+            },
+            "per_page": {
+              "type": "integer",
+              "description": "Number of records to return per page.\n\nNote: Default and maximum values vary by endpoint. Check endpoint-specific\ndocumentation for limits.\n"
+            },
+            "sort_order": {
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ],
+              "description": "Sort order. Defaults to \"asc\""
+            },
+            "page": {
+              "type": "object",
+              "properties": {
+                "after": {
+                  "type": "string",
+                  "description": "Cursor token for fetching next page"
+                },
+                "before": {
+                  "type": "string",
+                  "description": "Cursor token for fetching previous page"
+                },
+                "size": {
+                  "type": "integer",
+                  "description": "Number of records per page"
+                }
+              },
+              "required": [],
+              "visible": [
+                "after",
+                "before",
+                "size"
+              ],
+              "additionalProperties": false,
+              "description": "Cursor-based pagination parameters (JSON:API style).\n\nSupports nested parameters:\n- `page[size]` - Number of records per page (default varies by endpoint, typically 100)\n- `page[after]` - Cursor token to fetch records after this position\n- `page[before]` - Cursor token to fetch records before this position\n\nExample: `?page[size]=50&page[after]=eyJvIjoiaWQiLCJ2IjoiYVFFPSJ9`\n"
+            }
+          },
+          "required": [],
+          "visible": [
+            "include_inline_images",
+            "include",
+            "per_page",
+            "sort_order",
+            "page"
+          ],
+          "additionalProperties": false,
+          "description": "Query parameters"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "name": "PLIVO",
+  "display_name": "Plivo",
+  "logo": "https://www.google.com/s2/favicons?domain=plivo.com&sz=128",
+  "provider": "Plivo",
+  "version": "1.0",
+  "description": "Plivo voice and messaging REST API (thin tools). The per-account base URL is templated from the linked account's connection_config ({auth_id}); the api_key is the Basic-auth credential base64(auth_id:auth_token).",
+  "security_schemes": {
+    "api_key": {
+      "location": "header",
+      "name": "Authorization",
+      "prefix": "Basic"
+    }
+  },
+  "default_security_credentials_by_scheme": {},
+  "categories": ["Communication"],
+  "visibility": "public",
+  "active": true
+}
